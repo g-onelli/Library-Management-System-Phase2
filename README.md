@@ -10,11 +10,11 @@
 - Librarian
 
 **Ian**
--Event
--Fee
+- Event
+- Fee
 
 **Jakob**
--Checkedoutbook
--Checkedoutvideo
--Book
--Video
+- Checkedoutbook
+- Checkedoutvideo
+- Book
+- Video
