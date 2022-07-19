@@ -5,58 +5,64 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "checkedoutbooks")
 public class CheckedOutBook{
 
-	    @Id
-	    private int patrons_id;
-	    @Id
-	    private int books_id;
+	    @OneToMany
+	    private Patron patron;
+	    @OneToMany
+	    private Book book;
 	    @Column
 	    private LocalDate dueDate;
-
+		
 	    public CheckedOutBook() {
-	        super();
-	    }
+			super();
+		}
 
-	    public CheckedOutBook(int patrons_id, int books_id, LocalDate dueDate) {
-	        super();
-	        this.patrons_id = patrons_id;
-	        this.books_id = books_id;
-	        this.dueDate = dueDate;
-	    }
+		public CheckedOutBook(Patron patron, Book book, LocalDate dueDate) {
+			super();
+			this.patron = patron;
+			this.book = book;
+			this.dueDate = dueDate;
+		}
 
-	    @Override
-	    public String toString() {
-	        return "checkedOutBook [patrons_id=" + patrons_id + ", videos_id=" + books_id + ", dueDate="
-	                + dueDate + "]";
-	    }
+		public Patron getPatron() {
+			return patron;
+		}
 
-	    public int getPatrons_id() {
-	        return patrons_id;
-	    }
+		public void setPatron(Patron patron) {
+			this.patron = patron;
+		}
 
-	    public void setPatrons_id(int patrons_id) {
-	        this.patrons_id = patrons_id;
-	    }
+		public Book getBook() {
+			return book;
+		}
 
-	    public int getBooks_id() {
-	        return books_id;
-	    }
+		public void setBook(Book book) {
+			this.book = book;
+		}
 
-	    public void setBooks_id(int books_id) {
-	        this.books_id = books_id;
-	    }
+		public LocalDate getDueDate() {
+			return dueDate;
+		}
 
-	    public LocalDate getDueDate() {
-	        return dueDate;
-	    }
+		public void setDueDate(LocalDate dueDate) {
+			this.dueDate = dueDate;
+		}
 
-	    public void setDueDate(LocalDate date) {
-	        this.dueDate = date;
-	    }
+		@Override
+		public String toString() {
+			return "CheckedOutBook [book=" + book + ", dueDate=" + dueDate + "]";
+		}
+		
+		
+	    
+	    
+	    
+	    
 
 }
