@@ -1,5 +1,7 @@
 package com.springboot.backend.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +21,7 @@ public class Patrons {
     private String name;
 	
 	@Column(length = 45, nullable = true)
-    private String cardExpirationDate;
+    private LocalDate cardexpirationdate;
 	
 	@Column
     private double balance;
@@ -27,11 +29,11 @@ public class Patrons {
     @Column(length = 45)
     private String password;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -43,12 +45,12 @@ public class Patrons {
 		this.name = name;
 	}
 
-	public String getCardExpirationDate() {
-		return cardExpirationDate;
+	public LocalDate getCardexpirationdate() {
+		return cardexpirationdate;
 	}
 
-	public void setCardExpirationDate(String cardExpirationDate) {
-		this.cardExpirationDate = cardExpirationDate;
+	public void setCardexpirationdate(LocalDate cardexpirationdate) {
+		this.cardexpirationdate = cardexpirationdate;
 	}
 
 	public double getBalance() {
@@ -69,15 +71,15 @@ public class Patrons {
 
 	@Override
 	public String toString() {
-		return "Patron [id=" + id + ", name=" + name + ", cardExpirationDate=" + cardExpirationDate + ", balance="
+		return "Patrons [id=" + id + ", name=" + name + ", cardexpirationdate=" + cardexpirationdate + ", balance="
 				+ balance + ", password=" + password + "]";
 	}
 
-	public Patrons(int id, String name, String cardExpirationDate, double balance, String password) {
+	public Patrons(Integer id, String name, LocalDate cardexpirationdate, double balance, String password) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.cardExpirationDate = cardExpirationDate;
+		this.cardexpirationdate = cardexpirationdate;
 		this.balance = balance;
 		this.password = password;
 	}
@@ -86,5 +88,7 @@ public class Patrons {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
     
 }
