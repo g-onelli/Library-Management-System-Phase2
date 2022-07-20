@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.springboot.backend.model.Book;
-import com.springboot.backend.model.CheckedOutBook;
+
 import com.springboot.backend.model.CheckedOutVideo;
+import com.springboot.backend.model.Patrons;
 import com.springboot.backend.model.Video;
 import com.springboot.backend.repository.CheckedOutVideoRepository;
+import com.springboot.backend.repository.PatronsRepository;
 import com.springboot.backend.repository.VideoRepository;
 
 
@@ -27,7 +28,7 @@ public class CheckedOutVideoController {
 	private CheckedOutVideoRepository checkedOutVideoRepository;
 	
 	@Autowired
-	private PatronRepository patronRepository;
+	private PatronsRepository patronsRepository;
 	
 	@Autowired
 	private VideoRepository videoRepository;
@@ -37,25 +38,24 @@ public class CheckedOutVideoController {
 			@PathVariable("pid") Long pid,
 			@PathVariable("vid") Long vid) {
 		//go to repo and fetch Patron by id
-		Optional<Patron> optional = patronRepository.findById(pid);
+		Optional<Patrons> optional = patronsRepository.findById(pid);
 		if(optional.isEmpty())
 			throw new RuntimeException("Patron ID is invalid");
-		Patron patron = optional.get();
+		Patrons patron = optional.get();
 		
 		//go to repo and fetch book by id
 		Optional<Video> optionalV = videoRepository.findById(vid);
 		if(optionalV.isEmpty())
-			throw new RuntimeException("Book ID is invalid");
+			throw new RuntimeException("Video ID is invalid");
 		Video video = optionalV.get();
 		
 		//attach Patron and Book to product
 		checkedOutVideo.setPatron(patron);
 		checkedOutVideo.setVideo(video);
 		
-		//save checkedoutbook in the DB
+		//save checkedoutvideo in the DB
 		
-		return checkedOutVideo.save(checkedOutVideo);
-		
+		return checkedOutVideoRepository.save(checkedOutVideo);
 		
 	}
 	

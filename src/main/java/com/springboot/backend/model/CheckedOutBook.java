@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class CheckedOutBook{
 
 	    @OneToMany
-	    private Patron patron;
+	    private Patrons patron;
 	    @OneToMany
 	    private Book book;
 	    @Column
@@ -23,18 +23,18 @@ public class CheckedOutBook{
 			super();
 		}
 
-		public CheckedOutBook(Patron patron, Book book, LocalDate dueDate) {
+		public CheckedOutBook(Patrons patron, Book book, LocalDate dueDate) {
 			super();
 			this.patron = patron;
 			this.book = book;
 			this.dueDate = dueDate;
 		}
 
-		public Patron getPatron() {
+		public Patrons getPatron() {
 			return patron;
 		}
 
-		public void setPatron(Patron patron) {
+		public void setPatron(Patrons patron) {
 			this.patron = patron;
 		}
 

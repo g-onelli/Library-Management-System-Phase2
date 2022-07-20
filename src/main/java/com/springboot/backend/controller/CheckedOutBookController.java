@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.backend.model.Book;
 import com.springboot.backend.model.CheckedOutBook;
+import com.springboot.backend.model.Patrons;
 import com.springboot.backend.repository.BookRepository;
 import com.springboot.backend.repository.CheckedOutBookRepository;
+import com.springboot.backend.repository.PatronsRepository;
 
 @RestController
 public class CheckedOutBookController {
@@ -25,7 +26,7 @@ public class CheckedOutBookController {
 	private CheckedOutBookRepository checkedOutBookRepository;
 	
 	@Autowired
-	private PatronRepository patronRepository;
+	private PatronsRepository patronRepository;
 	
 	@Autowired 
 	private BookRepository bookRepository;
@@ -35,10 +36,10 @@ public class CheckedOutBookController {
 			@PathVariable("pid") Long pid,
 			@PathVariable("bid") Long bid) {
 		//go to repo and fetch Patron by id
-		Optional<Patron> optional = patronRepository.findById(pid);
+		Optional<Patrons> optional = patronRepository.findById(pid);
 		if(optional.isEmpty())
 			throw new RuntimeException("Patron ID is invalid");
-		Patron patron = optional.get();
+		Patrons patron = optional.get();
 		
 		//go to repo and fetch book by id
 		Optional<Book> optionalB = bookRepository.findById(bid);
