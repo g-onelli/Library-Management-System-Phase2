@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "requests")
-public class Requests {
+public class Request {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,7 +27,7 @@ public class Requests {
 	@Column(length = 45, nullable = false)
     private String author;
 	@OneToOne
-	private Patrons patron;
+	private Patron patron;
 	public Integer getId() {
 		return id;
 	}
@@ -58,10 +58,10 @@ public class Requests {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public Patrons getPatron() {
+	public Patron getPatron() {
 		return patron;
 	}
-	public void setPatron(Patrons patron) {
+	public void setPatron(Patron patron) {
 		this.patron = patron;
 	}
 	@Override
@@ -69,7 +69,7 @@ public class Requests {
 		return "Requests [id=" + id + ", description=" + description + ", submissiondate=" + submissiondate + ", title="
 				+ title + ", author=" + author + ", patron=" + patron + "]";
 	}
-	public Requests(Integer id, String description, LocalDate submissiondate, String title, String author, Patrons patron) {
+	public Request(Integer id, String description, LocalDate submissiondate, String title, String author, Patron patron) {
 		super();
 		this.id = id;
 		this.description = description;
@@ -78,7 +78,7 @@ public class Requests {
 		this.author = author;
 		this.patron = patron;
 	}
-	public Requests() {
+	public Request() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

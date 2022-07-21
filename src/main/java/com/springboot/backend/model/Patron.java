@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "patrons")
-public class Patrons {
+public class Patron {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable=false)
@@ -75,7 +75,7 @@ public class Patrons {
 				+ balance + ", password=" + password + "]";
 	}
 
-	public Patrons(Integer id, String name, LocalDate cardexpirationdate, double balance, String password) {
+	public Patron(Integer id, String name, LocalDate cardexpirationdate, double balance, String password) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -84,7 +84,7 @@ public class Patrons {
 		this.password = password;
 	}
 
-	public Patrons() {
+	public Patron() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

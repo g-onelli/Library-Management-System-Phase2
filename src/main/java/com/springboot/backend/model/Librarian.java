@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "librarians")
-public class Librarians {
+public class Librarian {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable=false)
@@ -96,7 +96,7 @@ public class Librarians {
 				+ email + ", phonenumber=" + phonenumber + ", password=" + password + "]";
 	}
 
-	public Librarians(Integer id, String name, Double salary, String position, String email, String phonenumber,
+	public Librarian(Integer id, String name, Double salary, String position, String email, String phonenumber,
 			String password) {
 		super();
 		this.id = id;
@@ -108,7 +108,7 @@ public class Librarians {
 		this.password = password;
 	}
 
-	public Librarians() {
+	public Librarian() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

@@ -8,24 +8,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.springboot.backend.model.Librarians;
-import com.springboot.backend.repository.LibrariansRepository;
+import com.springboot.backend.model.Librarian;
+import com.springboot.backend.repository.LibrarianRepository;
 
 
 @RestController
-public class LibrariansController {
+public class LibrarianController {
 	@Autowired 
-	private LibrariansRepository librariansRepository; 
+	private LibrarianRepository librarianRepository; 
 	@GetMapping("/librarians")
-	public List<Librarians> getAllLibrarians() {
-		List<Librarians> list = librariansRepository.findAll();
+	public List<Librarian> getAllLibrarians() {
+		List<Librarian> list = librarianRepository.findAll();
 		return list; 
 	}
 	
 	//Get a specific patron based on Id
 	@GetMapping("/librarians/{id}") //librarians/4
-	public Librarians getSinglePatronById(@PathVariable("id") Integer id) {
-		Optional<Librarians> optional =  librariansRepository.findById(id);
+	public Librarian getSinglePatronById(@PathVariable("id") Integer id) {
+		Optional<Librarian> optional =  librarianRepository.findById(id);
 		if(optional.isPresent())
 			return optional.get();
 		throw new RuntimeException("ID is invalid");

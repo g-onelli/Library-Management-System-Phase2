@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.springboot.backend.model.Book;
 import com.springboot.backend.model.CheckedOutBook;
 import com.springboot.backend.model.CheckedOutVideo;
+import com.springboot.backend.model.Patron;
 import com.springboot.backend.model.Video;
 import com.springboot.backend.repository.CheckedOutVideoRepository;
+import com.springboot.backend.repository.PatronRepository;
 import com.springboot.backend.repository.VideoRepository;
 
 

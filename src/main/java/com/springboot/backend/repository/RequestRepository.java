@@ -4,8 +4,8 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.springboot.backend.model.Requests;
+import com.springboot.backend.model.Request;
 
-public interface RequestsRepository extends JpaRepository<Requests, Integer>{
+public interface RequestRepository extends JpaRepository<Request, Integer>{
 	
 }

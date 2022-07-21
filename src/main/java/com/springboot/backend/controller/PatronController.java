@@ -11,29 +11,29 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.springboot.backend.model.Patrons;
-import com.springboot.backend.repository.PatronsRepository;
+import com.springboot.backend.model.Patron;
+import com.springboot.backend.repository.PatronRepository;
 
 @RestController
-public class PatronsController {
+public class PatronController {
 	@Autowired //<- Spring will wire it to PatronsRepository Interface. 
-	private PatronsRepository patronsRepository; 
+	private PatronRepository patronRepository; 
 	//Add a new patron
 	@PostMapping("/patrons")
-	public void postPatrons(@RequestBody Patrons patrons) {
-		patronsRepository.save(patrons);
+	public void postPatrons(@RequestBody Patron patron) {
+		patronRepository.save(patron);
 	}
 	//Get all patrons
 	@GetMapping("/patrons")
-	public List<Patrons> getAllPatrons() {
-		List<Patrons> list = patronsRepository.findAll();
+	public List<Patron> getAllPatrons() {
+		List<Patron> list = patronRepository.findAll();
 		return list; 
 	}
 	
 	//Get a specific patron based on Id
 	@GetMapping("/patrons/{id}") //patrons/4
-	public Patrons getSinglePatronById(@PathVariable("id") Integer id) {
-		Optional<Patrons> optional =  patronsRepository.findById(id);
+	public Patron getSinglePatronById(@PathVariable("id") Integer id) {
+		Optional<Patron> optional =  patronRepository.findById(id);
 		if(optional.isPresent())
 			return optional.get();
 		throw new RuntimeException("ID is invalid");
@@ -41,15 +41,15 @@ public class PatronsController {
 	}
 	//Update a specific patron based on Id
 	@PutMapping("/patrons/{id}")
-	public Patrons updatePatrons(@PathVariable("id") Integer id, @RequestBody Patrons newPatrons) {
-		Optional<Patrons> optional = patronsRepository.findById(id);
+	public Patron updatePatrons(@PathVariable("id") Integer id, @RequestBody Patron newPatrons) {
+		Optional<Patron> optional = patronRepository.findById(id);
 		if(optional.isPresent()) {	
-			Patrons existingPatrons = optional.get();
+			Patron existingPatrons = optional.get();
 			existingPatrons.setName(newPatrons.getName());
 			existingPatrons.setCardexpirationdate(newPatrons.getCardexpirationdate());
 			existingPatrons.setBalance(newPatrons.getBalance());
 			existingPatrons.setPassword(newPatrons.getPassword());
-			return patronsRepository.save(existingPatrons);
+			return patronRepository.save(existingPatrons);
 		}
 		else
 			throw new RuntimeException("ID is invalid");

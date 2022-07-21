@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.backend.model.Book;
 import com.springboot.backend.model.CheckedOutBook;
+import com.springboot.backend.model.Patron;
 import com.springboot.backend.repository.BookRepository;
 import com.springboot.backend.repository.CheckedOutBookRepository;
+import com.springboot.backend.repository.PatronRepository;
 
 @RestController
 public class CheckedOutBookController {
