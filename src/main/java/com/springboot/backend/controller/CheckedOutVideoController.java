@@ -26,7 +26,7 @@ public class CheckedOutVideoController {
 	private CheckedOutVideoRepository checkedOutVideoRepository;
 	
 	@Autowired
-	private PatronsRepository patronRepository;
+	private PatronRepository patronRepository;
 	
 	@Autowired
 	private VideoRepository videoRepository;
