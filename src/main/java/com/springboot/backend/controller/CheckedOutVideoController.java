@@ -10,16 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 import com.springboot.backend.model.CheckedOutVideo;
-import com.springboot.backend.model.Patrons;
+import com.springboot.backend.model.Patron;
 import com.springboot.backend.model.Video;
 import com.springboot.backend.repository.CheckedOutVideoRepository;
-import com.springboot.backend.repository.PatronsRepository;
+import com.springboot.backend.repository.PatronRepository;
 import com.springboot.backend.repository.VideoRepository;
 
 
@@ -31,7 +26,7 @@ public class CheckedOutVideoController {
 	private CheckedOutVideoRepository checkedOutVideoRepository;
 	
 	@Autowired
-	private PatronsRepository patronsRepository;
+	private PatronsRepository patronRepository;
 	
 	@Autowired
 	private VideoRepository videoRepository;
@@ -40,10 +35,10 @@ public class CheckedOutVideoController {
 	public CheckedOutVideo postCheckedOutVideo(@PathVariable("pid") Integer pid,@PathVariable("vid") Integer vid) {
 		CheckedOutVideo checkedOutVideo = new CheckedOutVideo();
 		//go to repo and fetch Patron by id
-		Optional<Patrons> optional = patronsRepository.findById(pid);
+		Optional<Patron> optional = patronRepository.findById(pid);
 		if(optional.isEmpty())
 			throw new RuntimeException("Patron ID is invalid");
-		Patrons patron = optional.get();
+		Patron patron = optional.get();
 		
 		//go to repo and fetch book by id
 		Optional<Video> optionalV = videoRepository.findById(vid);
@@ -55,15 +50,8 @@ public class CheckedOutVideoController {
 		checkedOutVideo.setPatron(patron);
 		checkedOutVideo.setVideo(video);
 		checkedOutVideo.setDueDate(LocalDate.now().plusWeeks(2));
-		
-<<<<<<< Updated upstream
-		//save checkedoutvideo in the DB
-=======
+    
 		//save checkedoutbook in the DB
-		
-		return checkedOutVideoRepository.save(checkedOutVideo);
->>>>>>> Stashed changes
-		
 		return checkedOutVideoRepository.save(checkedOutVideo);
 		
 	}

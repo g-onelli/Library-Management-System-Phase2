@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.backend.model.Book;
 import com.springboot.backend.model.CheckedOutBook;
-import com.springboot.backend.model.Patrons;
+import com.springboot.backend.model.Patron;
 import com.springboot.backend.repository.BookRepository;
 import com.springboot.backend.repository.CheckedOutBookRepository;
-import com.springboot.backend.repository.PatronsRepository;
+import com.springboot.backend.repository.PatronRepository;
+
 
 @RestController
 public class CheckedOutBookController {
@@ -27,7 +28,7 @@ public class CheckedOutBookController {
 	private CheckedOutBookRepository checkedOutBookRepository;
 	
 	@Autowired
-	private PatronsRepository patronRepository;
+	private PatronRepository patronRepository;
 	
 	@Autowired 
 	private BookRepository bookRepository;
@@ -35,16 +36,11 @@ public class CheckedOutBookController {
 	@PostMapping("/checkoutbook/{pid}/{bid}")
 	public CheckedOutBook checkOutBook(@PathVariable("pid") Integer pid,@PathVariable("bid") Integer bid) {
 		//go to repo and fetch Patron by id
-<<<<<<< Updated upstream
-		Optional<Patrons> optional = patronRepository.findById(pid);
-=======
 		CheckedOutBook checkedOutBook = new CheckedOutBook();
 		Optional<Patron> optional = patronRepository.findById(pid);
->>>>>>> Stashed changes
 		if(optional.isEmpty())
 			throw new RuntimeException("Patron ID is invalid");
-		Patrons patron = optional.get();
-		
+		Patron patron = optional.get();	
 		//go to repo and fetch book by id
 		Optional<Book> optionalB = bookRepository.findById(bid);
 		if(optionalB.isEmpty())
