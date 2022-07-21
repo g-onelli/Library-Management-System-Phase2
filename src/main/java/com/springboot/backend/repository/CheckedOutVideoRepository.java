@@ -7,15 +7,18 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.springboot.backend.model.CheckedOutVideo;
 
-public interface CheckedOutVideoRepository extends JpaRepository<CheckedOutVideo, Long>{
+public interface CheckedOutVideoRepository extends JpaRepository<CheckedOutVideo, Integer>{
 	
 	@Query("select cv from CheckedOutVideo cv where cv.patron.id = ?1")
-	List<CheckedOutVideo> getCheckedOutVideosByPatronId(Long pid);
+	List<CheckedOutVideo> getCheckedOutVideosByPatronId(Integer pid);
+	
 	@Query("select cv from CheckedOutVideo cv where cv.video.id = ?1")
-	List<CheckedOutVideo> getCheckedOutVideosByVideoId(Long vid);
-	@Query("delete cv from CheckedOutVideo cv where cv.patron.id = ?1")
-	void deleteCheckedOutVideoByPatronId(Long pid);
-	@Query("delete cv from CheckedOutVideo cv where cv.book.id = ?1")
-	void deleteCheckedOutVideosByVideoId(Long vid);
+	List<CheckedOutVideo> getCheckedOutVideosByVideoId(Integer vid);
+	
+	@Query("delete from CheckedOutVideo cv where cv.patron.id = ?1")
+	void deleteCheckedOutVideoByPatronId(Integer pid);
+	
+	@Query("delete from CheckedOutVideo cv where cv.video.id = ?1")
+	void deleteCheckedOutVideosByVideoId(Integer vid);
 
 }
