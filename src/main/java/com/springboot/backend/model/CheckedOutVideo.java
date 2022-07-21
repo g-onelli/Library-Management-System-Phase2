@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Table(name = "checkedoutvideos")
 public class CheckedOutVideo{
 	@ManyToMany
-	private Patron patron;
+	private Patrons patron;
 	@ManyToMany
     private Video video;
     @Column
@@ -25,18 +25,18 @@ public class CheckedOutVideo{
 		super();
 	}
 
-	public CheckedOutVideo(Patron patron, Video video, LocalDate dueDate) {
+	public CheckedOutVideo(Patrons patron, Video video, LocalDate dueDate) {
 		super();
 		this.patron = patron;
 		this.video = video;
 		this.dueDate = dueDate;
 	}
 
-	public Patron getPatron() {
+	public Patrons getPatron() {
 		return patron;
 	}
 
-	public void setPatron(Patron patron) {
+	public void setPatron(Patrons patron) {
 		this.patron = patron;
 	}
 
