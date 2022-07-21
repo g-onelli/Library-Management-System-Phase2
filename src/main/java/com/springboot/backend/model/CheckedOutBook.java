@@ -18,16 +18,10 @@ public class CheckedOutBook{
 		@GeneratedValue(strategy = GenerationType.AUTO)
 		private int id;
 
-<<<<<<< Updated upstream
-	    @OneToMany
-	    private Patrons patron;
-	    @OneToMany
-=======
 	    @OneToOne
 	    private Patron patron;
 	    
 	    @OneToOne
->>>>>>> Stashed changes
 	    private Book book;
 	    
 	    @Column
@@ -37,11 +31,7 @@ public class CheckedOutBook{
 			super();
 		}
 
-<<<<<<< Updated upstream
-		public CheckedOutBook(Patrons patron, Book book, LocalDate dueDate) {
-=======
 		public CheckedOutBook(int id, Patron patron, Book book, LocalDate dueDate) {
->>>>>>> Stashed changes
 			super();
 			this.id = id;
 			this.patron = patron;
@@ -49,9 +39,6 @@ public class CheckedOutBook{
 			this.dueDate = dueDate;
 		}
 
-<<<<<<< Updated upstream
-		public Patrons getPatron() {
-=======
 		public int getId() {
 			return id;
 		}
@@ -61,11 +48,10 @@ public class CheckedOutBook{
 		}
 
 		public Patron getPatron() {
->>>>>>> Stashed changes
 			return patron;
 		}
 
-		public void setPatron(Patrons patron) {
+		public void setPatron(Patron patron) {
 			this.patron = patron;
 		}
 
@@ -89,9 +75,6 @@ public class CheckedOutBook{
 		public String toString() {
 			return "CheckedOutBook [id=" + id + ", patron=" + patron + ", book=" + book + ", dueDate=" + dueDate + "]";
 		}
-		
-		
-		
-	    
-	    
+
+
 }

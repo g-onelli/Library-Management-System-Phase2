@@ -14,12 +14,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "checkedoutvideos")
 public class CheckedOutVideo{
-<<<<<<< Updated upstream
-	@ManyToMany
-	private Patrons patron;
-	@ManyToMany
-=======
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -28,7 +22,6 @@ public class CheckedOutVideo{
 	private Patron patron;
 	
 	@OneToOne
->>>>>>> Stashed changes
     private Video video;
 	
     @Column
@@ -38,11 +31,7 @@ public class CheckedOutVideo{
 		super();
 	}
 
-<<<<<<< Updated upstream
-	public CheckedOutVideo(Patrons patron, Video video, LocalDate dueDate) {
-=======
 	public CheckedOutVideo(int id, Patron patron, Video video, LocalDate dueDate) {
->>>>>>> Stashed changes
 		super();
 		this.id = id;
 		this.patron = patron;
@@ -50,9 +39,6 @@ public class CheckedOutVideo{
 		this.dueDate = dueDate;
 	}
 
-<<<<<<< Updated upstream
-	public Patrons getPatron() {
-=======
 	public int getId() {
 		return id;
 	}
@@ -62,11 +48,10 @@ public class CheckedOutVideo{
 	}
 
 	public Patron getPatron() {
->>>>>>> Stashed changes
 		return patron;
 	}
 
-	public void setPatron(Patrons patron) {
+	public void setPatron(Patron patron) {
 		this.patron = patron;
 	}
 
@@ -90,12 +75,7 @@ public class CheckedOutVideo{
 	public String toString() {
 		return "CheckedOutVideo [id=" + id + ", patron=" + patron + ", video=" + video + ", dueDate=" + dueDate + "]";
 	}
-	
-	
-    
-    
-	
-    
-    
+
+   
 
 }
