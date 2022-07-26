@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.springboot.backend.model.Patron;
 import com.springboot.backend.repository.PatronRepository;
 
@@ -48,7 +47,6 @@ public class PatronController {
 			existingPatrons.setName(newPatrons.getName());
 			existingPatrons.setCardexpirationdate(newPatrons.getCardexpirationdate());
 			existingPatrons.setBalance(newPatrons.getBalance());
-			existingPatrons.setPassword(newPatrons.getPassword());
 			return patronRepository.save(existingPatrons);
 		}
 		else
