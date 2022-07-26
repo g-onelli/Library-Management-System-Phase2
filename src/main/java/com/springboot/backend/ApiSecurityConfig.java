@@ -7,7 +7,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,17 +22,16 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 	//configure our apis as per roles
 		http.authorizeRequests()
-			.antMatchers("/*").authenticated()
-			.antMatchers(HttpMethod.DELETE, "/requests/{id}").hasRole("LIBRARIAN")
-			.antMatchers(HttpMethod.GET, "/requests").hasAnyRole("PATRON,LIBRARIAN")
-			.antMatchers(HttpMethod.POST, "/requests/patrons/{pid}").hasRole("PATRON")
-			.antMatchers("/auth/products/category/{cid}").hasRole("LIBRARIAN")
-			.antMatchers("users").hasRole("LIBRARIAN")
-			.antMatchers(HttpMethod.POST, "/patrons").hasRole("LIBRARIAN")
-			.antMatchers(HttpMethod.GET, "/patrons").hasRole("LIBRARIAN")
-			.antMatchers(HttpMethod.GET, "/patrons/{cid}").hasRole("LIBRARIAN")
-			.antMatchers(HttpMethod.GET, "/users").hasRole("LIBRARIAN")
-			.antMatchers(HttpMethod.PUT, "/patrons/{cid}").hasRole("LIBRARIAN")
+			.antMatchers(HttpMethod.DELETE, "/requests/{id}").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.GET, "/requests").hasAnyAuthority("PATRON,LIBRARIAN")
+			.antMatchers(HttpMethod.POST, "/requests/patrons/{pid}").hasAuthority("PATRON")
+			.antMatchers("/auth/products/category/{cid}").hasAuthority("LIBRARIAN")
+			.antMatchers("users").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.POST, "/patrons").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.GET, "/patrons").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.GET, "/patrons/{cid}").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.GET, "/users").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.PUT, "/patrons/{cid}").hasAuthority("LIBRARIAN")
 			//.anyRequest().permitAll()
 			.and().httpBasic()
 			.and().csrf().disable();
@@ -43,6 +41,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
 	//build our custom authManager
 		auth.authenticationProvider(getCustomProvider());
+		
 }			
 
 
