@@ -7,6 +7,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,16 +23,18 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 	//configure our apis as per roles
 		http.authorizeRequests()
-			.antMatchers(HttpMethod.DELETE, "/auth/requests/{id}").hasRole("LIBRARIAN")
-			.antMatchers(HttpMethod.GET, "/auth/requests").authenticated()
-			.antMatchers(HttpMethod.POST, "/auth/requests/patrons/{pid}").hasRole("PATRON")
+			.antMatchers("/*").authenticated()
+			.antMatchers(HttpMethod.DELETE, "/requests/{id}").hasRole("LIBRARIAN")
+			.antMatchers(HttpMethod.GET, "/requests").hasAnyRole("PATRON,LIBRARIAN")
+			.antMatchers(HttpMethod.POST, "/requests/patrons/{pid}").hasRole("PATRON")
 			.antMatchers("/auth/products/category/{cid}").hasRole("LIBRARIAN")
-			.antMatchers(HttpMethod.POST, "/auth/patrons").hasRole("LIBRARIAN")
-			.antMatchers(HttpMethod.GET, "/auth/patrons").hasRole("LIBRARIAN")
-			.antMatchers(HttpMethod.GET, "/auth/patrons/{cid}").hasRole("LIBRARIAN")
-			.antMatchers(HttpMethod.GET, "/auth/users").hasRole("LIBRARIAN")
-			.antMatchers(HttpMethod.PUT, "/auth/patrons/{cid}").hasRole("LIBRARIAN")
-			.anyRequest().permitAll()
+			.antMatchers("users").hasRole("LIBRARIAN")
+			.antMatchers(HttpMethod.POST, "/patrons").hasRole("LIBRARIAN")
+			.antMatchers(HttpMethod.GET, "/patrons").hasRole("LIBRARIAN")
+			.antMatchers(HttpMethod.GET, "/patrons/{cid}").hasRole("LIBRARIAN")
+			.antMatchers(HttpMethod.GET, "/users").hasRole("LIBRARIAN")
+			.antMatchers(HttpMethod.PUT, "/patrons/{cid}").hasRole("LIBRARIAN")
+			//.anyRequest().permitAll()
 			.and().httpBasic()
 			.and().csrf().disable();
 }
