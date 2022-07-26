@@ -22,16 +22,17 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 	//configure our apis as per roles
 		http.authorizeRequests()
-			.antMatchers(HttpMethod.DELETE, "/auth/requests/{id}").hasRole("LIBRARIAN")
-			.antMatchers(HttpMethod.GET, "/auth/requests").authenticated()
-			.antMatchers(HttpMethod.POST, "/auth/requests/patrons/{pid}").hasRole("PATRON")
-			.antMatchers("/auth/products/category/{cid}").hasRole("LIBRARIAN")
-			.antMatchers(HttpMethod.POST, "/auth/patrons").hasRole("LIBRARIAN")
-			.antMatchers(HttpMethod.GET, "/auth/patrons").hasRole("LIBRARIAN")
-			.antMatchers(HttpMethod.GET, "/auth/patrons/{cid}").hasRole("LIBRARIAN")
-			.antMatchers(HttpMethod.GET, "/auth/users").hasRole("LIBRARIAN")
-			.antMatchers(HttpMethod.PUT, "/auth/patrons/{cid}").hasRole("LIBRARIAN")
-			.anyRequest().permitAll()
+			.antMatchers(HttpMethod.DELETE, "/requests/{id}").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.GET, "/requests").hasAnyAuthority("PATRON,LIBRARIAN")
+			.antMatchers(HttpMethod.POST, "/requests/patrons/{pid}").hasAuthority("PATRON")
+			.antMatchers("/auth/products/category/{cid}").hasAuthority("LIBRARIAN")
+			.antMatchers("users").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.POST, "/patrons").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.GET, "/patrons").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.GET, "/patrons/{cid}").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.GET, "/users").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.PUT, "/patrons/{cid}").hasAuthority("LIBRARIAN")
+			//.anyRequest().permitAll()
 			.and().httpBasic()
 			.and().csrf().disable();
 }
@@ -40,6 +41,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
 	//build our custom authManager
 		auth.authenticationProvider(getCustomProvider());
+		
 }			
 
 
