@@ -33,13 +33,28 @@ public class UserController {
 		user.setPassword(password);
 		return userRepository.save(user);
 	}
+	//update entire user
 	@PutMapping("/users/{id}")
-	public UserInfo updateUsers(@PathVariable("id") Integer id, @RequestBody UserInfo newUsers) {
+	public UserInfo updateUser(@PathVariable("id") Integer id, @RequestBody UserInfo newUsers) {
 		Optional<UserInfo> optional = userRepository.findById(id);
 		if(optional.isPresent()) {	
 			UserInfo existingUsers = optional.get();
 			existingUsers.setUsername(newUsers.getUsername());
 			existingUsers.setRole(newUsers.getRole());
+			String password = newUsers.getPassword();
+			password = passwordEncoder.encode(password);
+			existingUsers.setPassword(password);
+			return userRepository.save(existingUsers);
+		}
+		else
+			throw new RuntimeException("ID is invalid");
+	}
+	//update password for a user
+	@PutMapping("/users/password/{id}")
+	public UserInfo updatePassword(@PathVariable("id") Integer id, @RequestBody UserInfo newUsers) {
+		Optional<UserInfo> optional = userRepository.findById(id);
+		if(optional.isPresent()) {	
+			UserInfo existingUsers = optional.get();
 			String password = newUsers.getPassword();
 			password = passwordEncoder.encode(password);
 			existingUsers.setPassword(password);
