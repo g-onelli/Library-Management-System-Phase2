@@ -8,6 +8,7 @@
 - Patron
 - Request
 - Librarian
+- APISecurity
 
 **Ian**
 - Event
@@ -25,8 +26,8 @@
 
 **Book/Video**
 - View video and book collections(GET)
-- add/remove books(POST and DELETE)
-- add/remove videos (POST and DELETE)
+- Add/remove books(POST and DELETE)
+- Add/remove videos (POST and DELETE)
 
 **Rooms**
 - View room collections(GET)
@@ -36,7 +37,7 @@
 - View patrons (GET)
 - Register patrons (POST)
 - Remove patrons(DELETE)
-- update patron balance (PUT)
+- Update patron balance (PUT)
 - Renew library card (PUT)
 
 **Events** 
