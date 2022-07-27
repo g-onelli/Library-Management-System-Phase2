@@ -22,17 +22,16 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 	//configure our apis as per roles
 		http.authorizeRequests()
-			.antMatchers(HttpMethod.DELETE, "/requests/{id}").hasAuthority("LIBRARIAN")
-			.antMatchers(HttpMethod.GET, "/requests").hasAnyAuthority("LIBRARIAN")
-			.antMatchers(HttpMethod.POST, "/requests/patrons/{pid}").hasAuthority("PATRON")
-			.antMatchers("/auth/products/category/{cid}").hasAuthority("LIBRARIAN")
-			.antMatchers("users").hasAuthority("LIBRARIAN")
-			.antMatchers(HttpMethod.POST, "/patrons").hasAuthority("LIBRARIAN")
-			.antMatchers(HttpMethod.GET, "/patrons").hasAuthority("LIBRARIAN")
-			.antMatchers(HttpMethod.GET, "/patrons/{cid}").hasAuthority("LIBRARIAN")
-			.antMatchers(HttpMethod.GET, "/users").hasAuthority("LIBRARIAN")
-			.antMatchers(HttpMethod.PUT, "/patrons/{cid}").hasAuthority("LIBRARIAN")
-			//.anyRequest().permitAll()
+			.antMatchers(HttpMethod.GET, "/requests").hasAnyAuthority("LIBRARIAN") //View book requests (GET)
+			.antMatchers(HttpMethod.POST, "/requests/{id}/{gen}/{pub}").hasAuthority("LIBRARIAN") //Complete book requests (POST and DELETE)
+			.antMatchers(HttpMethod.POST, "/requests/patrons/{pid}").hasAuthority("PATRON") //Submit book requests (POST)
+			.antMatchers(HttpMethod.POST, "/patrons").hasAuthority("LIBRARIAN") //Register patrons (POST)
+			.antMatchers(HttpMethod.GET, "/patrons").hasAuthority("LIBRARIAN") //View patrons (GET)
+			.antMatchers(HttpMethod.DELETE, "/patrons/{id}").hasAuthority("LIBRARIAN") //Remove patrons(DELETE)
+			.antMatchers(HttpMethod.PUT, "/patron/card/{id}").hasAuthority("LIBRARIAN") //Renew library card (PUT)
+			.antMatchers(HttpMethod.PUT, "/patrons/balance/{id}").hasAuthority("LIBRARIAN") //Update patron balance (PUT)
+			.antMatchers(HttpMethod.GET, "/users").hasAuthority("LIBRARIAN") //FOR TESTING: shows user info 
+			.anyRequest().denyAll() //Anything not declared will be denied
 			.and().httpBasic()
 			.and().csrf().disable();
 }
