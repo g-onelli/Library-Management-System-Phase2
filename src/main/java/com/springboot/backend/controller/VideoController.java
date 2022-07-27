@@ -29,12 +29,11 @@ public class VideoController {
 	
 	@GetMapping("/video")
 	public List<Video> getAllVideos(){
-		List<Video> list = videoRepository.findAll();
-		return list;
+		return videoRepository.findAll();
 	}
 	
 	@GetMapping("/video/{id}")
-	public Video getVideoById(@PathVariable("id") Long id) {
+	public Video getVideoById(@PathVariable("id") Integer id) {
 		Optional<Video> optional = videoRepository.findById(id);
 		if(optional.isEmpty())
 			throw new RuntimeException("Video ID is invalid");
@@ -43,12 +42,12 @@ public class VideoController {
 	}
 	
 	@DeleteMapping("/video/{id}")
-	public void deleteVideoById(@PathVariable("id") Long id) {
+	public void deleteVideoById(@PathVariable("id") Integer id) {
 		videoRepository.deleteById(id);
 	}
 	
 	@PutMapping("/video/{id}")
-	public Video updateVideo(@PathVariable("id") Long id,
+	public Video updateVideo(@PathVariable("id") Integer id,
 			@RequestBody Video newVideo) {
 		Optional<Video> optional = videoRepository.findById(id);
 		if(optional.isEmpty())

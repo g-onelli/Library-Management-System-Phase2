@@ -7,16 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "patrons")
-public class Patrons {
+public class Patron {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable=false)
 	private Integer id;
-	
 	@Column(length = 45, nullable = true)
     private String name;
 	
@@ -24,71 +24,55 @@ public class Patrons {
     private LocalDate cardexpirationdate;
 	
 	@Column
-    private double balance;
-    
-    @Column(length = 45)
-    private String password;
-
+    private Double balance;
+    @OneToOne
+	private UserInfo userinfo;
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public LocalDate getCardexpirationdate() {
 		return cardexpirationdate;
 	}
-
 	public void setCardexpirationdate(LocalDate cardexpirationdate) {
 		this.cardexpirationdate = cardexpirationdate;
 	}
-
 	public double getBalance() {
 		return balance;
 	}
-
-	public void setBalance(double balance) {
+	public void setBalance(Double balance) {
 		this.balance = balance;
 	}
-
-	public String getPassword() {
-		return password;
+	public UserInfo getUserinfo() {
+		return userinfo;
 	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserinfo(UserInfo userinfo) {
+		this.userinfo = userinfo;
 	}
-
 	@Override
 	public String toString() {
-		return "Patrons [id=" + id + ", name=" + name + ", cardexpirationdate=" + cardexpirationdate + ", balance="
-				+ balance + ", password=" + password + "]";
+		return "Patron [id=" + id + ", name=" + name + ", cardexpirationdate=" + cardexpirationdate + ", balance="
+				+ balance + ", userinfo=" + userinfo + "]";
 	}
-
-	public Patrons(Integer id, String name, LocalDate cardexpirationdate, double balance, String password) {
+	public Patron(Integer id, String name, LocalDate cardexpirationdate, Double balance, UserInfo userinfo) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.cardexpirationdate = cardexpirationdate;
 		this.balance = balance;
-		this.password = password;
+		this.userinfo = userinfo;
 	}
-
-	public Patrons() {
+	public Patron() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	
-    
+      
 }
