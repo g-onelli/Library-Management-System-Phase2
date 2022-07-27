@@ -8,7 +8,7 @@
 - Patron
 - Request
 - Librarian
-- APISecurity
+- APISecurity and UserInfo
 
 **Ian**
 - Event
