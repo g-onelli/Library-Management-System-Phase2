@@ -4,65 +4,78 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name = "checkedoutbooks")
-public class CheckedOutBook{
+@Table(name = "checkedoutvideos")
+public class CheckedOutVideo{
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	
+	@OneToOne
+	private Patron patron;
+	
+	@OneToOne
+    private Video video;
+	
+    @Column
+    private LocalDate dueDate;
 
-	    @OneToMany
-	    private Patrons patron;
-	    @OneToMany
-	    private Book book;
-	    @Column
-	    private LocalDate dueDate;
-		
-	    public CheckedOutBook() {
-			super();
-		}
+	public CheckedOutVideo() {
+		super();
+	}
 
-		public CheckedOutBook(Patrons patron, Book book, LocalDate dueDate) {
-			super();
-			this.patron = patron;
-			this.book = book;
-			this.dueDate = dueDate;
-		}
+	public CheckedOutVideo(int id, Patron patron, Video video, LocalDate dueDate) {
+		super();
+		this.id = id;
+		this.patron = patron;
+		this.video = video;
+		this.dueDate = dueDate;
+	}
 
-		public Patrons getPatron() {
-			return patron;
-		}
+	public int getId() {
+		return id;
+	}
 
-		public void setPatron(Patrons patron) {
-			this.patron = patron;
-		}
+	public void setId(int id) {
+		this.id = id;
+	}
 
-		public Book getBook() {
-			return book;
-		}
+	public Patron getPatron() {
+		return patron;
+	}
 
-		public void setBook(Book book) {
-			this.book = book;
-		}
+	public void setPatron(Patron patron) {
+		this.patron = patron;
+	}
 
-		public LocalDate getDueDate() {
-			return dueDate;
-		}
+	public Video getVideo() {
+		return video;
+	}
 
-		public void setDueDate(LocalDate dueDate) {
-			this.dueDate = dueDate;
-		}
+	public void setVideo(Video video) {
+		this.video = video;
+	}
 
-		@Override
-		public String toString() {
-			return "CheckedOutBook [book=" + book + ", dueDate=" + dueDate + "]";
-		}
-		
-		
-	    
-	    
-	    
-	    
+	public LocalDate getDueDate() {
+		return dueDate;
+	}
+
+	public void setDueDate(LocalDate dueDate) {
+		this.dueDate = dueDate;
+	}
+
+	@Override
+	public String toString() {
+		return "CheckedOutVideo [id=" + id + ", patron=" + patron + ", video=" + video + ", dueDate=" + dueDate + "]";
+	}
+
+   
 
 }
