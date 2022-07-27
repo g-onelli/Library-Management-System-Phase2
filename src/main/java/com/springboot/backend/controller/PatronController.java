@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,12 @@ public class PatronController {
 		List<Patron> list = patronRepository.findAll();
 		return list; 
 	}
-	
+	//Remove specific patron(DELETE)
+	@DeleteMapping("/patrons/{id}")
+	public void deletePatrons(@PathVariable("id") Integer id) {
+		
+		patronRepository.deleteById(id);
+	}
 	//Get a specific patron based on Id
 	@GetMapping("/patrons/{id}") //patrons/4
 	public Patron getSinglePatronById(@PathVariable("id") Integer id) {
@@ -47,6 +53,31 @@ public class PatronController {
 			existingPatrons.setName(newPatrons.getName());
 			existingPatrons.setCardexpirationdate(newPatrons.getCardexpirationdate());
 			existingPatrons.setBalance(newPatrons.getBalance());
+			existingPatrons.setUserinfo(newPatrons.getUserinfo());
+			return patronRepository.save(existingPatrons);
+		}
+		else
+			throw new RuntimeException("ID is invalid");
+	}
+	//update patron balance (PUT)
+	@PutMapping("/patrons/balance/{id}")
+	public Patron updatePatronBalance(@PathVariable("id") Integer id, @RequestBody Patron newPatronBalance) {
+		Optional<Patron> optional = patronRepository.findById(id);
+		if(optional.isPresent()) {	
+			Patron existingPatrons = optional.get();
+			existingPatrons.setBalance(newPatronBalance.getBalance());
+			return patronRepository.save(existingPatrons);
+		}
+		else
+			throw new RuntimeException("ID is invalid");
+	}
+	//Renew library card (PUT)
+	@PutMapping("/patron/card/{id}")
+	public Patron updatePatronCard(@PathVariable("id") Integer id, @RequestBody Patron newPatronCard) {
+		Optional<Patron> optional = patronRepository.findById(id);
+		if(optional.isPresent()) {	
+			Patron existingPatrons = optional.get();
+			existingPatrons.setCardexpirationdate(newPatronCard.getCardexpirationdate());
 			return patronRepository.save(existingPatrons);
 		}
 		else
