@@ -24,7 +24,7 @@ public class Patron {
     private LocalDate cardexpirationdate;
 	
 	@Column
-    private double balance;
+    private Double balance;
     @OneToOne
 	private UserInfo userinfo;
 	public Integer getId() {
@@ -48,7 +48,7 @@ public class Patron {
 	public double getBalance() {
 		return balance;
 	}
-	public void setBalance(double balance) {
+	public void setBalance(Double balance) {
 		this.balance = balance;
 	}
 	public UserInfo getUserinfo() {
@@ -62,7 +62,7 @@ public class Patron {
 		return "Patron [id=" + id + ", name=" + name + ", cardexpirationdate=" + cardexpirationdate + ", balance="
 				+ balance + ", userinfo=" + userinfo + "]";
 	}
-	public Patron(Integer id, String name, LocalDate cardexpirationdate, double balance, UserInfo userinfo) {
+	public Patron(Integer id, String name, LocalDate cardexpirationdate, Double balance, UserInfo userinfo) {
 		super();
 		this.id = id;
 		this.name = name;

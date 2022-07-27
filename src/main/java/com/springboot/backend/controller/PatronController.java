@@ -1,5 +1,6 @@
 package com.springboot.backend.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.springboot.backend.dto.PatronDto;
 import com.springboot.backend.model.Patron;
 import com.springboot.backend.repository.PatronRepository;
 
@@ -25,9 +28,22 @@ public class PatronController {
 	}
 	//Get all patrons
 	@GetMapping("/patrons")
-	public List<Patron> getAllPatrons() {
+	public List<PatronDto> getAllPatrons() {
 		List<Patron> list = patronRepository.findAll();
-		return list; 
+		List<PatronDto> listDto = new ArrayList<>();
+		list.stream().forEach(p->{
+			PatronDto dto = new PatronDto();
+			dto.setId(p.getId());
+			dto.setName(p.getName());
+			dto.setCardexpirationdate(p.getCardexpirationdate());
+			dto.setBalance(p.getBalance());
+			dto.setUid(p.getUserinfo().getId());
+			dto.setUsername(p.getUserinfo().getUsername());
+			dto.setPassword(p.getUserinfo().getPassword());
+			dto.setRole(p.getUserinfo().getRole());
+			listDto.add(dto);
+		});
+		return listDto; 
 	}
 	//Remove specific patron(DELETE)
 	@DeleteMapping("/patrons/{id}")
