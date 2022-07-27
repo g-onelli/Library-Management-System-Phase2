@@ -10,72 +10,71 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name = "checkedoutvideos")
-public class CheckedOutVideo{
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+@Table(name = "checkedoutbooks")
+public class CheckedOutBook{
 	
-	@OneToOne
-	private Patron patron;
-	
-	@OneToOne
-    private Video video;
-	
-    @Column
-    private LocalDate dueDate;
+		@Id
+		@GeneratedValue(strategy = GenerationType.AUTO)
+		private int id;
 
-	public CheckedOutVideo() {
-		super();
-	}
+	    @OneToOne
+	    private Patron patron;
+	    
+	    @OneToOne
+	    private Book book;
+	    
+	    @Column
+	    private LocalDate dueDate;
 
-	public CheckedOutVideo(int id, Patron patron, Video video, LocalDate dueDate) {
-		super();
-		this.id = id;
-		this.patron = patron;
-		this.video = video;
-		this.dueDate = dueDate;
-	}
+		public CheckedOutBook() {
+			super();
+		}
 
-	public int getId() {
-		return id;
-	}
+		public CheckedOutBook(int id, Patron patron, Book book, LocalDate dueDate) {
+			super();
+			this.id = id;
+			this.patron = patron;
+			this.book = book;
+			this.dueDate = dueDate;
+		}
 
-	public void setId(int id) {
-		this.id = id;
-	}
+		public int getId() {
+			return id;
+		}
 
-	public Patron getPatron() {
-		return patron;
-	}
+		public void setId(int id) {
+			this.id = id;
+		}
 
-	public void setPatron(Patron patron) {
-		this.patron = patron;
-	}
+		public Patron getPatron() {
+			return patron;
+		}
 
-	public Video getVideo() {
-		return video;
-	}
+		public void setPatron(Patron patron) {
+			this.patron = patron;
+		}
 
-	public void setVideo(Video video) {
-		this.video = video;
-	}
+		public Book getBook() {
+			return book;
+		}
 
-	public LocalDate getDueDate() {
-		return dueDate;
-	}
+		public void setBook(Book book) {
+			this.book = book;
+		}
 
-	public void setDueDate(LocalDate dueDate) {
-		this.dueDate = dueDate;
-	}
+		public LocalDate getDueDate() {
+			return dueDate;
+		}
 
-	@Override
-	public String toString() {
-		return "CheckedOutVideo [id=" + id + ", patron=" + patron + ", video=" + video + ", dueDate=" + dueDate + "]";
-	}
+		public void setDueDate(LocalDate dueDate) {
+			this.dueDate = dueDate;
+		}
 
-   
+		@Override
+		public String toString() {
+			return "CheckedOutBook [id=" + id + ", patron=" + patron + ", book=" + book + ", dueDate=" + dueDate + "]";
+		}
+
 
 }
