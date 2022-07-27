@@ -1,5 +1,6 @@
 package com.springboot.backend.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springboot.backend.dto.RequestDto;
 import com.springboot.backend.model.Book;
 import com.springboot.backend.model.Patron;
 import com.springboot.backend.model.Request;
@@ -44,9 +46,21 @@ public class RequestController {
 	
 	//Return all requests View book requests (GET)
 	@GetMapping("/requests")
-	public List<Request> getAllRequests() {
+	public List<RequestDto> getAllRequests() {
 		List<Request> list = requestRepository.findAll();
-		return list; 
+		List<RequestDto> listDto = new ArrayList<>(); 
+		list.stream().forEach(r->{
+			RequestDto dto = new RequestDto();
+			dto.setId(r.getId());
+			dto.setDescription(r.getDescription());
+			dto.setSubmissiondate(r.getSubmissiondate());
+			dto.setTitle(r.getTitle());
+			dto.setAuthor(r.getAuthor());
+			dto.setPid(r.getPatron().getId());
+			dto.setPname(r.getPatron().getName());
+			listDto.add(dto);
+		});
+		return listDto; 
 	}
 	
 	//Return a request based on ID (probably not needed)
