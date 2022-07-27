@@ -19,52 +19,52 @@
 - Book
 - Video
 
-**APIs**
+## APIs
 
-**Librarian (Role)**
+### Librarian (Role)
 
-Book/Video
+**Book/Video**
 - View video and book collections(GET)
 - add/remove books(POST and DELETE)
 - add/remove videos (POST and DELETE)
 
-Rooms
+**Rooms**
 - View room collections(GET)
 - View scheduled rooms (GET)
 
-Patrons
+**Patrons**
 - View patrons (GET)
 - Register patrons (POST)
 - Remove patrons(DELETE)
 - update patron balance (PUT)
 - Renew library card (PUT)
 
-Events  
+**Events** 
 - View Events(GET)
 - add/remove/edit (POST, DELETE and PUT)
 
-Requests
+**Requests**
 - View book requests (GET)
 - Complete book requests (POST and DELETE)
 
-**Patron (Role)**
+### Patron (Role)
 
-Book/Video
+**Book/Video**
 - View video and book collections(GET)
 - Check out books (POST)
 - Check out videos (POST)
 - Search for books / videos? (GET)
 		
-CheckedoutBook/Video
+**CheckedoutBook/Video**
 - View checked out books/videos (GET)
 - View/pay overdue books/videos (GET and PUT)
 - Return books/videos (DELETE)
 - Check out videos (POST)
 
-Requests
+**Requests**
 - Submit book requests (POST)
 
-Rooms
+**Rooms**
 - View room collections (GET)
 - View scheduled rooms (GET)
 - Reserve room based on number (POST)
