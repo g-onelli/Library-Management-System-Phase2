@@ -4,9 +4,9 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -14,29 +14,44 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "checkedoutvideos")
 public class CheckedOutVideo{
-	@ManyToMany
-	private Patrons patron;
-	@ManyToMany
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	
+	@OneToOne
+	private Patron patron;
+	
+	@OneToOne
     private Video video;
+	
     @Column
     private LocalDate dueDate;
-	
-    public CheckedOutVideo() {
+
+	public CheckedOutVideo() {
 		super();
 	}
 
-	public CheckedOutVideo(Patrons patron, Video video, LocalDate dueDate) {
+	public CheckedOutVideo(int id, Patron patron, Video video, LocalDate dueDate) {
 		super();
+		this.id = id;
 		this.patron = patron;
 		this.video = video;
 		this.dueDate = dueDate;
 	}
 
-	public Patrons getPatron() {
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Patron getPatron() {
 		return patron;
 	}
 
-	public void setPatron(Patrons patron) {
+	public void setPatron(Patron patron) {
 		this.patron = patron;
 	}
 
@@ -58,14 +73,8 @@ public class CheckedOutVideo{
 
 	@Override
 	public String toString() {
-		return "CheckedOutVideo [video=" + video + ", dueDate=" + dueDate + "]";
+		return "CheckedOutVideo [id=" + id + ", patron=" + patron + ", video=" + video + ", dueDate=" + dueDate + "]";
 	}
-    
-	
-    
-	
-    
-    
 
    
 
