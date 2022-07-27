@@ -23,7 +23,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 	//configure our apis as per roles
 		http.authorizeRequests()
 			.antMatchers(HttpMethod.DELETE, "/requests/{id}").hasAuthority("LIBRARIAN")
-			.antMatchers(HttpMethod.GET, "/requests").hasAnyAuthority("PATRON,LIBRARIAN")
+			.antMatchers(HttpMethod.GET, "/requests").hasAnyAuthority("LIBRARIAN")
 			.antMatchers(HttpMethod.POST, "/requests/patrons/{pid}").hasAuthority("PATRON")
 			.antMatchers("/auth/products/category/{cid}").hasAuthority("LIBRARIAN")
 			.antMatchers("users").hasAuthority("LIBRARIAN")

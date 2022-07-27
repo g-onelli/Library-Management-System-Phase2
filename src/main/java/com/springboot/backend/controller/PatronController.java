@@ -47,6 +47,7 @@ public class PatronController {
 			existingPatrons.setName(newPatrons.getName());
 			existingPatrons.setCardexpirationdate(newPatrons.getCardexpirationdate());
 			existingPatrons.setBalance(newPatrons.getBalance());
+			existingPatrons.setUserinfo(newPatrons.getUserinfo());
 			return patronRepository.save(existingPatrons);
 		}
 		else

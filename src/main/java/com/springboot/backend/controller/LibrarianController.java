@@ -34,7 +34,7 @@ public class LibrarianController {
 		throw new RuntimeException("ID is invalid");
 		  
 	}
-	//Add a new patron
+	//Add a new librarian
 		@PostMapping("/librarians")
 		public void postLibrarians(@RequestBody Librarian librarian) {
 			librarianRepository.save(librarian);
