@@ -88,7 +88,7 @@ public class PatronController {
 			throw new RuntimeException("ID is invalid");
 	}
 	//Renew library card (PUT)
-	@PutMapping("/patron/card/{id}")
+	@PutMapping("/patrons/card/{id}")
 	public Patron updatePatronCard(@PathVariable("id") Integer id, @RequestBody Patron newPatronCard) {
 		Optional<Patron> optional = patronRepository.findById(id);
 		if(optional.isPresent()) {	

@@ -12,7 +12,7 @@ public class UserInfo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	@Column(length = 45, nullable = false)
+	@Column(length = 45, nullable = false, unique=true)
     private String username;
 	@Column(nullable = false)
     private String password;
