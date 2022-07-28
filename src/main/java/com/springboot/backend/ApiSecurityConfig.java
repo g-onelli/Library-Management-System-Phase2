@@ -31,6 +31,16 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers(HttpMethod.PUT, "/patron/card/{id}").hasAuthority("LIBRARIAN") //Renew library card (PUT)
 			.antMatchers(HttpMethod.PUT, "/patrons/balance/{id}").hasAuthority("LIBRARIAN") //Update patron balance (PUT)
 			.antMatchers(HttpMethod.GET, "/users").hasAuthority("LIBRARIAN") //FOR TESTING: shows user info 
+			.antMatchers(HttpMethod.POST, "/event/{lid}").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.GET, "/event").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.GET, "/event/{id}").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.DELETE, "/event/{id}").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.PUT, "/event/{id}").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.POST, "/fee/{pid}").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.GET, "/fee").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.GET, "/fee/{id}").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.PUT, "/fee/{id}").hasAuthority("LIBRARIAN")
+			
 			.anyRequest().denyAll() //Anything not declared will be denied
 			.and().httpBasic()
 			.and().csrf().disable();

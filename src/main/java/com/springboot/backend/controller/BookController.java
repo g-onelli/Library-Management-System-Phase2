@@ -1,5 +1,6 @@
 package com.springboot.backend.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springboot.backend.dto.BookDto;
 import com.springboot.backend.model.Book;
 import com.springboot.backend.repository.BookRepository;
 
@@ -27,18 +29,35 @@ public class BookController {
 	}
 	
 	@GetMapping("/book")
-	public List<Book> getAllBooks(){
+	public List<BookDto> getAllBooks(){
 		List<Book> list = bookRepository.findAll();
-		return list;
+		List<BookDto> listDto = new ArrayList<>();
+		
+		list.stream().forEach(b ->{
+			BookDto dto = new BookDto(b.getId(),
+					b.getTitle(),
+					b.getAuthor(),
+					b.getPublisher(),
+					b.getCallNumber(),
+					b.getGenre());
+			listDto.add(dto);
+			
+		});
+		return listDto;
 	}
 	
 	@GetMapping("/book/{id}")
-	public Book getBookById(@PathVariable("id") Integer id) {
+	public BookDto getBookById(@PathVariable("id") Integer id) {
 		Optional<Book> optional = bookRepository.findById(id);
 		if(optional.isEmpty())
 			throw new RuntimeException("Book ID is invalid");
-		return optional.get();
-			
+		
+		return new BookDto(optional.get().getId(),
+				optional.get().getTitle(),
+				optional.get().getAuthor(),
+				optional.get().getPublisher(),
+				optional.get().getCallNumber(),
+				optional.get().getGenre());
 	}
 	
 	@DeleteMapping("/book/{id}")
