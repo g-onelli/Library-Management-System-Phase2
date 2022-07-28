@@ -21,7 +21,7 @@ public class Fee {
 	@Column(length = 45, nullable = false)
 	private double total;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private LocalDate datePaid;
 	
 	@Column(length = 45, nullable = true)
