@@ -39,8 +39,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers(HttpMethod.POST, "/fee/{pid}").hasAuthority("LIBRARIAN")
 			.antMatchers(HttpMethod.GET, "/fee").hasAuthority("LIBRARIAN")
 			.antMatchers(HttpMethod.GET, "/fee/{id}").hasAuthority("LIBRARIAN")
-			.antMatchers(HttpMethod.PUT, "/fee/{id}").hasAuthority("LIBRARIAN")
-			
+			.antMatchers(HttpMethod.PUT, "/fee/{id}").hasAuthority("LIBRARIAN")			
 			.anyRequest().denyAll() //Anything not declared will be denied
 			.and().httpBasic()
 			.and().csrf().disable();

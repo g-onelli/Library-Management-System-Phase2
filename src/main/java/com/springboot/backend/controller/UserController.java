@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,8 +34,9 @@ public class UserController {
 		user.setPassword(password);
 		return userRepository.save(user);
 	}
+	//update entire user
 	@PutMapping("/users/{id}")
-	public UserInfo updateUsers(@PathVariable("id") Integer id, @RequestBody UserInfo newUsers) {
+	public UserInfo updateUser(@PathVariable("id") Integer id, @RequestBody UserInfo newUsers) {
 		Optional<UserInfo> optional = userRepository.findById(id);
 		if(optional.isPresent()) {	
 			UserInfo existingUsers = optional.get();
@@ -47,5 +49,23 @@ public class UserController {
 		}
 		else
 			throw new RuntimeException("ID is invalid");
+	}
+	//update password for a user
+	@PutMapping("/users/password/{id}")
+	public UserInfo updatePassword(@PathVariable("id") Integer id, @RequestBody UserInfo newUsers) {
+		Optional<UserInfo> optional = userRepository.findById(id);
+		if(optional.isPresent()) {	
+			UserInfo existingUsers = optional.get();
+			String password = newUsers.getPassword();
+			password = passwordEncoder.encode(password);
+			existingUsers.setPassword(password);
+			return userRepository.save(existingUsers);
+		}
+		else
+			throw new RuntimeException("ID is invalid");
+	}
+	@DeleteMapping("/users/{id}")
+	public void deleteUser(@PathVariable("id") Integer id) {
+		userRepository.deleteById(id);
 	}
 }
