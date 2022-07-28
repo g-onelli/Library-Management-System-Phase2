@@ -1,6 +1,8 @@
 package com.springboot.backend.controller;
 
+
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springboot.backend.dto.CheckedOutBookDto;
 import com.springboot.backend.model.Book;
 import com.springboot.backend.model.CheckedOutBook;
 import com.springboot.backend.model.Patron;
@@ -59,33 +62,88 @@ public class CheckedOutBookController {
 	}
 	
 	@GetMapping("/checkedoutbook")
-	public List<CheckedOutBook> getAllCheckedOutBooks(){
-		return checkedOutBookRepository.findAll();
+	public List<CheckedOutBookDto> getAllCheckedOutBooks(){
+		List<CheckedOutBook> list = checkedOutBookRepository.findAll();
+		List<CheckedOutBookDto> listDto = new ArrayList<>();
+		
+		list.stream().forEach(cb -> {
+			CheckedOutBookDto dto = new CheckedOutBookDto(cb.getId(),
+					cb.getPatron().getId(),
+					cb.getPatron().getName(),
+					cb.getPatron().getCardexpirationdate(),
+					cb.getPatron().getBalance(),
+					cb.getBook().getId(),
+					cb.getBook().getTitle(),
+					cb.getBook().getAuthor(),
+					cb.getBook().getPublisher(),
+					cb.getBook().getCallNumber(),
+					cb.getBook().getGenre(),
+					LocalDate.now().plusWeeks(2));
+			
+			listDto.add(dto);
+		});
+		
+		return listDto;
 		
 	}
 	
 	@GetMapping("/checkedoutbook/patron/{pid}")
-	public List<CheckedOutBook> getCheckedOutBooksByPatronId(@PathVariable("pid") Integer pid) {
-		return checkedOutBookRepository.getCheckedOutBooksByPatronId(pid);
+	public List<CheckedOutBookDto> getCheckedOutBooksByPatronId(@PathVariable("pid") Integer pid) {
+		List<CheckedOutBook> list  = checkedOutBookRepository.getCheckedOutBooksByPatronId(pid);
+		
+		List<CheckedOutBookDto> listDto = new ArrayList<>();
+		
+		list.stream().forEach(cb -> {
+			CheckedOutBookDto dto = new CheckedOutBookDto(cb.getId(),
+					cb.getPatron().getId(),
+					cb.getPatron().getName(),
+					cb.getPatron().getCardexpirationdate(),
+					cb.getPatron().getBalance(),
+					cb.getBook().getId(),
+					cb.getBook().getTitle(),
+					cb.getBook().getAuthor(),
+					cb.getBook().getPublisher(),
+					cb.getBook().getCallNumber(),
+					cb.getBook().getGenre(),
+					LocalDate.now().plusWeeks(2));
+			
+			listDto.add(dto);
+		});
+		
+		return listDto;
 			
 	}
 	
 	@GetMapping("/checkedoutbook/book/{bid}")
-	public List<CheckedOutBook> getCheckedOutBooksByBookId(@PathVariable("bid") Integer bid) {
-		return checkedOutBookRepository.getCheckedOutBooksByBookId(bid);
+	public List<CheckedOutBookDto> getCheckedOutBooksByBookId(@PathVariable("bid") Integer bid) {
+		List<CheckedOutBook> list = checkedOutBookRepository.getCheckedOutBooksByBookId(bid);
+		
+		List<CheckedOutBookDto> listDto = new ArrayList<>();
+		
+		list.stream().forEach(cb -> {
+			CheckedOutBookDto dto = new CheckedOutBookDto(cb.getId(),
+					cb.getPatron().getId(),
+					cb.getPatron().getName(),
+					cb.getPatron().getCardexpirationdate(),
+					cb.getPatron().getBalance(),
+					cb.getBook().getId(),
+					cb.getBook().getTitle(),
+					cb.getBook().getAuthor(),
+					cb.getBook().getPublisher(),
+					cb.getBook().getCallNumber(),
+					cb.getBook().getGenre(),
+					LocalDate.now().plusWeeks(2));
+			
+			listDto.add(dto);
+		});
+		
+		return listDto;
 			
 	}
 	
-	@DeleteMapping("/checkedoutbook/{pid}")
-	public void deleteCheckedOutBookByPatronId(@PathVariable("pid") Integer pid) {
-		checkedOutBookRepository.deleteCheckedOutBookByPatronId(pid);
-		
+	@DeleteMapping("/checkedoutbook/{id}")
+	public void deleteCheckedOutBookById(@PathVariable("id") Integer id) {
+		checkedOutBookRepository.deleteById(id);
 	}
 	
-	@DeleteMapping("/checkedoutbook/{bid}")
-	public void deleteCheckedOutBookByBookId(@PathVariable("bid") Integer bid) {
-		checkedOutBookRepository.deleteCheckedOutBookByBookId(bid);
-	}
-	
-
 }

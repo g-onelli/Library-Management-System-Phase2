@@ -1,6 +1,7 @@
 package com.springboot.backend.controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.springboot.backend.dto.CheckedOutVideoDto;
 import com.springboot.backend.model.CheckedOutVideo;
 import com.springboot.backend.model.Patron;
 import com.springboot.backend.model.Video;
@@ -57,33 +60,87 @@ public class CheckedOutVideoController {
 	}
 	
 	@GetMapping("/checkedoutvideo")
-	public List<CheckedOutVideo> getAllCheckedOutVideos(){
-		return checkedOutVideoRepository.findAll();
+	public List<CheckedOutVideoDto> getAllCheckedOutVideos(){
+		List<CheckedOutVideo> list = checkedOutVideoRepository.findAll();
+		List<CheckedOutVideoDto> listDto = new ArrayList<>();
+		
+		list.stream().forEach(cv -> {
+			CheckedOutVideoDto dto = new CheckedOutVideoDto(cv.getId(),
+					cv.getPatron().getId(),
+					cv.getPatron().getName(),
+					cv.getPatron().getCardexpirationdate(),
+					cv.getPatron().getBalance(),
+					cv.getVideo().getId(),
+					cv.getVideo().getTitle(),
+					cv.getVideo().getDirector(),
+					cv.getVideo().getReleaseDate(),
+					cv.getVideo().getCallNumber(),
+					cv.getVideo().getGenre(),
+					LocalDate.now().plusWeeks(2));
+			
+			listDto.add(dto);
+		});
+		
+		return listDto;
 	
 	}
 
-	
 	@GetMapping("/checkedoutvideo/patron/{pid}")
-	public List<CheckedOutVideo> getCheckedOutVideosByPatronId(@PathVariable("pid") Integer pid) {
-		return checkedOutVideoRepository.getCheckedOutVideosByPatronId(pid);
+	public List<CheckedOutVideoDto> getCheckedOutVideosByPatronId(@PathVariable("pid") Integer pid) {
+		List<CheckedOutVideo> list =  checkedOutVideoRepository.getCheckedOutVideosByPatronId(pid);
+		List<CheckedOutVideoDto> listDto = new ArrayList<>();
+		
+		list.stream().forEach(cv -> {
+			CheckedOutVideoDto dto = new CheckedOutVideoDto(cv.getId(),
+					cv.getPatron().getId(),
+					cv.getPatron().getName(),
+					cv.getPatron().getCardexpirationdate(),
+					cv.getPatron().getBalance(),
+					cv.getVideo().getId(),
+					cv.getVideo().getTitle(),
+					cv.getVideo().getDirector(),
+					cv.getVideo().getReleaseDate(),
+					cv.getVideo().getCallNumber(),
+					cv.getVideo().getGenre(),
+					LocalDate.now().plusWeeks(2));
+			
+			listDto.add(dto);
+		});
+		
+		return listDto;
 			
 	}
 	
 	@GetMapping("/checkedoutvideo/video/{vid}")
-	public List<CheckedOutVideo> getCheckedOutVideosByVideoId(@PathVariable("vid") Integer vid) {
-		return checkedOutVideoRepository.getCheckedOutVideosByVideoId(vid);
+	public List<CheckedOutVideoDto> getCheckedOutVideosByVideoId(@PathVariable("vid") Integer vid) {
+		List<CheckedOutVideo> list = checkedOutVideoRepository.getCheckedOutVideosByVideoId(vid);
+		
+		List<CheckedOutVideoDto> listDto = new ArrayList<>();
+		
+		list.stream().forEach(cv -> {
+			CheckedOutVideoDto dto = new CheckedOutVideoDto(cv.getId(),
+					cv.getPatron().getId(),
+					cv.getPatron().getName(),
+					cv.getPatron().getCardexpirationdate(),
+					cv.getPatron().getBalance(),
+					cv.getVideo().getId(),
+					cv.getVideo().getTitle(),
+					cv.getVideo().getDirector(),
+					cv.getVideo().getReleaseDate(),
+					cv.getVideo().getCallNumber(),
+					cv.getVideo().getGenre(),
+					LocalDate.now().plusWeeks(2));
+			
+			listDto.add(dto);
+		});
+		
+		return listDto;
 			
 	}
 	
-	@DeleteMapping("/checkedoutvideo/{pid}")
-	public void deleteCheckedOutVideoByPatronId(@PathVariable("pid") Integer pid) {
-		checkedOutVideoRepository.deleteCheckedOutVideoByPatronId(pid);
-		
-	}
-	
-	@DeleteMapping("/checkedoutvideo/{vid}")
-	public void deleteCheckedOutVideosByVideoId(@PathVariable("vid") Integer vid) {
-		checkedOutVideoRepository.deleteCheckedOutVideosByVideoId(vid);
+	@DeleteMapping("/checkedoutvideo/{id}")
+	public void deleteCheckedOutVideoById(@PathVariable("id") Integer id) {
+		checkedOutVideoRepository.deleteById(id);
 	}
 
 }

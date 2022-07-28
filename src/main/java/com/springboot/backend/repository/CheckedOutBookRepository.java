@@ -13,9 +13,4 @@ public interface CheckedOutBookRepository extends JpaRepository<CheckedOutBook, 
 	List<CheckedOutBook> getCheckedOutBooksByPatronId(Integer pid);
 	@Query("select cb from CheckedOutBook cb where cb.book.id = ?1")
 	List<CheckedOutBook> getCheckedOutBooksByBookId(Integer bid);
-	@Query("delete from CheckedOutBook cb where cb.patron.id = ?1")
-	void deleteCheckedOutBookByPatronId(Integer pid);
-	@Query("delete from CheckedOutBook cb where cb.book.id = ?1")
-	void deleteCheckedOutBookByBookId(Integer bid);
-
 }
