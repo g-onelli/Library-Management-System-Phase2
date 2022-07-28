@@ -59,5 +59,11 @@ public class PatronDto {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	@Override
+	public String toString() {
+		return "PatronDto [id=" + id + ", name=" + name + ", cardexpirationdate=" + cardexpirationdate + ", balance="
+				+ balance + ", uid=" + uid + ", username=" + username + ", password=" + password + ", role=" + role
+				+ "]";
+	}
 	
 }
