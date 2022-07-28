@@ -48,6 +48,12 @@
 - View book requests (GET)
 - Complete book requests (POST and DELETE)
 
+**Fees**
+- View Fees (GET)
+- View Specific Patron Fee (GET)
+- Create Fees for Patrons (POST)
+- Update Fees (PUT)
+
 ### Patron (Role)
 
 **Book/Video**
