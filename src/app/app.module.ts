@@ -19,6 +19,9 @@ import { CheckedoutComponent } from './component/checkedout/checkedout.component
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './component/login/login.component';
+import { LibrequestComponent } from './component/librequest/librequest.component';
+import { LibbookComponent } from './component/libbook/libbook.component';
+import { LibvideoComponent } from './component/libvideo/libvideo.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,9 @@ import { LoginComponent } from './component/login/login.component';
     PatdashboardComponent,
     CheckedoutComponent,
     LoginComponent,
+    LibrequestComponent,
+    LibbookComponent,
+    LibvideoComponent,
   ],
   imports: [
     BrowserModule,
