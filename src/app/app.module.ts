@@ -13,6 +13,12 @@ import { LibrarianComponent } from './component/librarian/librarian.component';
 import { EventComponent } from './component/event/event.component';
 import { FeeComponent } from './component/fee/fee.component';
 import { RequestComponent } from './component/request/request.component';
+import { LibdashboardComponent } from './component/libdashboard/libdashboard.component';
+import { PatdashboardComponent } from './component/patdashboard/patdashboard.component';
+import { CheckedoutComponent } from './component/checkedout/checkedout.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './component/login/login.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +32,20 @@ import { RequestComponent } from './component/request/request.component';
     LibrarianComponent,
     EventComponent,
     FeeComponent,
-    RequestComponent
+    RequestComponent,
+    LibdashboardComponent,
+    PatdashboardComponent,
+    CheckedoutComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
