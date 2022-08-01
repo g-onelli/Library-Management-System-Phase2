@@ -215,11 +215,26 @@
 		{
 			"name": "PATRON- POST",
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "test",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "testpass",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\" : \"Gavin\",\r\n    \"cardexpirationdate\" : \"2023-02-15\",\r\n     \"balance\" : 100,\r\n     \"password\" : \"test\"\r\n}",
+					"raw": "{\r\n    \"name\" : \"Gavin\",\r\n    \"cardexpirationdate\" : \"2023-02-15\",\r\n     \"balance\" : 100,\r\n     \"userinfo\" : {\r\n    \"username\" : \"testpatron\",\r\n    \"password\" : \"testpass\",\r\n    \"role\" : \"PATRON\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -283,7 +298,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 7,\r\n    \"name\": \"Jakob\",\r\n    \"cardexpirationdate\": \"2023-08-30\",\r\n    \"balance\": 100.0,\r\n}",
+					"raw": "{\r\n    \"name\": \"Jakob\",\r\n    \"cardexpirationdate\": \"2023-08-30\",\r\n    \"balance\": 100.0\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
