@@ -1,6 +1,7 @@
 package com.springboot.backend.model;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +31,7 @@ public class Librarian {
 	
 	@Column(length = 10, nullable = true)
     private String phonenumber;
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	private UserInfo userinfo;
 	public Integer getId() {
 		return id;
