@@ -18,10 +18,11 @@ import { PatdashboardComponent } from './component/patdashboard/patdashboard.com
 import { CheckedoutComponent } from './component/checkedout/checkedout.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './component/login/login.component';
 import { LibrequestComponent } from './component/librequest/librequest.component';
 import { LibbookComponent } from './component/libbook/libbook.component';
 import { LibvideoComponent } from './component/libvideo/libvideo.component';
+import { LogoutComponent } from './auth/component/logout/logout/logout.component';
+import { LoginComponent } from './auth/component/login/login/login.component';
 
 @NgModule({
   declarations: [
@@ -43,15 +44,16 @@ import { LibvideoComponent } from './component/libvideo/libvideo.component';
     LibrequestComponent,
     LibbookComponent,
     LibvideoComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
