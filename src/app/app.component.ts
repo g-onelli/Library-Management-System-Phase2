@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './auth/service/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
-  constructor() {
+  constructor(private authService: AuthService){}
+
+  username: string;
+  ngOnInit(): void {
+    this.authService.username$.subscribe(data=>{
+      if(data != null)
+        this.username = data;
+    });
   }
- ngOnInit(): void {
- }
 
 }
