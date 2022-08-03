@@ -12,7 +12,6 @@ export class AppComponent{
   username: string;
   ngOnInit(): void {
     this.authService.username$.subscribe(data=>{
-      if(data != null)
         this.username = data;
     });
   }

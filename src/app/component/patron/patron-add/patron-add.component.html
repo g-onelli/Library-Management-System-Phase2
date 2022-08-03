@@ -1,0 +1,35 @@
+<span *ngIf="!(msg =='')">{{msg}}</span>
+<form (submit)="onFormSubmit()" [formGroup]="patronForm">
+    <label>Enter Patron Id: </label>
+    <input type="text" id="id" formControlName="id">
+    <span *ngIf="patronForm.controls['id'].invalid && patronForm.controls['id'].touched">
+        <span *ngIf="patronForm.controls['id'].errors['required']"> Id is Required</span>
+        <span *ngIf="patronForm.controls['id'].errors['pattern']">Use the patron list to find an Id(Number)</span>
+        </span>
+    <br /><br />
+    <label>Enter Patron Name: </label>
+    <input type="text" name="name" formControlName="name">
+    <span *ngIf="patronForm.controls['name'].invalid && patronForm.controls['name'].touched">
+        <span *ngIf="patronForm.controls['name'].errors['pattern']">Pattern allowed: [a-zA-Z ]+</span>
+        </span>
+    <br /><br />
+    <label>Enter Patron Card Expiration Date: </label>
+    <input type="text" name="cardexpirationdate" formControlName="cardexpirationdate">
+    <span *ngIf="patronForm.controls['cardexpirationdate'].invalid && patronForm.controls['cardexpirationdate'].touched">
+        <span *ngIf="patronForm.controls['cardexpirationdate'].errors['pattern']">Pattern YYYY-MM-DD</span>
+        </span>
+    <br /><br />
+    <label>Enter Patron Balance: </label>
+    <input type="text" name="balance" formControlName="balance">
+    <span *ngIf="patronForm.controls['balance'].invalid && patronForm.controls['balance'].touched">
+        <span *ngIf="patronForm.controls['balance'].errors['pattern']">Pattern allowed: [a-zA-Z ]+</span>
+        </span>
+    <br /><br />
+    <!-- <label>Enter Patron Username: </label>
+    <input type="text" name="username" formControlName="username">
+    <span *ngIf="patronForm.controls['username'].invalid && patronForm.controls['username'].touched">
+        <span *ngIf="patronForm.controls['username'].errors['pattern']">Pattern allowed: [a-zA-Z ]+</span>
+        </span>
+    <br /><br /> -->
+    <input type="submit" value="Update Patron" [disabled]="!patronForm.valid">
+</form>

@@ -1,0 +1,19 @@
+.patron-section{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 10px;
+    margin: 10px;
+}
+.patron-list{
+    border: 2px solid;
+    width: 45%;
+    float: left;
+}
+.patron-add{
+    border: 2px solid;
+    width: 45%;
+    float: left;
+}
+.patron-delete{
+    border: 2px solid;
+    width: 45%;
+}
