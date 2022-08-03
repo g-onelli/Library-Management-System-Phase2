@@ -1,6 +1,9 @@
 package com.springboot.backend.controller;
 
+import java.security.Principal;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +23,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.springboot.backend.dto.PatronDto;
+import com.springboot.backend.dto.PatronEditDto;
 import com.springboot.backend.model.Patron;
+import com.springboot.backend.model.UserInfo;
 import com.springboot.backend.repository.PatronRepository;
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
@@ -30,11 +35,21 @@ public class PatronController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	//Add a new patron
-	@PostMapping("/patrons")
-	public void postPatrons(@RequestBody Patron patron) {
-		String password = patron.getUserinfo().getPassword();
-		password = passwordEncoder.encode(password);
-		patron.getUserinfo().setPassword(password);
+	@PostMapping("/signup")
+	public void postPatrons(@RequestBody PatronDto patronDto) {
+		String str = new String(Base64.getDecoder().decode(patronDto.getEncodedCredentials()));
+		String username = str.split("@%")[0];
+		String password = str.split("@%")[1];
+		Patron patron = new Patron();
+		UserInfo user = new UserInfo();
+		user.setRole("PATRON");
+		user.setUsername(username);
+		user.setPassword(passwordEncoder.encode(password));
+		patron.setName(patronDto.getName());
+		patron.setCardexpirationdate(patronDto.getCardexpirationdate());
+		patron.setBalance(0.0);
+		patron.setCardexpirationdate(LocalDate.now().plusYears(1));
+		patron.setUserinfo(user);
 		patronRepository.save(patron);
 	}
 	//Get all patrons
@@ -66,6 +81,16 @@ public class PatronController {
 		
 		patronRepository.deleteById(id);
 	}
+	@GetMapping("/patron/{id}")
+	public PatronEditDto getPatronById(@PathVariable("id") Integer id) {
+		Optional<Patron> optional =  patronRepository.findById(id);
+		if(optional.isPresent()) {
+			PatronEditDto dto = new PatronEditDto(optional.get().getId(), optional.get().getName(), optional.get().getCardexpirationdate(), optional.get().getBalance());
+			return dto;
+		}
+		throw new RuntimeException("ID is invalid");
+		
+	}
 	//Get a specific patron based on Id
 	@GetMapping("/patrons/{id}") //patrons/4
 	public Patron getSinglePatronById(@PathVariable("id") Integer id) {
@@ -76,40 +101,35 @@ public class PatronController {
 		  
 	}
 	//Update a specific patron based on Id
-	@PutMapping("/patrons/{id}")
-	public Patron updatePatrons(@PathVariable("id") Integer id, @RequestBody Patron newPatrons) {
-		Optional<Patron> optional = patronRepository.findById(id);
+	@PutMapping("/patrons")
+	public void updatePatrons(@RequestBody PatronEditDto dto) {
+		Optional<Patron> optional = patronRepository.findById(dto.getId());
 		if(optional.isPresent()) {	
-			Patron existingPatrons = optional.get();
-			existingPatrons.setName(newPatrons.getName());
-			existingPatrons.setCardexpirationdate(newPatrons.getCardexpirationdate());
-			existingPatrons.setBalance(newPatrons.getBalance());
-			//existingPatrons.getUserinfo().setUsername(newPatrons.getUserinfo().getUsername());
-			return patronRepository.save(existingPatrons);
+			patronRepository.updatePatron(optional.get().getId(), dto.getName(), dto.getCardexpirationdate(), dto.getBalance());
 		}
 		else
 			throw new RuntimeException("ID is invalid");
 	}
 	//update patron balance (PUT)
 	@PutMapping("/patrons/balance/{id}")
-	public Patron updatePatronBalance(@PathVariable("id") Integer id, @RequestBody Patron newPatronBalance) {
+	public void updatePatronBalance(@PathVariable("id") Integer id, @RequestBody Patron newPatronBalance) {
 		Optional<Patron> optional = patronRepository.findById(id);
 		if(optional.isPresent()) {	
 			Patron existingPatrons = optional.get();
 			existingPatrons.setBalance(newPatronBalance.getBalance());
-			return patronRepository.save(existingPatrons);
+			patronRepository.save(existingPatrons);
 		}
 		else
 			throw new RuntimeException("ID is invalid");
 	}
 	//Renew library card (PUT)
 	@PutMapping("/patrons/card/{id}")
-	public Patron updatePatronCard(@PathVariable("id") Integer id, @RequestBody Patron newPatronCard) {
+	public void updatePatronCard(@PathVariable("id") Integer id, @RequestBody Patron newPatronCard) {
 		Optional<Patron> optional = patronRepository.findById(id);
 		if(optional.isPresent()) {	
 			Patron existingPatrons = optional.get();
 			existingPatrons.setCardexpirationdate(newPatronCard.getCardexpirationdate());
-			return patronRepository.save(existingPatrons);
+			patronRepository.save(existingPatrons);
 		}
 		else
 			throw new RuntimeException("ID is invalid");
