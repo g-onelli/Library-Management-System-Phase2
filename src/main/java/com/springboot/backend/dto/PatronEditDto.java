@@ -2,22 +2,11 @@ package com.springboot.backend.dto;
 
 import java.time.LocalDate;
 
-public class PatronDto {
+public class PatronEditDto {
 	private Integer id;
 	private String name;
 	private LocalDate cardexpirationdate;
 	private Double balance;
-	private Integer uid;
-	private String username;
-	private String role;
-	private String encodedCredentials;
-	
-	public String getEncodedCredentials() {
-		return encodedCredentials;
-	}
-	public void setEncodedCredentials(String encodedCredentials) {
-		this.encodedCredentials = encodedCredentials;
-	}
 	public Integer getId() {
 		return id;
 	}
@@ -42,23 +31,16 @@ public class PatronDto {
 	public void setBalance(Double balance) {
 		this.balance = balance;
 	}
-	public Integer getUid() {
-		return uid;
+	public PatronEditDto(Integer id, String name, LocalDate cardexpirationdate, Double balance) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.cardexpirationdate = cardexpirationdate;
+		this.balance = balance;
 	}
-	public void setUid(Integer uid) {
-		this.uid = uid;
-	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
+	public PatronEditDto() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 	
 }
