@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { PatronEditDto } from 'src/app/auth/model/user.model';
 import { Patron } from 'src/app/model/patron.model';
 import { PatronService } from 'src/app/service/patron.service';
 
@@ -9,11 +11,16 @@ import { PatronService } from 'src/app/service/patron.service';
   styleUrls: ['./patron-add.component.css']
 })
 export class PatronAddComponent implements OnInit {
+  patronEditDto: PatronEditDto;
+  temp: PatronEditDto;
   patronForm :FormGroup;
   patron: Patron;
   msg: string;
-  id: number;
-  constructor(private patronService: PatronService) { }
+  tempname: string;
+  tempcard: string;
+  tempbalance: number;
+
+  constructor(private patronService: PatronService, private router: Router) { }
 
   ngOnInit(): void {
     this.patronForm = new FormGroup({
@@ -25,22 +32,37 @@ export class PatronAddComponent implements OnInit {
     });
   }
 onFormSubmit(){
-  this.patron = this.patronForm.value;
-  this.id = this.patronForm.value.id;
-  this.patronService.putPatron(this.patron, this.id).subscribe({
-    next: (data)=>{
-      this.patron = data;
-      this.msg='Patron updated in the system';
-      //read the value from the subject
-      let patronArray = this.patronService.patron$.getValue();
-      //update the value: add patron to Patron[]
-      patronArray.push(this.patron);
-      //update the subject value
-      this.patronService.patron$.next(patronArray);
+  this.patronService.getPatronById(this.patronForm.value.id).subscribe({
+    next: (data)=>{ 
+      this.temp = data;
+      this.tempname = data.name;
+      this.tempcard = data.cardexpirationdate;
+      this.tempbalance = data.balance;
+      if(Object.keys(this.patronForm.value.name).length == 0){
+        this.patronForm.controls['name'].setValue(this.tempname);
+      }
+      if(Object.keys(this.patronForm.value.cardexpirationdate).length == 0){
+        this.patronForm.controls['cardexpirationdate'].setValue(this.tempcard);
+      }
+      if(Object.keys(this.patronForm.value.balance).length == 0){
+        this.patronForm.controls['balance'].setValue(this.tempbalance);
+      }
+      this.patronEditDto={
+        id: this.patronForm.value.id,
+        name: this.patronForm.value.name,
+        cardexpirationdate: this.patronForm.value.cardexpirationdate,
+        balance: this.patronForm.value.balance
+      };
+      this.patronService.putPatron(this.patronEditDto).subscribe({
+        next: (data)=>{
+          this.msg='Profile Updated';
+        },
+        error: (e)=>{
+          this.msg='Operation failed';
+        }
+      });
     },
-    error: (e)=>{
-      this.msg='Operation failed';
-    }
+    error: (e)=>{  }
   });
 }
 

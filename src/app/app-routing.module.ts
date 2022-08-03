@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/component/login/login/login.component';
 import { LogoutComponent } from './auth/component/logout/logout/logout.component';
+import { SignUpComponent } from './auth/component/sign-up/sign-up.component';
 import { AuthguardService } from './auth/service/authguard.service';
 import { BookComponent } from './component/book/book.component';
 import { CheckedoutComponent } from './component/checkedout/checkedout.component';
@@ -21,6 +22,7 @@ import { VideoComponent } from './component/video/video.component';
 const routes: Routes = [
   {path:'', component: LoginComponent},
   {path:'login', component: LoginComponent},
+  {path:'sign-up', component: SignUpComponent},
   {path:'patdashboard', component: PatdashboardComponent, canActivate:[AuthguardService]},
   {path:'libdashboard', component: LibdashboardComponent, canActivate:[AuthguardService]},
   {path:'book', component: BookComponent, canActivate:[AuthguardService]},

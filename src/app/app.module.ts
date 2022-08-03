@@ -26,6 +26,7 @@ import { LoginComponent } from './auth/component/login/login/login.component';
 import { PatronListComponent } from './component/patron/patron-list/patron-list.component';
 import { PatronAddComponent } from './component/patron/patron-add/patron-add.component';
 import { PatronDeleteComponent } from './component/patron/patron-delete/patron-delete.component';
+import { SignUpComponent } from './auth/component/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { PatronDeleteComponent } from './component/patron/patron-delete/patron-d
     PatronListComponent,
     PatronAddComponent,
     PatronDeleteComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
