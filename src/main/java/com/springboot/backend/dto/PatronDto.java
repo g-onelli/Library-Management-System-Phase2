@@ -9,7 +9,6 @@ public class PatronDto {
 	private Double balance;
 	private Integer uid;
 	private String username;
-	private String password;
 	private String role;
 	public Integer getId() {
 		return id;
@@ -47,23 +46,11 @@ public class PatronDto {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	public String getRole() {
 		return role;
 	}
 	public void setRole(String role) {
 		this.role = role;
-	}
-	@Override
-	public String toString() {
-		return "PatronDto [id=" + id + ", name=" + name + ", cardexpirationdate=" + cardexpirationdate + ", balance="
-				+ balance + ", uid=" + uid + ", username=" + username + ", password=" + password + ", role=" + role
-				+ "]";
 	}
 	
 }
