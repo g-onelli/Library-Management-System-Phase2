@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,8 @@ import com.springboot.backend.repository.LibrarianRepository;
 public class LibrarianController {
 	@Autowired 
 	private LibrarianRepository librarianRepository; 
-	@Autowired(required=false)
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	@GetMapping("/librarians")
 	public List<Librarian> getAllLibrarians() {
 		List<Librarian> list = librarianRepository.findAll();
@@ -37,6 +39,9 @@ public class LibrarianController {
 	//Add a new librarian
 		@PostMapping("/librarians")
 		public void postLibrarians(@RequestBody Librarian librarian) {
+			String password = librarian.getUserinfo().getPassword();
+			password = passwordEncoder.encode(password);
+			librarian.getUserinfo().setPassword(password);
 			librarianRepository.save(librarian);
 		}
 }

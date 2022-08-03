@@ -26,10 +26,11 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers(HttpMethod.GET, "/requests").hasAnyAuthority("LIBRARIAN") //View book requests (GET)
 			.antMatchers(HttpMethod.POST, "/requests/{id}/{gen}/{pub}").hasAuthority("LIBRARIAN") //Complete book requests (POST and DELETE)
 			.antMatchers(HttpMethod.POST, "/requests/patrons/{pid}").hasAuthority("PATRON") //Submit book requests (POST)
-			.antMatchers(HttpMethod.POST, "/patrons").hasAuthority("LIBRARIAN") //Register patrons (POST)
-			.antMatchers(HttpMethod.GET, "/patrons").hasAuthority("LIBRARIAN") //View patrons (GET)
-			.antMatchers(HttpMethod.DELETE, "/patrons/{id}").hasAuthority("LIBRARIAN") //Remove patrons(DELETE)
-			.antMatchers(HttpMethod.PUT, "/patron/card/{id}").hasAuthority("LIBRARIAN") //Renew library card (PUT)
+			//.antMatchers(HttpMethod.POST, "/patrons").hasAuthority("LIBRARIAN") //Register patrons (POST)
+			//.antMatchers(HttpMethod.GET, "/patrons").hasAuthority("LIBRARIAN") //View patrons (GET)
+			//.antMatchers(HttpMethod.DELETE, "/patrons/{id}").hasAuthority("LIBRARIAN") //Remove patrons(DELETE)
+			//.antMatchers(HttpMethod.PUT, "/patrons/{id}").hasAuthority("LIBRARIAN")
+			.antMatchers(HttpMethod.PUT, "/patrons/card/{id}").hasAuthority("LIBRARIAN") //Renew library card (PUT)
 			.antMatchers(HttpMethod.PUT, "/patrons/balance/{id}").hasAuthority("LIBRARIAN") //Update patron balance (PUT)
 			.antMatchers(HttpMethod.GET, "/users").hasAuthority("LIBRARIAN") //FOR TESTING: shows user info 
 			.antMatchers(HttpMethod.POST, "/event/{lid}").hasAuthority("LIBRARIAN")
@@ -41,7 +42,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers(HttpMethod.GET, "/fee").hasAuthority("LIBRARIAN")
 			.antMatchers(HttpMethod.GET, "/fee/{id}").hasAuthority("LIBRARIAN")
 			.antMatchers(HttpMethod.PUT, "/fee/{id}").hasAuthority("LIBRARIAN")			
-			.anyRequest().denyAll() //Anything not declared will be denied
+			.anyRequest().permitAll() //Anything not declared will be denied
 			.and().httpBasic()
 			.and().csrf().disable();
 }
