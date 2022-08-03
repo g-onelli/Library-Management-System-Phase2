@@ -10,19 +10,19 @@
     <label>Enter Patron Name: </label>
     <input type="text" name="name" formControlName="name">
     <span *ngIf="patronForm.controls['name'].invalid && patronForm.controls['name'].touched">
-        <span *ngIf="patronForm.controls['name'].errors['pattern']">Pattern allowed: [a-zA-Z ]+</span>
+        <span *ngIf="patronForm.controls['name'].errors['pattern']">Alphabetical characters only</span>
         </span>
     <br /><br />
     <label>Enter Patron Card Expiration Date: </label>
     <input type="text" name="cardexpirationdate" formControlName="cardexpirationdate">
     <span *ngIf="patronForm.controls['cardexpirationdate'].invalid && patronForm.controls['cardexpirationdate'].touched">
-        <span *ngIf="patronForm.controls['cardexpirationdate'].errors['pattern']">Pattern YYYY-MM-DD</span>
+        <span *ngIf="patronForm.controls['cardexpirationdate'].errors['pattern']">Required Format: YYYY-MM-DD</span>
         </span>
     <br /><br />
     <label>Enter Patron Balance: </label>
     <input type="text" name="balance" formControlName="balance">
     <span *ngIf="patronForm.controls['balance'].invalid && patronForm.controls['balance'].touched">
-        <span *ngIf="patronForm.controls['balance'].errors['pattern']">Pattern allowed: [a-zA-Z ]+</span>
+        <span *ngIf="patronForm.controls['balance'].errors['pattern']">Numbers only (decimals allowed)+</span>
         </span>
     <br /><br />
     <!-- <label>Enter Patron Username: </label>
