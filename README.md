@@ -35,7 +35,7 @@
 
 **Patrons**
 - View patrons (GET)
-- Register patrons (POST)
+- Register patrons(Sign-Up)(POST)
 - Remove patrons(DELETE)
 - Update patron balance (PUT)
 - Renew library card (PUT)
