@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="rooms")
-public class Rooms {
+@Table(name = "rooms")
+public class Room {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(nullable=false)
@@ -21,14 +21,14 @@ public class Rooms {
 	@Column(nullable=false)
 	private Integer hasPresenterTools;
 	
-	public Rooms(Integer roomNumber, Integer capacity, Integer hasPresenterTools) {
+	public Room(Integer roomNumber, Integer capacity, Integer hasPresenterTools) {
 		super();
 		this.roomNumber = roomNumber;
 		this.capacity = capacity;
 		this.hasPresenterTools = hasPresenterTools;
 	}
 	
-	public Rooms() {
+	public Room() {
 		super();
 	}
 

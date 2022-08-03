@@ -31,7 +31,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers(HttpMethod.PUT, "/patron/card/{id}").hasAuthority("LIBRARIAN") //Renew library card (PUT)
 			.antMatchers(HttpMethod.PUT, "/patrons/balance/{id}").hasAuthority("LIBRARIAN") //Update patron balance (PUT)
 			.antMatchers(HttpMethod.GET, "/users").hasAuthority("LIBRARIAN") //FOR TESTING: shows user info 
-			.anyRequest().denyAll() //Anything not declared will be denied
+			.anyRequest().permitAll() //Anything not declared will be denied  originally .denyAll() make sure to return after done
 			.and().httpBasic()
 			.and().csrf().disable();
 }

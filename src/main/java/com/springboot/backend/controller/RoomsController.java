@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.springboot.backend.model.Rooms;
+import com.springboot.backend.model.Room;
 import com.springboot.backend.repository.RoomsRepository;
 
 @RestController
@@ -21,19 +21,19 @@ public class RoomsController {
 	private RoomsRepository roomsRepository;
 	
 	@PostMapping("/rooms")
-	public void postRoom(@RequestBody Rooms rooms) {
+	public void postRoom(@RequestBody Room rooms) {
 		roomsRepository.save(rooms);
 	}
 	
 	@GetMapping("/rooms")
-	public List<Rooms> getAllRooms(){
-		List<Rooms> rList = roomsRepository.findAll();
+	public List<Room> getAllRooms(){
+		List<Room> rList = roomsRepository.findAll();
 		return rList;
 	}
 	
 	@GetMapping("/rooms/single/{rid}")
-	public Rooms getSingleRoom(@PathVariable("rid") Integer rid) {
-		Optional<Rooms> sRoom = roomsRepository.findById(rid);
+	public Room getSingleRoom(@PathVariable("rid") Integer rid) {
+		Optional<Room> sRoom = Optional.of(roomsRepository.showRoomByNum(rid));
 		if(!sRoom.isPresent()) {
 			throw new RuntimeException("This room number is not found in database.");
 		}
@@ -46,12 +46,12 @@ public class RoomsController {
 	}
 	
 	@PutMapping("/rooms/{rid}")
-	public Rooms updateRoomById(@PathVariable("rid") Integer rid, @RequestBody Rooms uRoomValue){
-		Optional<Rooms> optRoom = roomsRepository.findById(rid);
+	public Room updateRoomById(@PathVariable("rid") Integer rid, @RequestBody Room uRoomValue){
+		Optional<Room> optRoom = Optional.of(roomsRepository.showRoomByNum(rid));
 		if(!optRoom.isPresent()) {
 			throw new RuntimeException("This room number is not found in database.");
 		}
-		Rooms oldRoom = optRoom.get();
+		Room oldRoom = optRoom.get();
 		
 		oldRoom.setCapacity(uRoomValue.getCapacity());
 		oldRoom.setHasPresenterTools(uRoomValue.getHasPresenterTools());
