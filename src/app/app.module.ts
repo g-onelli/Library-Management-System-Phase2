@@ -23,6 +23,9 @@ import { LibbookComponent } from './component/libbook/libbook.component';
 import { LibvideoComponent } from './component/libvideo/libvideo.component';
 import { LogoutComponent } from './auth/component/logout/logout/logout.component';
 import { LoginComponent } from './auth/component/login/login/login.component';
+import { PatronListComponent } from './component/patron/patron-list/patron-list.component';
+import { PatronAddComponent } from './component/patron/patron-add/patron-add.component';
+import { PatronDeleteComponent } from './component/patron/patron-delete/patron-delete.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,9 @@ import { LoginComponent } from './auth/component/login/login/login.component';
     LibbookComponent,
     LibvideoComponent,
     LogoutComponent,
+    PatronListComponent,
+    PatronAddComponent,
+    PatronDeleteComponent,
   ],
   imports: [
     BrowserModule,

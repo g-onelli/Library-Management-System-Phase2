@@ -1,0 +1,25 @@
+<h2>Patron List</h2>
+
+<div *ngFor="let p of patrons">
+    Id: <strong>{{p.id}}</strong>
+    &nbsp;&nbsp;
+    Name: <strong>{{p.name}}</strong>
+    &nbsp;&nbsp;
+    Card Expiration Date: {{p.cardexpirationdate}}
+    &nbsp;&nbsp;
+    Balance: {{p.balance}}
+    &nbsp;&nbsp;
+    Uid: {{p.uid}}
+    &nbsp;&nbsp;
+    Username: {{p.username}}
+    &nbsp;&nbsp;
+    Role: {{p.role}}
+    &nbsp;&nbsp;
+    <hr>
+</div>
+<br /> <br />
+<div>
+    <a href="Javascript:void" (click)="prev()">Previous</a> &nbsp;&nbsp;&nbsp;&nbsp;
+    
+    <a href="Javascript:void" (click)="next()">Next</a>
+</div>
