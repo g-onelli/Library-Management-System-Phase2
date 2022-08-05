@@ -13,12 +13,11 @@
     &nbsp;&nbsp;
     Username: {{p.username}}
     &nbsp;&nbsp;
-    Role: {{p.role}}
-    &nbsp;&nbsp;
     <hr>
 </div>
 <br /> <br />
 <div>
+    &nbsp;<span *ngFor="let p of patrons | slice:0:1 ;"><strong>{{page + 1}}/{{p.totalpages}}</strong></span> &nbsp;
     <a href="Javascript:void" (click)="prev()">Previous</a> &nbsp;&nbsp;&nbsp;&nbsp;
     
     <a href="Javascript:void" (click)="next()">Next</a>
