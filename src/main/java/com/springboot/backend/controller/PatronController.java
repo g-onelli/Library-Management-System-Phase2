@@ -54,14 +54,15 @@ public class PatronController {
 	}
 	//Get all patrons
 	@GetMapping("/patrons")
-	public List<PatronDto> getAllPatrons(@RequestParam("page") Integer page,
-			@RequestParam("size") Integer size) {
+	public List<PatronDto> getAllPatrons(@RequestParam(name ="page") Integer page,
+			@RequestParam(name="size") Integer size) {
 		if(page <0) {
 			page = 0;
 		}
 		Pageable pageable=PageRequest.of(page, size);
-		Page<Patron> pagelist = patronRepository.findAll(pageable);
+		List<Patron> pagelist = patronRepository.findAll(pageable).getContent();
 		List<PatronDto> listDto = new ArrayList<>();
+		Integer totalPages = patronRepository.findAll(pageable).getTotalPages();;
 		pagelist.stream().forEach(p->{
 			PatronDto dto = new PatronDto();
 			dto.setId(p.getId());
@@ -71,6 +72,7 @@ public class PatronController {
 			dto.setUid(p.getUserinfo().getId());
 			dto.setUsername(p.getUserinfo().getUsername());
 			dto.setRole(p.getUserinfo().getRole());
+			dto.setTotalpages(totalPages);
 			listDto.add(dto);
 		});
 		return listDto; 
