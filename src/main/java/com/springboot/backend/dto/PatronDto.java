@@ -11,7 +11,7 @@ public class PatronDto {
 	private String username;
 	private String role;
 	private String encodedCredentials;
-	
+	private Integer totalpages;
 	public String getEncodedCredentials() {
 		return encodedCredentials;
 	}
@@ -59,6 +59,12 @@ public class PatronDto {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public Integer getTotalpages() {
+		return totalpages;
+	}
+	public void setTotalpages(Integer totalpages) {
+		this.totalpages = totalpages;
 	}
 	
 }
