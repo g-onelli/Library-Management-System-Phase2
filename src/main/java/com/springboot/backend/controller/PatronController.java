@@ -27,7 +27,7 @@ import com.springboot.backend.dto.PatronEditDto;
 import com.springboot.backend.model.Patron;
 import com.springboot.backend.model.UserInfo;
 import com.springboot.backend.repository.PatronRepository;
-@CrossOrigin(origins = {"http://localhost:4200"})
+
 @RestController
 public class PatronController {
 	@Autowired //<- Spring will wire it to PatronsRepository Interface. 
