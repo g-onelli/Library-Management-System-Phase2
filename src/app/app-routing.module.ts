@@ -23,19 +23,58 @@ const routes: Routes = [
   {path:'', component: LoginComponent},
   {path:'login', component: LoginComponent},
   {path:'sign-up', component: SignUpComponent},
-  {path:'patdashboard', component: PatdashboardComponent, canActivate:[AuthguardService]},
-  {path:'libdashboard', component: LibdashboardComponent, canActivate:[AuthguardService]},
-  {path:'book', component: BookComponent, canActivate:[AuthguardService]},
-  {path:'video', component: VideoComponent, canActivate:[AuthguardService]},
-  {path:'request', component: RequestComponent, canActivate:[AuthguardService]},
-  {path:'libbook', component: LibbookComponent, canActivate:[AuthguardService]},
-  {path:'libvideo', component: LibvideoComponent, canActivate:[AuthguardService]},
-  {path:'librequest', component: LibrequestComponent, canActivate:[AuthguardService]},
-  {path:'patron', component: PatronComponent, canActivate:[AuthguardService]},
-  {path:'checkedout', component: CheckedoutComponent, canActivate:[AuthguardService]},
-  {path:'event', component: EventComponent, canActivate:[AuthguardService]},
-  {path:'fee', component: FeeComponent, canActivate:[AuthguardService]},
-  {path:'room', component: RoomComponent, canActivate:[AuthguardService]},
+  {path:'patdashboard', component: PatdashboardComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'PATRON'
+  }},
+  {path:'libdashboard', component: LibdashboardComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'LIBRARIAN'
+  }},
+  {path:'book', component: BookComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'PATRON'
+  }},
+  {path:'video', component: VideoComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'PATRON'
+  }},
+  {path:'request', component: RequestComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'PATRON'
+  }},
+  {path:'libbook', component: LibbookComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'LIBRARIAN'
+  }},
+  {path:'libvideo', component: LibvideoComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'LIBRARIAN'
+  }},
+  {path:'librequest', component: LibrequestComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'LIBRARIAN'
+  }},
+  {path:'patron', component: PatronComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'LIBRARIAN'
+  }},
+  {path:'checkedout', component: CheckedoutComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'PATRON'
+  }},
+  {path:'event', component: EventComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'LIBRARIAN'
+  }},
+  {path:'fee', component: FeeComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'PATRON'
+  }},
+  {path:'room', component: RoomComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'PATRON'
+  }},
   {path:'logout', component: LogoutComponent},
 
 ];

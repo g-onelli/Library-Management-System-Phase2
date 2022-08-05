@@ -10,12 +10,15 @@ import { PatronService } from 'src/app/service/patron.service';
 })
 export class PatronComponent implements OnInit {
   patrons: Patron[];
+  subscriptions: Subscription[]=[];
   page:number;
   size: number;
   constructor(private patronService: PatronService) { }
 
   ngOnInit(): void {
+    this.subscriptions=[];
     this.size = 5;
+    this.subscriptions.push(
       this.patronService.page$.subscribe(value=>{
           this.page = value;
           this.patronService.getAllPatrons(this.page,this.size).subscribe({
@@ -28,8 +31,11 @@ export class PatronComponent implements OnInit {
             }
           });
       })
+    );
 
 
   }
-
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub=>sub.unsubscribe());
+  }
 }

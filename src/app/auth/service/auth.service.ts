@@ -12,13 +12,14 @@ export class AuthService {
   username$ = new BehaviorSubject<string>('');
   message$ = new BehaviorSubject<string>('');
   loginApi:string;
-  editApi: string;
+  roleApi: string;
   signUpApi: string;
+  roleAs: string;
   constructor(private http: HttpClient) {
     this.username='';
     this.loginApi='http://localhost:8080/login';
-    this.editApi='http://localhost:8080/user/profile';
     this.signUpApi='http://localhost:8080/signup';
+    this.roleApi='http://localhost:8080/role';
    }
   isLoggedIn(): boolean{
     //check if the user is logged in or not
@@ -36,18 +37,19 @@ export class AuthService {
         'Authorization': 'basic ' + encodedCredentials
       })
     };
-    return this.http.get<User>(this.loginApi, httpOptions)
+    return this.http.get<User>(this.loginApi, httpOptions);
   }
   signUp(patronSignupDto: PatronSignupDto):Observable<any> {
     return this.http.post(this.signUpApi, patronSignupDto);
   }
-  /* editPatron(patronEditDto: PatronEditDto) :Observable<PatronEditDto>{
-    let httpOptions={
-      headers : new HttpHeaders({
+  getRole():Observable<User> {
+    let encodedCredentials= localStorage.getItem('credentials');
+    let httpOptions = {
+      headers: new HttpHeaders({
         'Content-type': 'application/json',
-        'Authorization' : 'basic '
+        'Authorization': 'basic ' + encodedCredentials
       })
     };
-    return this.http.put<PatronEditDto>(this.editApi,patronEditDto,httpOptions);
-  } */
+    return this.http.get<User>(this.roleApi, httpOptions);
+  }
 }

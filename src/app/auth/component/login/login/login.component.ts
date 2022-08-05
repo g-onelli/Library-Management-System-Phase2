@@ -33,6 +33,8 @@ export class LoginComponent implements OnInit {
       next: (data)=>{
         this.user = data;
         localStorage.setItem('username',this.user.username);
+        localStorage.setItem('credentials', btoa(this.user.username + ':' + this.password));
+        localStorage.setItem('role', this.user.role);
         this.authService.username$.next(this.user.username);
         if(this.user.role == "LIBRARIAN")
           this.router.navigateByUrl('/libdashboard');
