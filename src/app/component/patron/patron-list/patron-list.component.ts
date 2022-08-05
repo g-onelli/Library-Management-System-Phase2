@@ -11,12 +11,15 @@ export class PatronListComponent implements OnInit {
 
   patrons: Patron[];
   page:number;
+  total:number;
   constructor(private patronService: PatronService) { }
 
   ngOnInit(): void {
-
+    this.page = this.patronService.page$.getValue();
+    this.patronService.page$.next(this.page);
     this.patronService.patron$.subscribe(data=>{
       this.patrons = data;
+      this.total = data[0].totalpages;
     });
   }
   prev(){
@@ -32,8 +35,11 @@ export class PatronListComponent implements OnInit {
   next(){
     //read the value of page from subject
     let page = this.patronService.page$.getValue();
+    console.log(this.total);
+    if(page<this.total-1){
     //update the value of page
       this.page = page+1;
+    }
     //attach the updated value to the subject
     this.patronService.page$.next(this.page);
   }
