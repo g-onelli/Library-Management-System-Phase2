@@ -23,6 +23,9 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 	//configure our apis as per roles
 		http.authorizeRequests()
 			.antMatchers(HttpMethod.POST, "/signup").permitAll()
+			.antMatchers(HttpMethod.POST, "/validate-security-answer/**").permitAll()
+			.antMatchers(HttpMethod.POST, "/user/security/info/**").permitAll()
+			.antMatchers(HttpMethod.POST, "/user/reset-password/**").permitAll()
 			.antMatchers(HttpMethod.GET, "/login").authenticated()
 			.antMatchers(HttpMethod.GET, "/role").authenticated()
 			.antMatchers(HttpMethod.GET, "/requests").authenticated() //View book requests (GET)

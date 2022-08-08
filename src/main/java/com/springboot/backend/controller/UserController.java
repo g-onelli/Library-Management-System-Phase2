@@ -1,6 +1,8 @@
 package com.springboot.backend.controller;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.backend.dto.UserInfoDto;
+import com.springboot.backend.dto.UserResetDto;
 import com.springboot.backend.model.UserInfo;
 import com.springboot.backend.repository.UserRepository;
 
@@ -89,5 +92,37 @@ public class UserController {
 		UserInfoDto dto = new UserInfoDto();
 		dto.setRole(info.getRole());
 		return dto;
+	}
+	@GetMapping("/validate-security-answer/{encodedText}")
+	public boolean validateSecurityQuestion(@PathVariable("encodedText") String encodedText) {
+		boolean status = false;
+		String str = new String(Base64.getDecoder().decode(encodedText));
+		String[] sarr = str.split("--");
+		String username = sarr[0];
+		String answer = sarr[1];
+		UserInfo info = userRepository.getByUsername(username);
+		if(info.getSecurityAnswer().equalsIgnoreCase(answer)) {
+			status = true;
+		}
+		return status;
+	}
+	@GetMapping("/user/security/info/{username}")
+	public UserResetDto getUserInfo(@PathVariable("username") String username) {
+		UserInfo info = userRepository.getByUsername(username);
+		UserResetDto dto = new UserResetDto(info.getId(), info.getSecurityQuestion(), "");
+		return dto;
+	}
+	@PutMapping("/user/reset-password/{encodedText}")
+	public void resetPassword(@PathVariable("encodedText") String encodedText) {
+		boolean status=false;
+		String str = new String(Base64.getDecoder().decode(encodedText)); 
+		//username + '--'+answer
+		String[] sarr =str.split("--");
+		String username = sarr[0]; 
+		String password=sarr[1];
+
+		String encodedPassword = this.passwordEncoder.encode(password);
+		userRepository.resetPassword(username,encodedPassword,LocalDate.now());
+
 	}
 }
