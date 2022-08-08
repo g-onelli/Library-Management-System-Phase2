@@ -1,8 +1,19 @@
-<nav class="navbar navbar-default navbar-fixed-top navClass">
+<div class="navbar">
+  <span>
     <a routerLink="/patdashboard">Patron Dashboard</a> &nbsp;&nbsp;&nbsp;
     <a routerLink="/libdashboard">Librarian Dashboard</a> &nbsp;&nbsp;&nbsp;
-    <hr>
-   </nav>
+  </span>
+   <span *ngIf="username != '' ">
+    Welcome {{username}}  &nbsp;&nbsp;&nbsp;
+    <a routerLink="/logout">Logout</a>
+</span>
+<span *ngIf="username == '' " >
+  <a routerLink="/sign-up">Sign-Up</a>
+    &nbsp;&nbsp;&nbsp;
+  <a routerLink="/login">Login</a>
+</span>
+<hr>
+</div>
  <div>
     <router-outlet></router-outlet>
 </div>  
