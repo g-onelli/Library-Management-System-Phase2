@@ -9,6 +9,14 @@ public class EventDto {
 	private String description;
 	private String title;
 	private Librarian librarian;
+	private Integer pages;
+	
+	public Integer getPages() {
+		return pages;
+	}
+	public void setPages(Integer pages) {
+		this.pages = pages;
+	}
 	public Integer getId() {
 		return id;
 	}
