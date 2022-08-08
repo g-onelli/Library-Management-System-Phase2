@@ -9,8 +9,15 @@ public class PatronDto {
 	private Double balance;
 	private Integer uid;
 	private String username;
-	private String password;
 	private String role;
+	private String encodedCredentials;
+	private Integer totalpages;
+	public String getEncodedCredentials() {
+		return encodedCredentials;
+	}
+	public void setEncodedCredentials(String encodedCredentials) {
+		this.encodedCredentials = encodedCredentials;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -47,17 +54,17 @@ public class PatronDto {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	public String getRole() {
 		return role;
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public Integer getTotalpages() {
+		return totalpages;
+	}
+	public void setTotalpages(Integer totalpages) {
+		this.totalpages = totalpages;
 	}
 	
 }

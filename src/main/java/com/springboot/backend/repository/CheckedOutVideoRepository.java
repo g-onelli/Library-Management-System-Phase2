@@ -14,11 +14,4 @@ public interface CheckedOutVideoRepository extends JpaRepository<CheckedOutVideo
 	
 	@Query("select cv from CheckedOutVideo cv where cv.video.id = ?1")
 	List<CheckedOutVideo> getCheckedOutVideosByVideoId(Integer vid);
-	
-	@Query("delete from CheckedOutVideo cv where cv.patron.id = ?1")
-	void deleteCheckedOutVideoByPatronId(Integer pid);
-	
-	@Query("delete from CheckedOutVideo cv where cv.video.id = ?1")
-	void deleteCheckedOutVideosByVideoId(Integer vid);
-
 }

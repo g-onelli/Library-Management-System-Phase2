@@ -1,0 +1,889 @@
+{
+	"info": {
+		"_postman_id": "f34a2c90-ddfc-4a02-8f02-052fca83fd0b",
+		"name": "Library Management System Phase 2 Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "BOOK - POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"The Call of Cthulhu\",\r\n    \"author\" : \"H.P. Lovecraft\",\r\n     \"publisher\" : \"Weird Tales\",\r\n     \"callNumber\" : 5.19,\r\n     \"genre\" : \"Horror\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/book",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BOOK- GETALL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/book",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BOOK - GETBYID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/book/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"book",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BOOK - PUT (UPDATEBOOK)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"The Call of Cthulhu\",\r\n    \"author\" : \"H.P. Lovecraft\",\r\n     \"publisher\" : \"Weird Tales\",\r\n     \"callNumber\" : 3.1415,\r\n     \"genre\" : \"Horror\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/book/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"book",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BOOK - DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/book/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"book",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VIDEO - POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" :\"Pulp Fiction\",\r\n    \"director\" : \"Quentin Tarantino\",\r\n    \"releaseDate\": \"1994-09-23\",\r\n    \"callNumber\" : 55.16,\r\n    \"genre\" : \"Crime\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/video",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"video"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VIDEO - GETALL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VIDEO - GETBYID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VIDEO - PUT (UPDATEVIDEO)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 14,\r\n    \"title\": \"Pulp Fiction\",\r\n    \"director\": \"Quentin Tarantino\",\r\n    \"releaseDate\": \"1994-09-23\",\r\n    \"callNumber\": 55.16,\r\n    \"genre\": \"Crime\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/video/14",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"video",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VIDEO - DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/video/14",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"video",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATRON- POST",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "test",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "testpass",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Gavin\",\r\n    \"cardexpirationdate\" : \"2023-02-15\",\r\n     \"balance\" : 100,\r\n     \"userinfo\" : {\r\n    \"username\" : \"testpatron\",\r\n    \"password\" : \"testpass\",\r\n    \"role\" : \"PATRON\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/patrons",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patrons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATRON - GETALL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/patrons",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patrons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATRON - GETBYID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/patrons/7",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patrons",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATRON - PUT (UPDATEPATRON)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Jakob\",\r\n    \"cardexpirationdate\": \"2023-08-30\",\r\n    \"balance\": 100.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/patrons/7",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patrons",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATRON - PUT (UPDATEBALANCE)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"balance\": 0.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/patrons/balance/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patrons",
+						"balance",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATRON - PUT (UPDATECARD)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cardexpirationdate\": \"2023-01-12\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/patrons/card/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patrons",
+						"card",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATRON - DELETEBYID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/patrons/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patrons",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LIBRARIAN POST",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "test",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "testpass",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Librarian1\",\r\n    \"salary\" : \"60000\",\r\n    \"position\" : \"head Librarian\",\r\n    \"email\" : \"email@email.com\",\r\n    \"phonenumber\" : \"11111111\",\r\n    \"userinfo\" : {\r\n    \"username\" : \"testlib\",\r\n    \"password\" : \"password\",\r\n    \"role\" : \"LIBRARIAN\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/librarians",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"librarians"
+					]
+				},
+				"description": "Create a librarian"
+			},
+			"response": []
+		},
+		{
+			"name": "CHECKEDOUTBOOK - POST (CHECKOUTBOOK)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/checkoutbook/8/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"checkoutbook",
+						"8",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CHECKEDOUTBOOK - GETALL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CHECKEDOUTBOOK - GETBYPATRONID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/checkedoutbook/patron/8",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"checkedoutbook",
+						"patron",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CHECKEDOUTBOOK - GETBYBOOKID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CHECKEDOUTBOOK - DELETEBYID(CHECK IN BOOK)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/checkedoutbook/8",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"checkedoutbook",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CHECKEDOUTVIDEO- POST (CHECKOUTVIDEO)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/checkedoutvideo/8/14",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"checkedoutvideo",
+						"8",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CHECKEDOUTVIDEO- GETALL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/checkedoutvideo",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"checkedoutvideo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CHECKEDOUTVIDEO - GETBYPATRONID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/checkedoutvideo/patron/8",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"checkedoutvideo",
+						"patron",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CHECKEDOUTVIDEO- GETBYVIDEOID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/checkedoutvideo/video/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"checkedoutvideo",
+						"video",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CHECKEDOUTVIDEO- DELETEBYID(CHECK IN VIDEO)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/checkedoutvideo/8/6",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"checkedoutvideo",
+						"8",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REQUESTS - GET",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "test",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "testpass",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/requests",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"requests"
+					]
+				},
+				"description": "Get requests"
+			},
+			"response": []
+		},
+		{
+			"name": "REQUESTS - Complete Book Requests",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "test",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "testpass",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/requests/3/fiction/hyperion",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"requests",
+						"3",
+						"fiction",
+						"hyperion"
+					]
+				},
+				"description": "Complete book request id 3 and add Book with genre fiction and publisher hyperion."
+			},
+			"response": []
+		},
+		{
+			"name": "REQUESTS - Insert new Request and attach patron ID - Submit book requests",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "testpatron",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "testpass",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"title\",\r\n    \"author\" : \"author\",\r\n    \"description\" : \"words\",\r\n    \"submissiondate\" : \"2022-12-31\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/requests/patrons/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"requests",
+						"patrons",
+						"3"
+					]
+				},
+				"description": "Create a book request from patron 3"
+			},
+			"response": []
+		},
+		{
+			"name": "USERS - GET",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "test",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "testpass",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				},
+				"description": "Get users"
+			},
+			"response": []
+		},
+		{
+			"name": "USERS - POST - Create librarian user",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "test",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "testpass",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"testlib\",\r\n    \"password\" : \"password\",\r\n    \"role\" : \"LIBRARIAN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USERS - POST - Create patron user",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "test",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "testpass",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"testpat\",\r\n    \"password\" : \"password\",\r\n    \"role\" : \"PATRON\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

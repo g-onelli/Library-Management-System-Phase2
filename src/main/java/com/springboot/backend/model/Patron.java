@@ -26,6 +26,7 @@ public class Patron {
 	
 	@Column
     private Double balance;
+
     @OneToOne(cascade= {CascadeType.ALL})
 	private UserInfo userinfo;
 	public Integer getId() {

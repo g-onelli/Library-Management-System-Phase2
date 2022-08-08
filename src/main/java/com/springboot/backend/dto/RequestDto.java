@@ -52,5 +52,10 @@ public class RequestDto {
 	public void setPname(String pname) {
 		this.pname = pname;
 	}
+	@Override
+	public String toString() {
+		return "RequestDto [id=" + id + ", description=" + description + ", submissiondate=" + submissiondate
+				+ ", title=" + title + ", author=" + author + ", pid=" + pid + ", pname=" + pname + "]";
+	}
 	
 }
