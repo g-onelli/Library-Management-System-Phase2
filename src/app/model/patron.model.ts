@@ -6,5 +6,5 @@ export class Patron{
     uid: number;
     username: string;
     role: string;
-    totalpages: number;
+    totalpages?: number;
 }

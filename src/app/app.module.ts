@@ -31,6 +31,10 @@ import { PatronDeleteComponent } from './component/patron/patron-delete/patron-d
 import { SignUpComponent } from './auth/component/sign-up/sign-up.component';
 import { UsernameVerifyComponent } from './auth/component/username-verify/username-verify.component';
 import { PasswordResetComponent } from './auth/component/password-reset/password-reset.component';
+import { RequestAddComponent } from './component/request/request-add/request-add.component';
+import { LibrequestDeleteComponent } from './component/librequest/librequest-delete/librequest-delete.component';
+import { LibrequestAddComponent } from './component/librequest/librequest-add/librequest-add.component';
+import { LibrequestListComponent } from './component/librequest/librequest-list/librequest-list.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +65,10 @@ import { PasswordResetComponent } from './auth/component/password-reset/password
     SignUpComponent,
     UsernameVerifyComponent,
     PasswordResetComponent,
+    RequestAddComponent,
+    LibrequestDeleteComponent,
+    LibrequestAddComponent,
+    LibrequestListComponent,
   ],
   imports: [
     BrowserModule,

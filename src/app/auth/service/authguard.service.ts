@@ -35,7 +35,6 @@ export class AuthguardService {
   checkUserLogin(route: ActivatedRouteSnapshot, url: any): boolean {
     this.subscriptions=[];
     if (!this.authService.isLoggedIn()) {
-      console.log('here');
       this.authService.message$.next('Please Login to Continue');
       this.router.navigateByUrl('/login');
       return false;

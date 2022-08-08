@@ -1,0 +1,23 @@
+<span *ngIf="!(msg =='')">{{msg}}</span>
+<br /><br />
+<form (submit)="onFormSubmit()" [formGroup]="requestForm">
+    <label>Enter Book Title: </label>
+    <input type="text" name="title" formControlName="title">
+    <span *ngIf="requestForm.controls['title'].invalid && requestForm.controls['title'].touched">
+        <span *ngIf="requestForm.controls['title'].errors['required']"> Title is Required</span>
+        </span>
+    <br /><br />
+    <label>Enter Author Name: </label>
+    <input type="text" name="author" formControlName="author">
+    <span *ngIf="requestForm.controls['author'].invalid && requestForm.controls['author'].touched">
+        <span *ngIf="requestForm.controls['author'].errors['pattern']">Alphabetical characters only</span>
+        <span *ngIf="requestForm.controls['author'].errors['required']"> Author is Required</span>
+        </span>
+    <br /><br />
+    <label>Enter Book Description: </label>
+    <input type="text" name="description" formControlName="description">
+    <span *ngIf="requestForm.controls['description'].invalid && requestForm.controls['description'].touched">
+        </span>
+    <br /><br />
+    <input type="submit" value="Submit Request" [disabled]="!requestForm.valid">
+</form>

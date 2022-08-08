@@ -35,7 +35,6 @@ export class PatronListComponent implements OnInit {
   next(){
     //read the value of page from subject
     let page = this.patronService.page$.getValue();
-    console.log(this.total);
     if(page<this.total-1){
     //update the value of page
       this.page = page+1;
