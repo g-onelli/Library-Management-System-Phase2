@@ -12,6 +12,9 @@ public class PatronDto {
 	private String role;
 	private String encodedCredentials;
 	private Integer totalpages;
+	private String securityQuestion;
+	private String securityAnswer;
+	private LocalDate passwordLastReset;
 	public String getEncodedCredentials() {
 		return encodedCredentials;
 	}
@@ -65,6 +68,24 @@ public class PatronDto {
 	}
 	public void setTotalpages(Integer totalpages) {
 		this.totalpages = totalpages;
+	}
+	public String getSecurityQuestion() {
+		return securityQuestion;
+	}
+	public void setSecurityQuestion(String securityQuestion) {
+		this.securityQuestion = securityQuestion;
+	}
+	public String getSecurityAnswer() {
+		return securityAnswer;
+	}
+	public void setSecurityAnswer(String securityAnswer) {
+		this.securityAnswer = securityAnswer;
+	}
+	public LocalDate getPasswordLastReset() {
+		return passwordLastReset;
+	}
+	public void setPasswordLastReset(LocalDate passwordLastReset) {
+		this.passwordLastReset = passwordLastReset;
 	}
 	
 }
