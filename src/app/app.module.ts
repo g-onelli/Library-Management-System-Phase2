@@ -21,6 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LibrequestComponent } from './component/librequest/librequest.component';
 import { LibbookComponent } from './component/libbook/libbook.component';
 import { LibvideoComponent } from './component/libvideo/libvideo.component';
+import { EventListComponent } from './component/event/event-list/event-list.component';
+import { EventAddUpdateComponent } from './component/event/event-add-update/event-add-update.component';
 import { LogoutComponent } from './auth/component/logout/logout/logout.component';
 import { LoginComponent } from './auth/component/login/login/login.component';
 import { PatronListComponent } from './component/patron/patron-list/patron-list.component';
@@ -50,6 +52,8 @@ import { PasswordResetComponent } from './auth/component/password-reset/password
     LibrequestComponent,
     LibbookComponent,
     LibvideoComponent,
+    EventListComponent,
+    EventAddUpdateComponent,
     LogoutComponent,
     PatronListComponent,
     PatronAddComponent,
