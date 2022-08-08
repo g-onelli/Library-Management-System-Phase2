@@ -9,6 +9,11 @@ export class UserDto{
     encodedCredentials: string;
     role: string;
 }
+export class UserResetDto{
+    id?: number;
+    securityQuestion: string;
+    username?:string;
+}
 export class PatronDto{
     id?: number;
     name: string;
@@ -28,4 +33,6 @@ export class PatronSignupDto{
     id?: number;
     name: string;
     encodedCredentials: string;
+    securityQuestion: string;
+    securityAnswer: string;
 }

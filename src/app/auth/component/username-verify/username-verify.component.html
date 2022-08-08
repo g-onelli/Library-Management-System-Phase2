@@ -1,0 +1,25 @@
+<h1>Password Reset</h1>
+
+<fieldset class="fieldset-style">
+  <legend>Step 1: Verify Username</legend>
+  <span *ngIf="error_msg != ''">{{error_msg}} <br /></span>
+  <label>Enter the Username: </label>
+  <input type="text" [(ngModel)]="username">
+  <br /><br />
+  <button (click)="onSubmit()"
+      [disabled]="!status">Verify Username</button>
+</fieldset >
+<br /> <br />
+<div *ngIf="showSecurityBox">
+  <fieldset class="fieldset-style">
+    <legend>Step 2: Verify Security Answer</legend>
+    <label>
+      Security Question: {{dto?.securityQuestion}}
+    </label>
+    <br /><br />
+    <label>Security Answer: </label><br />
+    <input type="text" [(ngModel)]="answer">
+    <br /><br />
+    <button (click)="onQuestionSubmit()"> Submit Answer</button>
+  </fieldset>
+</div>

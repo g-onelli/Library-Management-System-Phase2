@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { PatronEditDto, PatronSignupDto, User } from '../model/user.model';
+import { environment } from 'src/environments/environment';
+import { PatronEditDto, PatronSignupDto, User, UserResetDto } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,15 +12,23 @@ export class AuthService {
   username: string;
   username$ = new BehaviorSubject<string>('');
   message$ = new BehaviorSubject<string>('');
+  user$ = new BehaviorSubject<string>(''); 
   loginApi:string;
   roleApi: string;
   signUpApi: string;
   roleAs: string;
+  getUserSecurityInfoApi: string;
+  securityAnswerValidationApi:string;
+  passwordResetAPi: string;
+
   constructor(private http: HttpClient) {
     this.username='';
-    this.loginApi='http://localhost:8080/login';
-    this.signUpApi='http://localhost:8080/signup';
-    this.roleApi='http://localhost:8080/role';
+    this.loginApi=environment.serverUrl +'/login';
+    this.signUpApi=environment.serverUrl +'/signup';
+    this.roleApi= environment.serverUrl +'/role';
+    this.getUserSecurityInfoApi=environment.serverUrl + '/user/security/info/';
+    this.securityAnswerValidationApi=environment.serverUrl + '/validate-security-answer/';
+    this.passwordResetAPi=environment.serverUrl +'/user/reset-password/';
    }
   isLoggedIn(): boolean{
     //check if the user is logged in or not
@@ -52,4 +61,15 @@ export class AuthService {
     };
     return this.http.get<User>(this.roleApi, httpOptions);
   }
+  getUserSecurityDetailsByUsername(username: string): Observable<UserResetDto> {
+    return this.http.get<UserResetDto>(this.getUserSecurityInfoApi + username);
+  }
+  validateSecurityAnswer(username:string, answer: string): Observable<boolean> {
+    let encodedText = btoa(username + '--'+answer);
+    return this.http.get<boolean>(this.securityAnswerValidationApi + encodedText);
+  }
+  resetPassword(username: string, password: string):Observable<any> {
+    let encodedText= btoa(username + '--'+password);
+     return this.http.put(this.passwordResetAPi + encodedText,{});
+ }
 }

@@ -27,6 +27,8 @@ import { PatronListComponent } from './component/patron/patron-list/patron-list.
 import { PatronAddComponent } from './component/patron/patron-add/patron-add.component';
 import { PatronDeleteComponent } from './component/patron/patron-delete/patron-delete.component';
 import { SignUpComponent } from './auth/component/sign-up/sign-up.component';
+import { UsernameVerifyComponent } from './auth/component/username-verify/username-verify.component';
+import { PasswordResetComponent } from './auth/component/password-reset/password-reset.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { SignUpComponent } from './auth/component/sign-up/sign-up.component';
     PatronAddComponent,
     PatronDeleteComponent,
     SignUpComponent,
+    UsernameVerifyComponent,
+    PasswordResetComponent,
   ],
   imports: [
     BrowserModule,
