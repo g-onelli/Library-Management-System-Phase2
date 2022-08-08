@@ -77,20 +77,19 @@ public class RequestController {
 		
 		requestRepository.deleteById(id);
 	}
-	//Insert new Request and attach patron ID - Submit book requests (POST)
-		@PostMapping("/requests/{id}/{gen}/{pub}")
-		public Book completeRequests(@PathVariable("id") Integer id, @PathVariable("gen") String genre, @PathVariable("pub") String publisher) {
+	//Complete book requests (POST)
+		@PostMapping("/requests/{id}/")
+		public Book completeRequests(@RequestBody Book book,@PathVariable("id") Integer id) {
 			Optional<Request> optional = requestRepository.findByRid(id);
 			if(!optional.isPresent())
-				throw new RuntimeException("Patron ID is invalid");
+				throw new RuntimeException("Request ID is invalid");
 			
 			Request request = optional.get();
-			Book book = new Book();
 			book.setAuthor(request.getAuthor());
 			book.setTitle(request.getTitle());
 			book.setCallNumber(bookRepository.nextCallNumber()+1);
-			book.setGenre(genre);
-			book.setPublisher(publisher);
+			book.setGenre(book.getGenre());
+			book.setPublisher(book.getPublisher());
 			requestRepository.deleteById(id);
 			return bookRepository.save(book);
 		}

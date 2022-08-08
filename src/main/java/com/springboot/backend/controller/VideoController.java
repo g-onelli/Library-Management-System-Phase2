@@ -1,5 +1,6 @@
 package com.springboot.backend.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.springboot.backend.dto.VideoDto;
 import com.springboot.backend.model.Video;
 import com.springboot.backend.repository.VideoRepository;
 
@@ -28,16 +29,34 @@ public class VideoController {
 	}
 	
 	@GetMapping("/video")
-	public List<Video> getAllVideos(){
-		return videoRepository.findAll();
+	public List<VideoDto> getAllVideos(){
+		List<Video> list = videoRepository.findAll();
+		List<VideoDto> listDto = new ArrayList<>();
+		
+		list.stream().forEach(v -> {
+			VideoDto dto = new VideoDto(v.getId(),
+					v.getTitle(),
+					v.getDirector(),
+					v.getReleaseDate(),
+					v.getCallNumber(),
+					v.getGenre());
+			listDto.add(dto);
+		});
+		return listDto;
 	}
 	
 	@GetMapping("/video/{id}")
-	public Video getVideoById(@PathVariable("id") Integer id) {
+	public VideoDto getVideoById(@PathVariable("id") Integer id) {
 		Optional<Video> optional = videoRepository.findById(id);
 		if(optional.isEmpty())
 			throw new RuntimeException("Video ID is invalid");
-		return optional.get();
+		
+		return new VideoDto(optional.get().getId(),
+				optional.get().getTitle(),
+				optional.get().getDirector(),
+				optional.get().getReleaseDate(),
+				optional.get().getCallNumber(),
+				optional.get().getGenre());
 			
 	}
 	

@@ -22,16 +22,28 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 	//configure our apis as per roles
 		http.authorizeRequests()
-			.antMatchers(HttpMethod.GET, "/requests").hasAnyAuthority("LIBRARIAN") //View book requests (GET)
-			.antMatchers(HttpMethod.POST, "/requests/{id}/{gen}/{pub}").hasAuthority("LIBRARIAN") //Complete book requests (POST and DELETE)
-			.antMatchers(HttpMethod.POST, "/requests/patrons/{pid}").hasAuthority("PATRON") //Submit book requests (POST)
-			.antMatchers(HttpMethod.POST, "/patrons").hasAuthority("LIBRARIAN") //Register patrons (POST)
-			.antMatchers(HttpMethod.GET, "/patrons").hasAuthority("LIBRARIAN") //View patrons (GET)
-			.antMatchers(HttpMethod.DELETE, "/patrons/{id}").hasAuthority("LIBRARIAN") //Remove patrons(DELETE)
-			.antMatchers(HttpMethod.PUT, "/patron/card/{id}").hasAuthority("LIBRARIAN") //Renew library card (PUT)
-			.antMatchers(HttpMethod.PUT, "/patrons/balance/{id}").hasAuthority("LIBRARIAN") //Update patron balance (PUT)
-			.antMatchers(HttpMethod.GET, "/users").hasAuthority("LIBRARIAN") //FOR TESTING: shows user info 
-			.anyRequest().denyAll() //Anything not declared will be denied
+			.antMatchers(HttpMethod.POST, "/signup").permitAll()
+			.antMatchers(HttpMethod.GET, "/login").authenticated()
+			.antMatchers(HttpMethod.GET, "/role").authenticated()
+			.antMatchers(HttpMethod.GET, "/requests").authenticated() //View book requests (GET)
+			.antMatchers(HttpMethod.POST, "/requests/{id}/{gen}/{pub}").authenticated() //Complete book requests (POST and DELETE)
+			.antMatchers(HttpMethod.POST, "/requests/patrons/**").authenticated()//Submit book requests (POST)
+			.antMatchers(HttpMethod.POST, "/patrons").authenticated() //Register patrons (POST)
+			.antMatchers(HttpMethod.GET, "/patrons/").authenticated() //View patrons (GET)
+			.antMatchers(HttpMethod.DELETE, "/patrons/{id}/").authenticated() //Remove patrons(DELETE)
+			.antMatchers(HttpMethod.PUT, "/patrons/").authenticated()
+			.antMatchers(HttpMethod.PUT, "/patrons/card/{id}").authenticated() //Renew library card (PUT)
+			.antMatchers(HttpMethod.PUT, "/patrons/balance/{id}").authenticated()//Update patron balance (PUT)
+			.antMatchers(HttpMethod.POST, "/event/{lid}").authenticated()
+			.antMatchers(HttpMethod.GET, "/event").authenticated()
+			.antMatchers(HttpMethod.GET, "/event/{id}").authenticated()
+			.antMatchers(HttpMethod.DELETE, "/event/{id}").authenticated()
+			.antMatchers(HttpMethod.PUT, "/event/{id}").authenticated()
+			.antMatchers(HttpMethod.POST, "/fee/{pid}").authenticated()
+			.antMatchers(HttpMethod.GET, "/fee").authenticated()
+			.antMatchers(HttpMethod.GET, "/fee/{id}").authenticated()
+			.antMatchers(HttpMethod.PUT, "/fee/{id}").authenticated()		
+			//.anyRequest().denyAll() //Anything not declared will be denied
 			.and().httpBasic()
 			.and().csrf().disable();
 }
