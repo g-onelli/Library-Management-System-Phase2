@@ -18,55 +18,84 @@ public class Reservation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	@Column
-	private Integer patronId;
-	@Column
-	private Integer roomNum;
+
 	@Column
 	private String reserveDate;
 	
+	@Column 
+	private double reservedHr;
+	
+	@Column
+	private int reservedTime;
 	
 	public Reservation() {
 		super();
 	}
 
-	public Reservation(Integer id, Integer patronId, Integer roomNum, String reserveDate) {
+	public Reservation(Integer id, String reserveDate, double reservedHr, int reservedTime) {
 		super();
 		this.id = id;
-		this.patronId = patronId;
-		this.roomNum = roomNum;
 		this.reserveDate = reserveDate;
+		this.reservedHr = reservedHr;
+		this.reservedTime = reservedTime;
 	}
-	
-	
-	public int getId() {
+
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	public int getPatronId() {
-		return patronId;
-	}
-	public void setPatronId(int patronId) {
-		this.patronId = patronId;
-	}
-	public int getRoomNum() {
-		return roomNum;
-	}
-	public void setRoomNum(int roomNum) {
-		this.roomNum = roomNum;
-	}
+
 	public String getReserveDate() {
 		return reserveDate;
 	}
+
 	public void setReserveDate(String reserveDate) {
 		this.reserveDate = reserveDate;
 	}
 
+	public double getReservedHr() {
+		return reservedHr;
+	}
+
+	public void setReservedHr(Double reservedHr) {
+		this.reservedHr = reservedHr;
+	}
+
+	public int getReservedTime() {
+		return reservedTime;
+	}
+
+	public void setReservedTime(Integer reservedTime) {
+		this.reservedTime = reservedTime;
+	}
+
+	public double endBoundary() {
+		double time = reservedHr + reservedTime;
+		if(time>25) {
+			time = time-24;
+		}
+		return time;
+	}
+	
+	public boolean reserveEquals(Reservation reserve) {
+		if(this.reserveDate != reserve.reserveDate) {
+			return false;
+		}
+		Double oldDate = this.endBoundary();
+		Double newDate = reserve.endBoundary();
+		if(reserve.reservedHr==this.reservedHr || (newDate>=this.reservedHr & newDate<=oldDate)) {
+			return false;
+		}
+		return true;
+	}
+
 	@Override
 	public String toString() {
-		return "A reservation is being made for room "+roomNum+" by "+patronId+" for "+reserveDate;
+		return "Reservation [id=" + id + ", reserveDate=" + reserveDate + ", reservedHr=" + reservedHr
+				+ ", reservedTime=" + reservedTime + "]";
 	}
 	
 }

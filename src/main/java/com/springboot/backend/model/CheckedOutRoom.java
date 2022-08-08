@@ -17,6 +17,7 @@ public class CheckedOutRoom {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
+	@Column
 	private String strDate;
 	
 	@Column
@@ -27,6 +28,9 @@ public class CheckedOutRoom {
 	
 	@Column
 	private LocalDate reservedDate;
+	
+	//@Column
+	//private Reservation reservation;
 	
 
 	public CheckedOutRoom() {
