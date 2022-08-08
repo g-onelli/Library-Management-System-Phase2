@@ -49,8 +49,8 @@ public class CheckedOutRoomController {
 	
 	//Show all rooms checked out by a single patron
 	@GetMapping("/reservations/patron/{pid}")
-	public CheckedOutRoom showPatronReservations(@PathVariable("pid") Integer pid){
-		CheckedOutRoom reservation = checkedOutRoomRepository.showReservationsByPatron(pid);
+	public List<CheckedOutRoom> showPatronReservations(@PathVariable("pid") Integer pid){
+		List<CheckedOutRoom> reservation = checkedOutRoomRepository.showReservationsByPatron(pid);
 		return reservation;
 	}
 	//Show a specific room by room number
@@ -63,7 +63,7 @@ public class CheckedOutRoomController {
 	@DeleteMapping("/reservation/delete/{rNum}")
 	public void deleteReservation(@PathVariable("rNum") Integer rNum) {
 		checkedOutRoomRepository.deleteReservation(rNum);
-	}/*
+	}
 	//Edit reservation - room, date, patron
 	@PutMapping("/reservation/cPatron/{pid}/{rNum}")
 	public void changePatron(@PathVariable("pid") Integer pid, @PathVariable("rNum") Integer rNum) {
@@ -73,7 +73,7 @@ public class CheckedOutRoomController {
 		}
 		checkedOutRoomRepository.changeReservationPatron(pid, rNum);
 	}
-	
+
 	@PutMapping("/reservation/cRoom/{oNum}/{nNum}")
 	public void changeRoom(@PathVariable("oNum") Integer oNum, @PathVariable("nNum") Integer nNum) {
 		Optional<CheckedOutRoom> oldRoom = Optional.of(checkedOutRoomRepository.showReservationByRoomNum(oNum));
@@ -85,19 +85,19 @@ public class CheckedOutRoomController {
 			throw new RuntimeException("The new room you want to book is already reserved. Please try again later.");
 		}
 		CheckedOutRoom reservation = checkedOutRoomRepository.showReservationByRoomNum(oNum);
-		checkedOutRoomRepository.changeReservationRoom(reservation.getPatron().getId(), nNum);
+		checkedOutRoomRepository.changeReservationRoom(reservation.getPatron(), nNum);
 	}
 	
-	@PutMapping("/reservation/cPatron/{pid}/{date}")
-	public void changeDate(@PathVariable("pid") Integer pid, @PathVariable("date") LocalDate date) {
-		Optional<CheckedOutRoom> reservation = Optional.of(checkedOutRoomRepository.showReservationsByPatron(pid));
+	@PutMapping("/reservation/cDate/{rNum}/{strDate}")
+	public void changeDate(@PathVariable("rNum") Integer rNum, @PathVariable("strDate") String strDate) {
+		Optional<CheckedOutRoom> reservation = Optional.of(checkedOutRoomRepository.showReservationByRoomNum(rNum));
 		if(!reservation.isPresent()) {
 			throw new RuntimeException("There is no room currently checked out with this room number.");
 		}
-		checkedOutRoomRepository.changeReservationDate(date, pid);
+		checkedOutRoomRepository.changeReservationDate(LocalDate.parse(strDate), reservation.get().getPatron());
 	}
 	
-	*/
+
 	
 
 }

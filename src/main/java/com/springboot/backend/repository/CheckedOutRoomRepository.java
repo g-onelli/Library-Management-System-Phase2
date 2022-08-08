@@ -2,6 +2,7 @@ package com.springboot.backend.repository;
 
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,7 +15,7 @@ import com.springboot.backend.model.CheckedOutRoom;
 public interface CheckedOutRoomRepository extends JpaRepository<CheckedOutRoom, Integer> {
 	//view room collection
 	@Query("select cr from CheckedOutRoom cr where cr.patron=?1")
-	CheckedOutRoom showReservationsByPatron(Integer pid);
+	List<CheckedOutRoom> showReservationsByPatron(Integer pid);
 	@Query("select cr from CheckedOutRoom cr where cr.room=?1")
 	CheckedOutRoom showReservationByRoomNum(Integer rNum);
 	
@@ -27,15 +28,19 @@ public interface CheckedOutRoomRepository extends JpaRepository<CheckedOutRoom, 
 	
 
 	//edit a reservation
+	@Transactional
 	@Modifying
 	@Query("update CheckedOutRoom cr set cr.patron = ?1 where cr.room=?2")
 	void changeReservationPatron(Integer pid, Integer rNum);
-	/*
-	//@Modifying
-	@Query("update CheckedOutRoom cr set cr.rooms_roomNumber = ?1 where cr.patrons_id=?2")
+	
+	@Transactional
+	@Modifying
+	@Query("update CheckedOutRoom cr set cr.room = ?1 where cr.patron=?2")
 	void changeReservationRoom(Integer rNum, Integer pid);
-	//@Modifying
-	@Query("update CheckedOutRoom cr set cr.dueDate=?1 where cr.patrons_id=?2")
+	
+	@Transactional
+	@Modifying
+	@Query("update CheckedOutRoom cr set cr.reservedDate=?1 where cr.patron=?2")
 	void changeReservationDate(LocalDate date, Integer pid);
-*/
+
 }

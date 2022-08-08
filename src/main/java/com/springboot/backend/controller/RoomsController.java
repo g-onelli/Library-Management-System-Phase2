@@ -1,5 +1,6 @@
 package com.springboot.backend.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +29,14 @@ public class RoomsController {
 	@GetMapping("/rooms")
 	public List<Room> getAllRooms(){
 		List<Room> rList = roomsRepository.findAll();
+		return rList;
+	}
+	
+	@GetMapping("/rooms/{strYr}/{strMon}/{strDay}")
+	public List<Room> getAllOpenRooms(@PathVariable("strYr") String strYr,@PathVariable("strMon") String strMon,@PathVariable("strDay") String strDay){
+		String strDate = strYr+"-"+strMon+"-"+strDay;
+		List<Integer> rNums = roomsRepository.getRoomNumbers(LocalDate.parse(strDate));
+		List<Room> rList = roomsRepository.showOpenRooms(rNums);
 		return rList;
 	}
 	
