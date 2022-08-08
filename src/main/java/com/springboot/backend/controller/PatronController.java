@@ -1,6 +1,7 @@
 package com.springboot.backend.controller;
 
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -22,6 +23,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.springboot.backend.dto.PatronDto;
 import com.springboot.backend.dto.PatronEditDto;
+import com.springboot.backend.dto.PatronIdDto;
+import com.springboot.backend.dto.UserInfoDto;
 import com.springboot.backend.model.Patron;
 import com.springboot.backend.model.UserInfo;
 import com.springboot.backend.repository.PatronRepository;
@@ -63,7 +66,7 @@ public class PatronController {
 		Pageable pageable=PageRequest.of(page, size);
 		List<Patron> pagelist = patronRepository.findAll(pageable).getContent();
 		List<PatronDto> listDto = new ArrayList<>();
-		Integer totalPages = patronRepository.findAll(pageable).getTotalPages();;
+		Integer totalPages = patronRepository.findAll(pageable).getTotalPages();
 		pagelist.stream().forEach(p->{
 			PatronDto dto = new PatronDto();
 			dto.setId(p.getId());
@@ -136,5 +139,15 @@ public class PatronController {
 		}
 		else
 			throw new RuntimeException("ID is invalid");
+	}
+	@GetMapping("/patronId")
+	public PatronIdDto login(Principal principal) {
+		String username = principal.getName();
+		Patron info = patronRepository.getByUsername(username);
+		PatronIdDto dto = new PatronIdDto();
+		dto.setId(info.getId());
+		dto.setName(info.getName());
+		return dto;
+		
 	}
 }
