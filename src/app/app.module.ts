@@ -22,6 +22,8 @@ import { LoginComponent } from './component/login/login.component';
 import { LibrequestComponent } from './component/librequest/librequest.component';
 import { LibbookComponent } from './component/libbook/libbook.component';
 import { LibvideoComponent } from './component/libvideo/libvideo.component';
+import { EventListComponent } from './component/event/event-list/event-list.component';
+import { EventAddUpdateComponent } from './component/event/event-add-update/event-add-update.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { LibvideoComponent } from './component/libvideo/libvideo.component';
     LibrequestComponent,
     LibbookComponent,
     LibvideoComponent,
+    EventListComponent,
+    EventAddUpdateComponent,
   ],
   imports: [
     BrowserModule,
