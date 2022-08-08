@@ -1,0 +1,26 @@
+<h2>Book Request List</h2>
+
+<div *ngFor="let r of requests">
+    Request Id: <strong>{{r.id}}</strong>
+    &nbsp;&nbsp;
+    Title: <strong>{{r.title}}</strong>
+    &nbsp;&nbsp;
+    Author: {{r.author}}
+    &nbsp;&nbsp;
+    Description: {{r.description}}
+    &nbsp;&nbsp;
+    Patron Id: {{r.pid}}
+    &nbsp;&nbsp;
+    Patron Name: {{r.pname}}
+    &nbsp;&nbsp;
+    Submission Date: {{r.submissiondate}}
+    &nbsp;&nbsp;
+    <hr>
+</div>
+<br /> <br />
+<div>
+    &nbsp;<span *ngFor="let r of requests | slice:0:1 ;"><strong>{{page + 1}}/{{r.totalpages}}</strong></span> &nbsp;
+    <a href="Javascript:void" (click)="prev()">Previous</a> &nbsp;&nbsp;&nbsp;&nbsp;
+    
+    <a href="Javascript:void" (click)="next()">Next</a>
+</div>

@@ -36,3 +36,7 @@ export class PatronSignupDto{
     securityQuestion: string;
     securityAnswer: string;
 }
+export class PatronId{
+    id: number;
+    name: string;
+}

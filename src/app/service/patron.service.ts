@@ -2,24 +2,28 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Patron } from 'src/app/model/patron.model';
-import { PatronEditDto } from '../auth/model/user.model';
+import { environment } from 'src/environments/environment';
+import { PatronEditDto, PatronId } from '../auth/model/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PatronService {
+  
   putApi: string;
   getAllApi: string;
   getApi: string;
+  getIdApi: string;
   deleteApi: string;
   patronEditDto: PatronEditDto;
   patron$= new BehaviorSubject<Patron[]>([]);
   page$= new BehaviorSubject<number>(0);
   constructor(private http: HttpClient) { 
-    this.putApi='http://localhost:8080/patrons';
-    this.getAllApi='http://localhost:8080/patrons';
-    this.deleteApi='http://localhost:8080/patrons';
-    this.getApi='http://localhost:8080/patrons';
+    this.putApi=environment.serverUrl +'/patrons';
+    this.getAllApi=environment.serverUrl +'/patrons';
+    this.deleteApi=environment.serverUrl +'/patrons';
+    this.getApi=environment.serverUrl +'/patrons';
+    this.getIdApi=environment.serverUrl +'/patronId';
   }
 
   public putPatron(patronEditDto: PatronEditDto) :Observable<PatronEditDto>{
@@ -33,5 +37,15 @@ export class PatronService {
   }
   getPatronById(id: number):Observable<PatronEditDto>{
     return this.http.get<PatronEditDto>(this.getApi + '/' + id)
+  }
+  getIdByCredentials():Observable<PatronId> {
+    let encodedCredentials= localStorage.getItem('credentials');
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization': 'basic ' + encodedCredentials
+      })
+    };
+    return this.http.get<PatronId>(this.getIdApi,httpOptions)
   }
 }
