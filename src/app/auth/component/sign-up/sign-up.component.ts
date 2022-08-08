@@ -20,11 +20,15 @@ export class SignUpComponent implements OnInit {
       name: new FormControl('',[Validators.pattern(/^[a-zA-Z ]+$/)]),
       username: new FormControl('', [Validators.pattern(/^[a-zA-Z0-9]+$/)]),
       password: new FormControl('', [Validators.pattern(/^[a-zA-Z0-9]+$/)]),
+      securityQuestion: new FormControl(''),
+      securityAnswer: new FormControl('')
     });
   }
   onFormSubmit(){
     this.patronDto={
       name: this.signUpForm.value.name,
+      securityQuestion: this.signUpForm.value.securityQuestion,
+      securityAnswer: this.signUpForm.value.securityAnswer,
       encodedCredentials: btoa(this.signUpForm.value.username + '@%' + this.signUpForm.value.password)
     };
     this.authService.signUp(this.patronDto).subscribe({
