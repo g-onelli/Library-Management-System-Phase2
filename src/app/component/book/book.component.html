@@ -1,1 +1,13 @@
-<p>book works!</p>
+<h1>Books</h1>
+<hr>
+<h3 *ngIf="!(errorMessage == '')">{{errorMessage}}</h3>
+
+<div *ngFor="let b of books">
+Book ID: <strong> {{b.id}}</strong> <br />
+Title:  <u> <i> {{b.title}} </i> </u> <br />
+Author: {{b.author}} <br />
+Publisher: {{b.publisher}} <br />
+Call Number: <strong>{{b.callNumber}}</strong><br />
+Genre: {{b.genre}} <br />
+<hr>
+</div>

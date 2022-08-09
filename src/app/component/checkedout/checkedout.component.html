@@ -1,1 +1,83 @@
-<p>checkedout works!</p>
+
+<div class = 'leftSection'>
+    <div class = 'availableBooks'>
+        <app-availablebooks> </app-availablebooks>
+    </div>
+
+    <br />
+
+    <div class = 'availableVideos'>
+        <app-availablevideos> </app-availablevideos>
+    </div>
+
+    <br />
+
+    <div class = 'check-out-item'>
+        <form (submit)="checkOutFormSubmit()" [formGroup]="checkOutForm">
+            <label>Enter Item ID: </label>
+            <input type="text" name="itemId" formControlName="itemId">
+            <span *ngIf="checkOutForm.controls['itemId'].invalid
+            && checkOutForm.controls['itemId'].touched">
+              <span *ngIf="checkOutForm.controls['itemId'].errors['required']"> Item ID is Required</span>
+              <span *ngIf="checkOutForm.controls['itemId'].errors['pattern']"> Item ID must be an integer number</span>
+            </span>
+            <br />
+            <br />
+            <label>Select Item Type:</label>
+            &nbsp;
+            <select name="iType" id="iType" formControlName="iType">
+                <option value="book">Book</option>
+                <option value="video">Video</option>
+            </select>
+            <br />
+            <br />
+            <input type="submit" value="Checkout" [disabled]="!checkOutForm.valid">
+        </form>
+    </div>
+    
+    <br />
+</div>
+
+
+
+<div class = rightSection>
+    <div class = 'checkedOutBooks'>
+        <app-checkedoutbook> </app-checkedoutbook>
+    </div>
+
+    <br />
+
+    <div class = 'checkedOutVideos'>
+        <app-checkedoutvideo> </app-checkedoutvideo>
+    </div>
+
+    <br />
+
+    <div class = 'check-in-item'>
+        <form (submit)="checkInFormSubmit()" [formGroup]="checkInForm">
+            <label>Enter Item ID: </label>
+            <input type="text" name="itemId" formControlName="itemId">
+            <span *ngIf="checkInForm.controls['itemId'].invalid
+            && checkInForm.controls['itemId'].touched">
+              <span *ngIf="checkInForm.controls['itemId'].errors['required']"> Item ID is Required</span>
+              <span *ngIf="checkInForm.controls['itemId'].errors['pattern']"> Item ID must be a decimal number</span>
+            </span>
+            <br />
+            <br />
+            <label>Select Item Type:</label>
+            &nbsp;
+            <select name="iType" id="iType" formControlName="iType">
+                <option value="book">Book</option>
+                <option value="video">Video</option>
+            </select>
+            &nbsp;
+            <br />
+            <br />
+            <input type="submit" value="Check-in" [disabled]="!checkInForm.valid">
+        </form>
+    </div>
+    <br />
+</div>
+
+
+

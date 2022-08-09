@@ -22,6 +22,8 @@ import { LoginComponent } from './component/login/login.component';
 import { LibrequestComponent } from './component/librequest/librequest.component';
 import { LibbookComponent } from './component/libbook/libbook.component';
 import { LibvideoComponent } from './component/libvideo/libvideo.component';
+import { AvailablebooksComponent } from './component/availablebooks/availablebooks.component';
+import { AvailablevideosComponent } from './component/availablevideos/availablevideos.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { LibvideoComponent } from './component/libvideo/libvideo.component';
     LibrequestComponent,
     LibbookComponent,
     LibvideoComponent,
+    AvailablebooksComponent,
+    AvailablevideosComponent,
   ],
   imports: [
     BrowserModule,
