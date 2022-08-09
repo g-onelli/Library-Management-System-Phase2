@@ -6,7 +6,7 @@ import { AuthService } from '../../service/auth.service';
 @Component({
   selector: 'app-username-verify',
   templateUrl: './username-verify.component.html',
-  styleUrls: ['./username-verify.component.css']
+  styleUrls: ['./username-verify.component.scss']
 })
 export class UsernameVerifyComponent implements OnInit {
 

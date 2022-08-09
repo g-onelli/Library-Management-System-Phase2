@@ -5,7 +5,7 @@ import { AuthService } from '../../service/auth.service';
 @Component({
   selector: 'app-password-reset',
   templateUrl: './password-reset.component.html',
-  styleUrls: ['./password-reset.component.css']
+  styleUrls: ['./password-reset.component.scss']
 })
 export class PasswordResetComponent implements OnInit{
 
@@ -26,7 +26,7 @@ export class PasswordResetComponent implements OnInit{
   }
 
   onReset(){
-      if(this.password === this.repassword){
+      if(this.password === this.repassword && this.password != undefined){
           this.authService.resetPassword(this.username,this.password).subscribe({
             next: (data)=>{
                 this.error_msg='';
