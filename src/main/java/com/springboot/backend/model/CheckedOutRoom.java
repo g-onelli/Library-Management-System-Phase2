@@ -2,6 +2,7 @@ package com.springboot.backend.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,31 +21,32 @@ public class CheckedOutRoom {
 	@Column
 	private String strDate;
 	
-	@Column
-	private Integer room;
+	@OneToOne
+	private Room room;
 	
-	@Column
-	private Integer patron;
+	@OneToOne
+	private Patron patron;
 	
 	@Column
 	private LocalDate reservedDate;
 	
-	//@Column
-	//private Reservation reservation;
+	@Column
+	private int duration;
 	
 
 	public CheckedOutRoom() {
 		super();
 	}
 	
-	public CheckedOutRoom(String reservedDate, Integer room, Integer patron) {
+	public CheckedOutRoom(String strDate, Room room, Patron patron, int duration) {
 		super();
-		this.strDate = reservedDate;
+		this.strDate = strDate;
 		this.room = room;
 		this.patron = patron;
+		this.duration = duration;
 	}
 
-	
+
 	public String getStrDate() {
 		return strDate;
 	}
@@ -61,25 +63,33 @@ public class CheckedOutRoom {
 		this.reservedDate = reservedDate;
 	}
 
-	public Integer getRoom() {
+	public Room getRoom() {
 		return room;
 	}
 
-	public void setRoom(Integer room) {
+	public void setRoom(Room room) {
 		this.room = room;
 	}
 
-	public Integer getPatron() {
+	public Patron getPatron() {
 		return patron;
 	}
 
-	public void setPatron(Integer patron) {
+	public void setPatron(Patron patron) {
 		this.patron = patron;
+	}
+
+	public int getduration() {
+		return duration;
+	}
+
+	public void setduration(int duration) {
+		this.duration = duration;
 	}
 
 	@Override
 	public String toString() {
-		return "The room is "+room+", and is being reserved by "+ patron+" on "+ reservedDate +".";
+		return "The room is "+room.getRoomNumber()+", and is being reserved by "+ patron.getName()+" on "+ reservedDate +".";
 	}
 	
 	
