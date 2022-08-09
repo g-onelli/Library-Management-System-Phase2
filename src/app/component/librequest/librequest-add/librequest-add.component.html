@@ -1,1 +1,45 @@
-<p>librequest-add works!</p>
+<span *ngIf="!(msg =='')">{{msg}}</span>
+<form (submit)="onFormSubmit()" [formGroup]="requestForm">
+    <label>Enter Request Id: </label>
+    <input type="text" id="id" formControlName="id">
+    <span *ngIf="requestForm.controls['id'].invalid && requestForm.controls['id'].touched">
+        <span *ngIf="requestForm.controls['id'].errors['required']"> Id is Required</span>
+        <span *ngIf="requestForm.controls['id'].errors['pattern']">Use the request list to find an Id(Number)</span>
+        </span>
+    <br /><br />
+    <label>Enter Request Publisher: </label>
+    <input type="text" name="publisher" formControlName="publisher">
+    <span *ngIf="requestForm.controls['publisher'].invalid && requestForm.controls['publisher'].touched">
+        <span *ngIf="requestForm.controls['publisher'].errors['pattern']">Alphanumerical characters only</span>
+        </span>
+    <br /><br />
+    <label>Enter Request Genre: </label>
+    <select formControlName="genre">
+        <option value="Fantasy">Fantasy</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Romance">Romance</option>
+        <option value="Contemporary">Contemporary</option>
+        <option value="Dystopian">Dystopian</option>
+        <option value="Mystery">Mystery</option>
+        <option value="Horror">Horror</option>
+        <option value="Thriller">Thriller</option>
+        <option value="Paranormal">Paranormal</option>
+        <option value="Historical fiction">Historical fiction</option>
+        <option value="Science Fiction">Science Fiction</option>
+        <option value="Children's">Children's</option>
+        <option value="Memoir">Memoir</option>
+        <option value="Cookbook">Cookbook</option>
+        <option value="Self-help">Self-help</option>
+        <option value="Development">Development</option>
+        <option value="Motivational">Motivational</option>
+        <option value="Health">Health</option>
+        <option value="History">History</option>
+        <option value="Travel">Travel</option>
+        <option value="Guide / How-to">Guide / How-to</option>
+        <option value="Families & Relationships">Families & Relationships</option>
+        <option value="Humor">Humor</option>
+      </select>
+    <span *ngIf="requestForm.controls['genre'].invalid && requestForm.controls['genre'].touched"></span>
+    <br /><br />
+    <input type="submit" value="Update Request" [disabled]="!requestForm.valid">
+</form>
