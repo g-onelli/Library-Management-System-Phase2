@@ -1,1 +1,12 @@
-<p>fee works!</p>
+<h2>Fee List</h2>
+<div class="fee-list">
+    <div *ngFor="let f of fees, let i = index">
+        Patron: <strong>{{f.patronName}}</strong>&nbsp;
+        Type: {{f.feeType}}&nbsp;
+        Amount: ${{f.total}}&nbsp;
+        Date Paid: {{f.datePaid}}
+        <span *ngIf="f.datePaid == null">UNPAID&nbsp;&nbsp;</span>
+        <button [disabled]="!(f.datePaid == null)" (click)="markPaid(i)">Pay</button>
+        <hr>
+    </div>
+</div>
