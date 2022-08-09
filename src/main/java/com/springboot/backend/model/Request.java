@@ -27,7 +27,7 @@ public class Request {
     private String title;
 	@Column(length = 45, nullable = false)
     private String author;
-	@OneToOne(cascade = {CascadeType.ALL})
+	@OneToOne(cascade = {CascadeType.DETACH})
 	private Patron patron;
 	public Integer getId() {
 		return id;
