@@ -1,1 +1,11 @@
-<p>librequest-delete works!</p>
+<span *ngIf="!(msg =='')">{{msg}}</span>
+<form (submit)="onFormSubmit()" [formGroup]="requestForm">
+    <label>Enter Patron Id: </label>
+    <input type="text" id="id" formControlName="id">
+    <span *ngIf="requestForm.controls['id'].invalid && requestForm.controls['id'].touched">
+        <span *ngIf="requestForm.controls['id'].errors['required']"> Id is Required</span>
+        <span *ngIf="requestForm.controls['id'].errors['pattern']">Use the request list to find an Id(Number)</span>
+        </span>
+    <br /><br />
+    <input type="submit" value="Remove Request" [disabled]="!requestForm.valid">
+</form>

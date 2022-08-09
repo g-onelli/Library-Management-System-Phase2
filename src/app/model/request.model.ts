@@ -10,8 +10,8 @@ export class Requests{
 }
 export class CompleteRequest{
     id?: number;
-    author: string;
-    title: string;
+    author?: string;
+    title?: string;
     callnumber?: number;
     genre: string;
     publisher: string;

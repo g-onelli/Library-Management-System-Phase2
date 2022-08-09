@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -26,19 +26,54 @@ export class RequestService {
   }
 
   public completeBookRequest(completedRequest: CompleteRequest, id: number) :Observable<CompleteRequest>{
-    return this.http.post<CompleteRequest>(this.postApi + '/' + id,completedRequest);
+    let encodedCredentials= localStorage.getItem('credentials');
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization': 'basic ' + encodedCredentials
+      })
+    };
+    return this.http.post<CompleteRequest>(this.postApi + '/' + id,completedRequest,httpOptions);
   }
   getAllRequests(page: number, size:number):Observable<Requests[]>{
-    return this.http.get<Requests[]>(this.getAllApi + '?page=' +page+ '&size='+size);
+    let encodedCredentials= localStorage.getItem('credentials');
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization': 'basic ' + encodedCredentials
+      })
+    };
+    return this.http.get<Requests[]>(this.getAllApi + '?page=' +page+ '&size='+size,httpOptions);
   }
   public deleteRequest(id: number):Observable<Requests>{
-    return this.http.delete<Requests>(this.deleteApi + '/' + id);
+    let encodedCredentials= localStorage.getItem('credentials');
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization': 'basic ' + encodedCredentials
+      })
+    };
+    return this.http.delete<Requests>(this.deleteApi + '/' + id,httpOptions);
   }
   getRequestById(id: number):Observable<Requests>{
-    return this.http.get<Requests>(this.getApi + '/' + id);
+    let encodedCredentials= localStorage.getItem('credentials');
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization': 'basic ' + encodedCredentials
+      })
+    };
+    return this.http.get<Requests>(this.getApi + '/' + id,httpOptions);
   }
   postRequest(request: Requests, id: number):Observable<any>{
-    return this.http.post(this.patronPostApi+ '/' + id, request);
+    let encodedCredentials= localStorage.getItem('credentials');
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization': 'basic ' + encodedCredentials
+      })
+    };
+    return this.http.post(this.patronPostApi+ '/' + id, request,httpOptions);
   }
 
 }

@@ -27,16 +27,44 @@ export class PatronService {
   }
 
   public putPatron(patronEditDto: PatronEditDto) :Observable<PatronEditDto>{
-    return this.http.put<PatronEditDto>(this.putApi,patronEditDto);
+    let encodedCredentials= localStorage.getItem('credentials');
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization': 'basic ' + encodedCredentials
+      })
+    };
+    return this.http.put<PatronEditDto>(this.putApi,patronEditDto,httpOptions);
   }
   getAllPatrons(page: number, size:number):Observable<Patron[]>{
-    return this.http.get<Patron[]>(this.getAllApi + '?page=' +page+ '&size='+size);
+    let encodedCredentials= localStorage.getItem('credentials');
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization': 'basic ' + encodedCredentials
+      })
+    };
+    return this.http.get<Patron[]>(this.getAllApi + '?page=' +page+ '&size='+size,httpOptions);
   }
   public deletePatron(id: number):Observable<Patron>{
-    return this.http.delete<Patron>(this.deleteApi + '/' + id);
+    let encodedCredentials= localStorage.getItem('credentials');
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization': 'basic ' + encodedCredentials
+      })
+    };
+    return this.http.delete<Patron>(this.deleteApi + '/' + id,httpOptions);
   }
   getPatronById(id: number):Observable<PatronEditDto>{
-    return this.http.get<PatronEditDto>(this.getApi + '/' + id)
+    let encodedCredentials= localStorage.getItem('credentials');
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization': 'basic ' + encodedCredentials
+      })
+    };
+    return this.http.get<PatronEditDto>(this.getApi + '/' + id,httpOptions)
   }
   getIdByCredentials():Observable<PatronId> {
     let encodedCredentials= localStorage.getItem('credentials');
