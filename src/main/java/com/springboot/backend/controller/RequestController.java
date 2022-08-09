@@ -90,7 +90,7 @@ public class RequestController {
 		requestRepository.deleteById(id);
 	}
 	//Complete book requests (POST)
-		@PostMapping("/requests/{id}/")
+		@PostMapping("/requests/{id}")
 		public void completeRequests(@RequestBody Book book,@PathVariable("id") Integer id) {
 			Optional<Request> optional = requestRepository.findByRid(id);
 			if(!optional.isPresent())
