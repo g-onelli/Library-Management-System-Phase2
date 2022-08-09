@@ -1,15 +1,19 @@
 package com.springboot.backend.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.backend.dto.RequestDto;
@@ -36,7 +40,8 @@ public class RequestController {
 		Optional<Patron> optional = patronRepository.findById(pid);
 		if(!optional.isPresent())
 			throw new RuntimeException("Patron ID is invalid");
-		
+		RequestDto dto = new RequestDto();
+		request.setSubmissiondate(LocalDate.now());
 		Patron patron = optional.get();
 		
 		request.setPatron(patron);
@@ -46,9 +51,15 @@ public class RequestController {
 	
 	//Return all requests View book requests (GET)
 	@GetMapping("/requests")
-	public List<RequestDto> getAllRequests() {
-		List<Request> list = requestRepository.findAll();
+	public List<RequestDto> getAllRequests(@RequestParam(name ="page") Integer page,
+			@RequestParam(name="size") Integer size) {
+		if(page <0) {
+			page = 0;
+		}
+		Pageable pageable=PageRequest.of(page, size);
+		List<Request> list = requestRepository.findAll(pageable).getContent();
 		List<RequestDto> listDto = new ArrayList<>(); 
+		Integer totalPages = patronRepository.findAll(pageable).getTotalPages();
 		list.stream().forEach(r->{
 			RequestDto dto = new RequestDto();
 			dto.setId(r.getId());
@@ -58,6 +69,7 @@ public class RequestController {
 			dto.setAuthor(r.getAuthor());
 			dto.setPid(r.getPatron().getId());
 			dto.setPname(r.getPatron().getName());
+			dto.setTotalpages(totalPages);
 			listDto.add(dto);
 		});
 		return listDto; 
@@ -79,7 +91,7 @@ public class RequestController {
 	}
 	//Complete book requests (POST)
 		@PostMapping("/requests/{id}/")
-		public Book completeRequests(@RequestBody Book book,@PathVariable("id") Integer id) {
+		public void completeRequests(@RequestBody Book book,@PathVariable("id") Integer id) {
 			Optional<Request> optional = requestRepository.findByRid(id);
 			if(!optional.isPresent())
 				throw new RuntimeException("Request ID is invalid");
@@ -91,6 +103,6 @@ public class RequestController {
 			book.setGenre(book.getGenre());
 			book.setPublisher(book.getPublisher());
 			requestRepository.deleteById(id);
-			return bookRepository.save(book);
+			bookRepository.save(book);
 		}
 }

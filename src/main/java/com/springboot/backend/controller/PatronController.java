@@ -1,5 +1,6 @@
 package com.springboot.backend.controller;
 
+
 import java.security.Principal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -8,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,13 +17,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.springboot.backend.dto.PatronDto;
 import com.springboot.backend.dto.PatronEditDto;
+import com.springboot.backend.dto.PatronIdDto;
+import com.springboot.backend.dto.UserInfoDto;
 import com.springboot.backend.model.Patron;
 import com.springboot.backend.model.UserInfo;
 import com.springboot.backend.repository.PatronRepository;
@@ -49,6 +50,9 @@ public class PatronController {
 		patron.setCardexpirationdate(patronDto.getCardexpirationdate());
 		patron.setBalance(0.0);
 		patron.setCardexpirationdate(LocalDate.now().plusYears(1));
+		user.setPasswordLastReset(LocalDate.now());
+		user.setSecurityQuestion(patronDto.getSecurityQuestion());
+		user.setSecurityAnswer(patronDto.getSecurityAnswer());
 		patron.setUserinfo(user);
 		patronRepository.save(patron);
 	}
@@ -62,7 +66,7 @@ public class PatronController {
 		Pageable pageable=PageRequest.of(page, size);
 		List<Patron> pagelist = patronRepository.findAll(pageable).getContent();
 		List<PatronDto> listDto = new ArrayList<>();
-		Integer totalPages = patronRepository.findAll(pageable).getTotalPages();;
+		Integer totalPages = patronRepository.findAll(pageable).getTotalPages();
 		pagelist.stream().forEach(p->{
 			PatronDto dto = new PatronDto();
 			dto.setId(p.getId());
@@ -135,5 +139,15 @@ public class PatronController {
 		}
 		else
 			throw new RuntimeException("ID is invalid");
+	}
+	@GetMapping("/patronId")
+	public PatronIdDto login(Principal principal) {
+		String username = principal.getName();
+		Patron info = patronRepository.getByUsername(username);
+		PatronIdDto dto = new PatronIdDto();
+		dto.setId(info.getId());
+		dto.setName(info.getName());
+		return dto;
+		
 	}
 }

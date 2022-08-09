@@ -59,6 +59,8 @@ public class EventController {
 			temp.setDescription(e.getDescription());
 			temp.setDate(e.getDate());
 			temp.setTitle(e.getTitle());
+			temp.setLibrarian(e.getLibrarian());
+			temp.setPages(pages);
 			dto.add(temp);
 		});
 		return dto;

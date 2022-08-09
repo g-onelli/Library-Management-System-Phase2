@@ -16,5 +16,8 @@ public interface PatronRepository extends JpaRepository<Patron, Integer>{
 	@Modifying
 	@Query("update Patron p SET p.name=?2,p.cardexpirationdate=?3,p.balance=?4 where p.id=?1")
 	void updatePatron(Integer id, String name, LocalDate cardexpirationdate, Double balance);
+
+	@Query("select p from Patron p where p.userinfo.username=?1")
+	Patron getByUsername(String username);
 	
 }
