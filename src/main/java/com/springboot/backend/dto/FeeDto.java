@@ -9,7 +9,7 @@ public class FeeDto {
 	private double total;
 	private LocalDate datePaid;
 	private String feeType;
-	private Patron patron;
+	private String patronName;
 	public Integer getId() {
 		return id;
 	}
@@ -34,11 +34,12 @@ public class FeeDto {
 	public void setFeeType(String feeType) {
 		this.feeType = feeType;
 	}
-	public Patron getPatron() {
-		return patron;
+	public String getPatronName() {
+		return patronName;
 	}
-	public void setPatron(Patron patron) {
-		this.patron = patron;
+	public void setPatronName(String patronName) {
+		this.patronName = patronName;
 	}
+
 	
 }
