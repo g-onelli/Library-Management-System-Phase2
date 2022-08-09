@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/component/login/login/login.component';
 import { LogoutComponent } from './auth/component/logout/logout/logout.component';
 import { PasswordResetComponent } from './auth/component/password-reset/password-reset.component';

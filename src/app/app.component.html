@@ -1,19 +1,24 @@
-<div class="navbar">
-  <span>
-    <a routerLink="/patdashboard">Patron Dashboard</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/libdashboard">Librarian Dashboard</a> &nbsp;&nbsp;&nbsp;
-  </span>
-   <span *ngIf="username != '' ">
+<nav *ngIf="isPat" class="navbar navbar-default">
+    <a routerLink="/patdashboard">Dashboard</a> &nbsp;&nbsp;&nbsp;
+    <a routerLink="/book">View Books</a> &nbsp;&nbsp;&nbsp;
+    <a routerLink="/video">View Videos</a> &nbsp;&nbsp;&nbsp;
+    <a routerLink="/checkedout">Check Out Books and Videos</a> &nbsp;&nbsp;&nbsp;
+    <a routerLink="/fee">Pay Fees</a> &nbsp;&nbsp;&nbsp;
+    <a routerLink="/request">Book Requests</a> &nbsp;&nbsp;&nbsp;
+    <a routerLink="/room">Room Reservations</a> &nbsp;&nbsp;&nbsp;
+     Welcome {{username}}  &nbsp;&nbsp;&nbsp;
+    <a routerLink="/logout">Logout</a>
+    <hr>
+</nav>
+<nav *ngIf="isLib" class="navbar navbar-default">
+    <a routerLink="/libdashboard">Dashboard</a> &nbsp;&nbsp;&nbsp;
+    <a routerLink="/libbook">Books</a> &nbsp;&nbsp;&nbsp;
+    <a routerLink="/libvideo">Videos</a> &nbsp;&nbsp;&nbsp;
+    <a routerLink="/patron">Patrons</a> &nbsp;&nbsp;&nbsp;
+    <a routerLink="/event">Events</a> &nbsp;&nbsp;&nbsp;
+    <a routerLink="/librequest">Book Requests</a> &nbsp;&nbsp;&nbsp;
     Welcome {{username}}  &nbsp;&nbsp;&nbsp;
     <a routerLink="/logout">Logout</a>
-</span>
-<span *ngIf="username == '' " >
-  <a routerLink="/sign-up">Sign-Up</a>
-    &nbsp;&nbsp;&nbsp;
-  <a routerLink="/login">Login</a>
-</span>
-<hr>
-</div>
- <div>
-    <router-outlet></router-outlet>
-</div>  
+    <hr>
+</nav>
+<router-outlet></router-outlet>
