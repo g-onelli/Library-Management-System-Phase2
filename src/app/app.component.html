@@ -97,8 +97,11 @@
         </a>
     </li>
     </ul>
-    </div>            
-    </div>
+    </div>     
+    <div id="conteudo-secao">
+        <div class="conteudo-secao-inner">
+    <router-outlet></router-outlet>           
+    </div></div></div>
     
 
 
@@ -195,10 +198,14 @@
         </a>
     </li>
     </ul>
-    </div>            
-    </div>
-
+    </div> 
+    <div id="conteudo-secao">
+        <div class="conteudo-secao-inner">
+    <router-outlet></router-outlet>           
+    </div></div></div>
 
 </nav>
-<router-outlet></router-outlet>
+
+<div *ngIf="!isPat && !isLib">
+<router-outlet></router-outlet></div>
 
