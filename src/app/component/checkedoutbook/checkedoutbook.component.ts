@@ -1,3 +1,4 @@
+import { PatronService } from 'src/app/service/patron.service';
 import { CheckedoutbookService } from './../../service/checkedoutbook.service';
 import { CheckedOutBook } from './../../model/checkedoutbook.model';
 import { Component, OnInit} from '@angular/core';
@@ -11,19 +12,31 @@ export class CheckedoutbookComponent implements OnInit {
 
   checkedOutBooks: CheckedOutBook[];
   errorMessage: string;
-  constructor(private checkedOutBookService: CheckedoutbookService) {
+  pId : number;
+  constructor(private checkedOutBookService: CheckedoutbookService, private patronService : PatronService) {
   }
 
   ngOnInit(): void {
     this.errorMessage = '';
-    this.checkedOutBookService.fetchCheckedOutBooks().subscribe({
+
+    this.patronService.getIdByCredentials().subscribe({
       next: (data) => {
-        this.checkedOutBooks = data;
+        this.pId  = data.id;
+        
+        this.checkedOutBookService.fetchCheckedOutBooksById(this.pId).subscribe({
+          next: (data2) =>{
+            this.checkedOutBooks = data2;
+          },
+          error: (e) =>{
+            //redirect to error page
+          }
+        })
       },
-      error: (e) => {
-        this.errorMessage = 'Checked-Out Books could not be fetched..'
-      }
-    });
+        error: (e) =>{
+          //redirect to error page
+        }
+      
+    })
   }
 
   checkOutBook(pId: number, bId: number) {

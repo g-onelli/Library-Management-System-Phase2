@@ -27,7 +27,7 @@ export class PatronService {
   }
 
   public putPatron(patronEditDto: PatronEditDto) :Observable<PatronEditDto>{
-    let encodedCredentials= localStorage.getItem('credentials');
+    let encodedCredentials = localStorage.getItem('credentials');
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-type': 'application/json',
