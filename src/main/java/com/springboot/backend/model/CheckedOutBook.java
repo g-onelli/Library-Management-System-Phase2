@@ -12,6 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
+
 @Table(name = "checkedoutbooks")
 public class CheckedOutBook{
 	
@@ -19,10 +20,11 @@ public class CheckedOutBook{
 		@GeneratedValue(strategy = GenerationType.AUTO)
 		private int id;
 
-		@OneToOne(cascade = {CascadeType.ALL})
+		@OneToOne
 	    private Patron patron;
-	    
-	    @OneToOne
+		
+		
+		@OneToOne
 	    private Book book;
 	    
 	    @Column
