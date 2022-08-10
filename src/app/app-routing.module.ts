@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
+import { LoginComponent } from './auth/component/login/login/login.component';
+import { LogoutComponent } from './auth/component/logout/logout/logout.component';
+import { PasswordResetComponent } from './auth/component/password-reset/password-reset.component';
+import { SignUpComponent } from './auth/component/sign-up/sign-up.component';
+import { UsernameVerifyComponent } from './auth/component/username-verify/username-verify.component';
+import { AuthguardService } from './auth/service/authguard.service';
 import { BookComponent } from './component/book/book.component';
 import { CheckedoutComponent } from './component/checkedout/checkedout.component';
 import { EventComponent } from './component/event/event.component';
@@ -9,7 +14,6 @@ import { LibbookComponent } from './component/libbook/libbook.component';
 import { LibdashboardComponent } from './component/libdashboard/libdashboard.component';
 import { LibrequestComponent } from './component/librequest/librequest.component';
 import { LibvideoComponent } from './component/libvideo/libvideo.component';
-import { LoginComponent } from './component/login/login.component';
 import { PatdashboardComponent } from './component/patdashboard/patdashboard.component';
 import { PatronComponent } from './component/patron/patron.component';
 import { RequestComponent } from './component/request/request.component';
@@ -18,19 +22,63 @@ import { VideoComponent } from './component/video/video.component';
 
 const routes: Routes = [
   {path:'', component: LoginComponent},
-  {path:'patdashboard', component: PatdashboardComponent},
-  {path:'libdashboard', component: LibdashboardComponent},
-  {path:'book', component: BookComponent},
-  {path:'video', component: VideoComponent},
-  {path:'request', component: RequestComponent},
-  {path:'libbook', component: LibbookComponent},
-  {path:'libvideo', component: LibvideoComponent},
-  {path:'librequest', component: LibrequestComponent},
-  {path:'patron', component: PatronComponent},
-  {path:'checkedout', component: CheckedoutComponent},
-  {path:'event', component: EventComponent},
-  {path:'fee', component: FeeComponent},
-  {path:'room', component: RoomComponent},
+  {path:'login', component: LoginComponent},
+  {path:'sign-up', component: SignUpComponent},
+  {path:'password-reset', component: UsernameVerifyComponent},
+  {path:'password-reset-form', component: PasswordResetComponent},
+  {path:'patdashboard', component: PatdashboardComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'PATRON'
+  }},
+  {path:'libdashboard', component: LibdashboardComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'LIBRARIAN'
+  }},
+  {path:'book', component: BookComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'PATRON'
+  }},
+  {path:'video', component: VideoComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'PATRON'
+  }},
+  {path:'request', component: RequestComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'PATRON'
+  }},
+  {path:'libbook', component: LibbookComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'LIBRARIAN'
+  }},
+  {path:'libvideo', component: LibvideoComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'LIBRARIAN'
+  }},
+  {path:'librequest', component: LibrequestComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'LIBRARIAN'
+  }},
+  {path:'patron', component: PatronComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'LIBRARIAN'
+  }},
+  {path:'checkedout', component: CheckedoutComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'PATRON'
+  }},
+  {path:'event', component: EventComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'LIBRARIAN'
+  }},
+  {path:'fee', component: FeeComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'PATRON'
+  }},
+  {path:'room', component: RoomComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'PATRON'
+  }},
+  {path:'logout', component: LogoutComponent},
 
 ];
 
