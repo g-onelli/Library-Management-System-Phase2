@@ -1,4 +1,4 @@
-<form [formGroup]="eventForm" (ngSubmit)="onFormButton()">
+<form class="box-listagem__item" [formGroup]="eventForm" (ngSubmit)="onFormButton()">
     <label>Enter Event ID (Only if Updating): </label>
     <input type="text" name="id" formControlName="id">
     <span *ngIf="eventForm.controls['id'].invalid
@@ -29,7 +29,7 @@
         <span *ngIf="eventForm.controls['description'].errors['required']">Title is Required</span>
         <span *ngIf="eventForm.controls['description'].errors['pattern']">Pattern Allowed: [a-zA-Z ]+</span>
     </span>
-    <br /> <br />
+    <br /> <br />&nbsp;&nbsp;
     <button type="submit" (click)="onAddClick()" [disabled]="!eventForm.valid">Add</button> &nbsp;&nbsp;
     <button type="submit" (click)="onUpdateClick()" [disabled]="!eventForm.valid">Update</button>
 </form>
