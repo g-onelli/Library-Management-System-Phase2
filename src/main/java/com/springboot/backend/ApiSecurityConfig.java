@@ -22,7 +22,6 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 	//configure our apis as per roles
 		http.authorizeRequests()
-
 			.antMatchers(HttpMethod.POST, "/signup").permitAll()
 			.antMatchers(HttpMethod.POST, "/validate-security-answer/**").permitAll()
 			.antMatchers(HttpMethod.POST, "/user/security/info/**").permitAll()
@@ -48,14 +47,14 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers(HttpMethod.GET, "/fee").authenticated()
 			.antMatchers(HttpMethod.GET, "/fee/{id}").authenticated()
 			.antMatchers(HttpMethod.PUT, "/fee/{id}").authenticated()		
-			.antMatchers(HttpMethod.GET, "/book").hasAnyAuthority("PATRON") //View books (GET)
-			.antMatchers(HttpMethod.GET, "/video").hasAnyAuthority("PATRON") //View videos  (GET)
-			.antMatchers(HttpMethod.GET, "/checkedoutbook").hasAnyAuthority("PATRON") //View checked out books (GET)
-			.antMatchers(HttpMethod.POST, "/checkedoutbook/{pid}/{bid}").hasAnyAuthority("PATRON") //Check out a book (POST)
-			.antMatchers(HttpMethod.DELETE, "/checkedoutbook/{bid}").hasAnyAuthority("PATRON") //Check in a book (DELETE)
-			.antMatchers(HttpMethod.GET, "/checkedoutvideo").hasAnyAuthority("PATRON") //View checked out videos (GET)
-			.antMatchers(HttpMethod.POST, "/checkedoutvideo/{pid}/{vid}").hasAnyAuthority("PATRON")//Check out a video (POST)
-			.antMatchers(HttpMethod.DELETE, "/checkedoutvideo/{vid}").hasAnyAuthority("PATRON")//Check in a video (DELETE)
+			.antMatchers(HttpMethod.GET, "/book").authenticated() //View books (GET)
+			.antMatchers(HttpMethod.GET, "/video").authenticated() //View videos  (GET)
+			.antMatchers(HttpMethod.GET, "/checkedoutbook").authenticated() //View checked out books (GET)
+			.antMatchers(HttpMethod.POST, "/checkedoutbook/{pid}/{bid}").authenticated() //Check out a book (POST)
+			.antMatchers(HttpMethod.DELETE, "/checkedoutbook/{bid}").authenticated() //Check in a book (DELETE)
+			.antMatchers(HttpMethod.GET, "/checkedoutvideo").authenticated() //View checked out videos (GET)
+			.antMatchers(HttpMethod.POST, "/checkedoutvideo/{pid}/{vid}").authenticated()//Check out a video (POST)
+			.antMatchers(HttpMethod.DELETE, "/checkedoutvideo/{vid}").authenticated()//Check in a video (DELETE)
 			//.anyRequest().denyAll() //Anything not declared will be denied
 			.and().httpBasic()
 			.and().csrf().disable();
