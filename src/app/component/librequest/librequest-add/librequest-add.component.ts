@@ -7,7 +7,7 @@ import { RequestService } from 'src/app/service/request.service';
 @Component({
   selector: 'app-librequest-add',
   templateUrl: './librequest-add.component.html',
-  styleUrls: ['./librequest-add.component.css']
+  styleUrls: ['./librequest-add.component.less']
 })
 export class LibrequestAddComponent implements OnInit {
 

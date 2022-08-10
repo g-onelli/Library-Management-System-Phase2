@@ -5,8 +5,7 @@ import { Requests } from 'src/app/model/request.model';
 
 @Component({
   selector: 'app-librequest',
-  templateUrl: './librequest.component.html',
-  styleUrls: ['./librequest.component.css']
+  templateUrl: './librequest.component.html'
 })
 export class LibrequestComponent implements OnInit {
 
@@ -20,7 +19,7 @@ export class LibrequestComponent implements OnInit {
     this.subscriptions=[];
     this.size = 5;
     this.subscriptions.push(
-      this.requestService.page$.subscribe(value=>{
+      this.requestService.rpage$.subscribe(value=>{
           this.page = value;
           this.requestService.getAllRequests(this.page,this.size).subscribe({
             next: (data)=>{

@@ -1,5 +1,6 @@
-<span *ngIf="!(msg =='')">{{msg}}</span>
-<form (submit)="onFormSubmit()" [formGroup]="requestForm">
+
+<form class="box-listagem__item" (submit)="onFormSubmit()" [formGroup]="requestForm">
+    <span *ngIf="!(msg =='')">{{msg}}</span>
     <label>Enter Request Id: </label>
     <input type="text" id="id" formControlName="id">
     <span *ngIf="requestForm.controls['id'].invalid && requestForm.controls['id'].touched">

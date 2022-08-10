@@ -23,7 +23,7 @@ export class RequestAddComponent implements OnInit {
     this.requestForm = new FormGroup({
       title: new FormControl('', [Validators.required,Validators.pattern(/^[\w\-\s]+$/)]),
       author: new FormControl('', [Validators.required,Validators.pattern(/^[a-zA-Z ]+$/)]),
-      description: new FormControl('', [Validators.required,Validators.pattern(/^[\w\-\s]+$/)]),
+      description: new FormControl('', [Validators.required]),
     });
   }
 onFormSubmit(){
