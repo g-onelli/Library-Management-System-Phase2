@@ -2,6 +2,7 @@ package com.springboot.backend.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,13 +22,13 @@ public class Fee {
 	@Column(length = 45, nullable = false)
 	private double total;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private LocalDate datePaid;
 	
 	@Column(length = 45, nullable = true)
 	private String feeType;
 	
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	private Patron patron;
 
 	public Fee(Integer id, double total, LocalDate datePaid, String feeType, Patron patron) {

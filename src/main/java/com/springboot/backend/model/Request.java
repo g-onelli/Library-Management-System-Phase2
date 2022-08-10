@@ -2,6 +2,7 @@ package com.springboot.backend.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ public class Request {
     private String title;
 	@Column(length = 45, nullable = false)
     private String author;
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.DETACH})
 	private Patron patron;
 	public Integer getId() {
 		return id;

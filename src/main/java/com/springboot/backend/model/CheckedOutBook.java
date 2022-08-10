@@ -2,6 +2,7 @@ package com.springboot.backend.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +19,7 @@ public class CheckedOutBook{
 		@GeneratedValue(strategy = GenerationType.AUTO)
 		private int id;
 
-	    @OneToOne
+		@OneToOne(cascade = {CascadeType.ALL})
 	    private Patron patron;
 	    
 	    @OneToOne

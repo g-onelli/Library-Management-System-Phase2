@@ -2,6 +2,7 @@ package com.springboot.backend.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,7 @@ public class Event {
 	@Column(length = 45, nullable = true)
 	private String title;
 	
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	private Librarian librarian;
 
 	public Event(Integer id, LocalDate date, String description, String title, Librarian librarian) {
