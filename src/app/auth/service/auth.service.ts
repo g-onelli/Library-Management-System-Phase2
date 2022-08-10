@@ -72,4 +72,5 @@ export class AuthService {
     let encodedText= btoa(username + '--'+password);
      return this.http.put(this.passwordResetAPi + encodedText,{});
  }
+
 }

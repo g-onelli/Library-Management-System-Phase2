@@ -35,6 +35,9 @@ import { RequestAddComponent } from './component/request/request-add/request-add
 import { LibrequestDeleteComponent } from './component/librequest/librequest-delete/librequest-delete.component';
 import { LibrequestAddComponent } from './component/librequest/librequest-add/librequest-add.component';
 import { LibrequestListComponent } from './component/librequest/librequest-list/librequest-list.component';
+import { AvailablebooksComponent } from './component/availablebooks/availablebooks.component';
+import { AvailablevideosComponent } from './component/availablevideos/availablevideos.component';
+
 
 @NgModule({
   declarations: [
@@ -69,6 +72,8 @@ import { LibrequestListComponent } from './component/librequest/librequest-list/
     LibrequestDeleteComponent,
     LibrequestAddComponent,
     LibrequestListComponent,
+    AvailablebooksComponent,
+    AvailablevideosComponent,
   ],
   imports: [
     BrowserModule,

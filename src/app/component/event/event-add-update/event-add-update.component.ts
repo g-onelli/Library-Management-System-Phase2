@@ -6,7 +6,7 @@ import { EventService } from 'src/app/service/event.service';
 @Component({
   selector: 'app-event-add-update',
   templateUrl: './event-add-update.component.html',
-  styleUrls: ['./event-add-update.component.css']
+  styleUrls: ['./event-add-update.component.less']
 })
 export class EventAddUpdateComponent implements OnInit {
 

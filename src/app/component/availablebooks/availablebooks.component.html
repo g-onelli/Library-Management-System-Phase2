@@ -1,0 +1,13 @@
+<h1>Available Books</h1>
+<hr>
+<h3 *ngIf="!(errorMessage == '')">{{errorMessage}}</h3>
+
+<div *ngFor="let ab of availableBooks">
+Book ID: <strong> {{ab.id}}</strong> <br />
+Title:  <u> <i> {{ab.title}} </i> </u> <br />
+Author: {{ab.author}} <br />
+Publisher: {{ab.publisher}} <br />
+Call Number: {{ab.callNumber}}<br />
+Genre: {{ab.genre}} <br />
+<hr>
+</div>
