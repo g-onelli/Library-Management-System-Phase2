@@ -1,0 +1,13 @@
+<h1>Available Videos</h1>
+<hr>
+<h3 *ngIf="!(errorMessage == '')">{{errorMessage}}</h3>
+
+<div *ngFor="let av of availableVideos">
+Video ID: <strong> {{av.id}}</strong> <br />
+Title:  <u> <i> {{av.title}} </i>  </u> <br />
+Director: {{av.director}} <br />
+Release Date: {{av.releaseDate}} <br />
+Call Number: <strong> {{av.callNumber}} </strong> <br />
+Genre: {{av.genre}} <br />
+<hr>
+</div>
