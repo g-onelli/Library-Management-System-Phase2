@@ -93,7 +93,6 @@ public class FeeController {
 
 	@PutMapping("/fee/{id}")
 	public Fee updateFee(@PathVariable("id") Integer id, @RequestBody Fee newFee) {
-		System.out.println("updated fee "+ id);
 		Optional<Fee> optional = feeRepository.findById(id);
 		if(!optional.isPresent()) {
 			throw new RuntimeException("Fee ID is invalid");

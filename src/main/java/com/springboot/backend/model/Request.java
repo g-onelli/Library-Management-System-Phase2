@@ -19,11 +19,11 @@ public class Request {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable=false)
 	private Integer id;
-	@Column(length = 45, nullable = true)
+	@Column(length = 600, nullable = true)
     private String description;
 	@Column(nullable = true)
     private LocalDate submissiondate;
-	@Column(length = 45, nullable = true)
+	@Column(length = 100, nullable = true)
     private String title;
 	@Column(length = 45, nullable = false)
     private String author;
