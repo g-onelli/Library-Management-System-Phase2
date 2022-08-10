@@ -35,7 +35,9 @@ export class PatronComponent implements OnInit {
 
 
   }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach(sub=>sub.unsubscribe());
   }
+
 }
