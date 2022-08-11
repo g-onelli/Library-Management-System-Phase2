@@ -59,7 +59,7 @@ public class RequestController {
 		Pageable pageable=PageRequest.of(page, size);
 		List<Request> list = requestRepository.findAll(pageable).getContent();
 		List<RequestDto> listDto = new ArrayList<>(); 
-		Integer tPages = patronRepository.findAll(pageable).getTotalPages();
+		Integer tPages = requestRepository.findAll(pageable).getTotalPages();
 		list.stream().forEach(r->{
 			RequestDto dto = new RequestDto();
 			dto.setId(r.getId());
@@ -69,7 +69,7 @@ public class RequestController {
 			dto.setAuthor(r.getAuthor());
 			dto.setPid(r.getPatron().getId());
 			dto.setPname(r.getPatron().getName());
-			dto.setTotalpages(tPages);
+			dto.setTpages(tPages);
 			listDto.add(dto);
 		});
 		return listDto; 
