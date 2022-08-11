@@ -37,6 +37,8 @@ import { LibrequestAddComponent } from './component/librequest/librequest-add/li
 import { LibrequestListComponent } from './component/librequest/librequest-list/librequest-list.component';
 import { AvailablebooksComponent } from './component/availablebooks/availablebooks.component';
 import { AvailablevideosComponent } from './component/availablevideos/availablevideos.component';
+import { BookListComponent } from './component/book/book-list/book-list.component';
+import { VideoListComponent } from './component/video/video-list/video-list.component';
 
 
 @NgModule({
@@ -74,6 +76,8 @@ import { AvailablevideosComponent } from './component/availablevideos/availablev
     LibrequestListComponent,
     AvailablebooksComponent,
     AvailablevideosComponent,
+    BookListComponent,
+    VideoListComponent,
   ],
   imports: [
     BrowserModule,

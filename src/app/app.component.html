@@ -1,24 +1,212 @@
+<head>
+    <script src="https://kit.fontawesome.com/a4c09f6089.js" crossorigin="anonymous"></script></head>
 <nav *ngIf="isPat" class="navbar navbar-default">
-    <a routerLink="/patdashboard">Dashboard</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/book">View Books</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/video">View Videos</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/checkedout">Check Out Books and Videos</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/fee">Pay Fees</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/request">Book Requests</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/room">Room Reservations</a> &nbsp;&nbsp;&nbsp;
-     Welcome {{username}}  &nbsp;&nbsp;&nbsp;
-    <a routerLink="/logout">Logout</a>
-    <hr>
+
+    <div id="geral">
+        <div class="menu-header">
+    <div>
+    <div class="menu-topo">
+        <div class="menu-topo__inner">
+            <a href="Javascript:void" class="menu-topo__button"><i class="fa-solid fa-bars"></i></a>
+            <span class="menu-topo__txt">Welcome {{username}}</span>
+    
+            <div class="clear"></div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div id="menu">
+    <ul class="menu-itens">
+    <li class="menu-item">
+        <a routerLink="/patdashboard" class="menu-link menu-link--hover">
+            <div class="menu-item__cont">
+                <i class="fa-solid fa-chevron-right menu-item__icon"></i>
+                <span class="menu-item__txt">Dashboard</span>
+                <div class="clear"></div>
+            </div>
+        </a>
+    </li>
+    <li class="menu-item">
+        <a routerLink="/book" class="menu-link menu-link--hover">
+            <div class="menu-item__cont">
+                <i class="fa-solid fa-chevron-right menu-item__icon"></i>
+                <span class="menu-item__txt">View Books</span>
+                <div class="clear"></div>
+            </div>
+        </a>
+    </li>
+    <li class="menu-item">
+        <a routerLink="/video" class="menu-link menu-link--hover">
+            <div class="menu-item__cont">
+                <i class="fa-solid fa-chevron-right menu-item__icon"></i>
+                <span class="menu-item__txt">View Videos</span>
+                <div class="clear"></div>
+            </div>
+        </a>
+    </li>
+    <li class="menu-item">
+        <a routerLink="/checkedout" class="menu-link menu-link--hover">
+            <div class="menu-item__cont">
+                <i class="fa-solid fa-chevron-right menu-item__icon"></i>
+                <span class="menu-item__txt">Check Out Books and Videos</span>
+                <div class="clear"></div>
+            </div>
+        </a>
+    </li>
+    <li class="menu-item">
+        <a routerLink="/fee" class="menu-link menu-link--hover">
+            <div class="menu-item__cont">
+                <i class="fa-solid fa-chevron-right menu-item__icon"></i>
+                <span class="menu-item__txt">Pay Fees</span>
+                <div class="clear"></div>
+            </div>
+        </a>
+    </li>
+    <li class="menu-item">
+        <a routerLink="/request" class="menu-link menu-link--hover">
+            <div class="menu-item__cont">
+                <i class="fa-solid fa-chevron-right menu-item__icon"></i>
+                <span class="menu-item__txt">Request a Book</span>
+                <div class="clear"></div>
+            </div>
+        </a>
+    </li>
+    <li class="menu-item">
+        <a routerLink="/room" class="menu-link menu-link--hover">
+            <div class="menu-item__cont">
+                <i class="fa-solid fa-chevron-right menu-item__icon"></i>
+                <span class="menu-item__txt">Room Reservations</span>
+                <div class="clear"></div>
+            </div>
+        </a>
+    </li>
+    <li class="menu-item">
+        <a routerLink="/logout" class="menu-link menu-link--hover">
+            <div class="menu-item__cont">
+                <i class="fa-solid fa-chevron-right menu-item__icon"></i>
+                <span class="menu-item__txt">Logout</span>
+                <div class="clear"></div>
+            </div>
+        </a>
+    </li>
+    </ul>
+    </div>     
+    <div id="conteudo-secao">
+        <div class="conteudo-secao-inner">
+    <router-outlet></router-outlet>           
+    </div></div></div>
+    
+
+
+
+
 </nav>
 <nav *ngIf="isLib" class="navbar navbar-default">
-    <a routerLink="/libdashboard">Dashboard</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/libbook">Books</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/libvideo">Videos</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/patron">Patrons</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/event">Events</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/librequest">Book Requests</a> &nbsp;&nbsp;&nbsp;
-    Welcome {{username}}  &nbsp;&nbsp;&nbsp;
-    <a routerLink="/logout">Logout</a>
-    <hr>
+
+    <div id="geral">
+        <div class="menu-header">
+    <div>
+    <div class="menu-topo">
+        <div class="menu-topo__inner">
+            <a href="Javascript:void" class="menu-topo__button"><i class="fa fa-bars"></i></a>
+            <span class="menu-topo__txt">Welcome {{username}}</span>
+    
+            <div class="clear"></div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div id="menu">
+    <ul class="menu-itens">
+    <li class="menu-item">
+        <a routerLink="/libdashboard" class="menu-link menu-link--hover">
+            <div class="menu-item__cont">
+                <i class="fa-solid fa-chevron-right menu-item__icon"></i>
+                <span class="menu-item__txt">Dashboard</span>
+                <div class="clear"></div>
+            </div>
+        </a>
+    </li>
+    <li class="menu-item">
+        <a routerLink="/libbook" class="menu-link menu-link--hover">
+            <div class="menu-item__cont">
+                <i class="fa-solid fa-chevron-right menu-item__icon"></i>
+                <span class="menu-item__txt">View Books</span>
+                <div class="clear"></div>
+            </div>
+        </a>
+    </li>
+    <li class="menu-item">
+        <a routerLink="/libvideo" class="menu-link menu-link--hover">
+            <div class="menu-item__cont">
+                <i class="fa-solid fa-chevron-right menu-item__icon"></i>
+                <span class="menu-item__txt">View Videos</span>
+                <div class="clear"></div>
+            </div>
+        </a>
+    </li>
+    <li class="menu-item">
+        <a routerLink="/patron" class="menu-link menu-link--hover">
+            <div class="menu-item__cont">
+                <i class="fa-solid fa-chevron-right menu-item__icon"></i>
+                <span class="menu-item__txt">View Patrons</span>
+                <div class="clear"></div>
+            </div>
+        </a>
+    </li>
+    <li class="menu-item">
+        <a routerLink="/event" class="menu-link menu-link--hover">
+            <div class="menu-item__cont">
+                <i class="fa-solid fa-chevron-right menu-item__icon"></i>
+                <span class="menu-item__txt">View Events</span>
+                <div class="clear"></div>
+            </div>
+        </a>
+    </li>
+    <li class="menu-item">
+        <a routerLink="/libfee" class="menu-link menu-link--hover">
+            <div class="menu-item__cont">
+                <i class="fa-solid fa-chevron-right menu-item__icon"></i>
+                <span class="menu-item__txt">View Fees</span>
+                <div class="clear"></div>
+            </div>
+        </a>
+    </li>
+    <li class="menu-item">
+        <a routerLink="/librequest" class="menu-link menu-link--hover">
+            <div class="menu-item__cont">
+                <i class="fa-solid fa-chevron-right menu-item__icon"></i>
+                <span class="menu-item__txt">View Book Requests</span>
+                <div class="clear"></div>
+            </div>
+        </a>
+    </li>
+    <li class="menu-item">
+        <a routerLink="/libroom" class="menu-link menu-link--hover">
+            <div class="menu-item__cont">
+                <i class="fa-solid fa-chevron-right menu-item__icon"></i>
+                <span class="menu-item__txt">View Rooms</span>
+                <div class="clear"></div>
+            </div>
+        </a>
+    </li>
+    <li class="menu-item">
+        <a routerLink="/liblogin" class="menu-link menu-link--hover">
+            <div class="menu-item__cont">
+                <i class="fa-solid fa-chevron-right menu-item__icon"></i>
+                <span class="menu-item__txt">Logout</span>
+                <div class="clear"></div>
+            </div>
+        </a>
+    </li>
+    </ul>
+    </div> 
+    <div id="conteudo-secao">
+        <div class="conteudo-secao-inner">
+    <router-outlet></router-outlet>           
+    </div></div></div>
+
 </nav>
-<router-outlet></router-outlet>
+
+<div *ngIf="!isPat && !isLib">
+<router-outlet></router-outlet></div>
