@@ -1,21 +1,42 @@
 
 <form class="box-listagem__item" (submit)="onFormSubmit()" [formGroup]="requestForm">
-    <span *ngIf="!(msg =='')">{{msg}}</span>
-    <label>Enter Request Id: </label>
-    <input type="text" id="id" formControlName="id">
+    <div class="box-listagem__inner">
+        <span *ngIf="!(msg =='')">{{msg}}</span><br />
+        <div class="field">
+    <span class="field--title">Enter Request Id: </span>
+    <div class="simple-input">
+        <div class="bordered">
+          <div class="simple-input--inner">
+    <input class="simple-input" type="text" id="id" formControlName="id">
+</div>
+</div>
+</div>
+</div>
     <span *ngIf="requestForm.controls['id'].invalid && requestForm.controls['id'].touched">
         <span *ngIf="requestForm.controls['id'].errors['required']"> Id is Required</span>
         <span *ngIf="requestForm.controls['id'].errors['pattern']">Use the request list to find an Id(Number)</span>
         </span>
     <br /><br />
-    <label>Enter Request Publisher: </label>
-    <input type="text" name="publisher" formControlName="publisher">
+    <div class="field">
+    <span class="field--title">Enter Request Publisher: </span>
+    <div class="simple-input">
+        <div class="bordered">
+          <div class="simple-input--inner">
+    <input class="simple-input" type="text" name="publisher" formControlName="publisher">
+</div>
+</div>
+</div>
+</div>
     <span *ngIf="requestForm.controls['publisher'].invalid && requestForm.controls['publisher'].touched">
         <span *ngIf="requestForm.controls['publisher'].errors['pattern']">Alphanumerical characters only</span>
         </span>
     <br /><br />
-    <label>Enter Request Genre: </label>
-    <select formControlName="genre">
+    <div class="field">
+        <div class="simple-input">
+            <div class="bordered">
+              <div class="simple-input--inner">
+    <span class="field--title">Enter Request Genre: </span>
+    <select class="simple-input" formControlName="genre">
         <option value="Fantasy">Fantasy</option>
         <option value="Adventure">Adventure</option>
         <option value="Romance">Romance</option>
@@ -40,7 +61,13 @@
         <option value="Families & Relationships">Families & Relationships</option>
         <option value="Humor">Humor</option>
       </select>
+    </div>
+</div>
+</div>
+</div>
     <span *ngIf="requestForm.controls['genre'].invalid && requestForm.controls['genre'].touched"></span>
     <br /><br />
-    <input type="submit" value="Update Request" [disabled]="!requestForm.valid">
+    <input class="myButton" type="submit" value="Update Request" [disabled]="!requestForm.valid">
+    <br /><br />
+</div>
 </form>

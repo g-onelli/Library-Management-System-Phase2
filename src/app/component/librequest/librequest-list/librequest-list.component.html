@@ -1,26 +1,33 @@
+
 <div class="box-listagem__item" *ngFor="let r of requests">
     <div class="box-listagem__inner">
         <div class="box_listagem__field">
-            <strong>Request Id: </strong>{{r.id}}
+            <br />
+            <strong>Request Id: </strong><strong><span>{{r.id}}</span></strong>
             &nbsp;&nbsp;
-            <strong>Title:</strong> {{r.title}}
+            <strong>Title: </strong> <span>{{r.title}}</span>
             &nbsp;&nbsp;
-            <strong>Author:</strong> {{r.author}}
+            <strong>Author: </strong> <span>{{r.author}}</span>
             &nbsp;&nbsp;
-            <strong>Description:</strong> {{r.description}}
+            <strong>Description: </strong> <span>{{r.description}}</span>
             &nbsp;&nbsp;
-            <strong>Patron Id:</strong> {{r.pid}}
+            <strong>Patron Id: </strong> <span>{{r.pid}}</span>
             &nbsp;&nbsp;
-            <strong>Patron Name:</strong> {{r.pname}}
+            <strong>Patron Name: </strong> <span>{{r.pname}}</span>
             &nbsp;&nbsp;
-            <strong>Submission Date:</strong> {{r.submissiondate}}
+            <strong>Submission Date: </strong> <span>{{r.submissiondate}}</span>
+            <br /><br />
             <hr>
         </div>
     </div>
 </div>
 <div class="box-listagem__item">
+    <div class="box-listagem__inner">
+        <div class="box_listagem__field">
+    <br />
     <span *ngFor="let r of requests | slice:0:1 ;"><strong>{{page + 1}}/{{r.tpages}}</strong></span>&nbsp;
     <a href="Javascript:void" (click)="prev()"><i class="fa fa-chevron-left">Previous</i>&nbsp;</a>&nbsp;
     <a href="Javascript:void" (click)="next()"><i class="fa fa-chevron-right">Next</i>&nbsp;</a>
-    
-</div>
+    <br /><br />
+</div></div>
+    </div>

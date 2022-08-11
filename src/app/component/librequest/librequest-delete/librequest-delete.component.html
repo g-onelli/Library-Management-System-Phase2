@@ -1,12 +1,22 @@
-
-<span *ngIf="!(msg =='')">{{msg}}</span>
 <form class="box-listagem__item" (submit)="onFormSubmit()" [formGroup]="requestForm">
-    <label>Enter Request Id: </label>
-    <input type="text" id="id" formControlName="id">
+    <div class="box-listagem__inner">
+        <span *ngIf="!(msg =='')">{{msg}}</span><br />
+        <div class="field">
+    <span class="field--title">Enter Request Id: </span>
+    <div class="simple-input">
+        <div class="bordered">
+          <div class="simple-input--inner">
+    <input class="simple-input" type="text" id="id" formControlName="id">
+</div>
+</div>
+</div>
     <span *ngIf="requestForm.controls['id'].invalid && requestForm.controls['id'].touched">
         <span *ngIf="requestForm.controls['id'].errors['required']"> Id is Required</span>
         <span *ngIf="requestForm.controls['id'].errors['pattern']">Use the request list to find an Id(Number)</span>
         </span>
     <br /><br />
-    <input type="submit" value="Remove Request" [disabled]="!requestForm.valid">
+    </div>
+    <input class="myButton" type="submit" value="Remove Request" [disabled]="!requestForm.valid">
+    <br /><br />
+</div>
 </form>

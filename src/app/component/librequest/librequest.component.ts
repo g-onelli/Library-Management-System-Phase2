@@ -5,7 +5,8 @@ import { Requests } from 'src/app/model/request.model';
 
 @Component({
   selector: 'app-librequest',
-  templateUrl: './librequest.component.html'
+  templateUrl: './librequest.component.html',
+  styleUrls: ['./librequest.component.less']
 })
 export class LibrequestComponent implements OnInit {
 
