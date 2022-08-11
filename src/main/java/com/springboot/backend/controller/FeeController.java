@@ -75,7 +75,6 @@ public class FeeController {
 			String username = principal.getName();
 			Patron info = patronRepository.getByUsername(username);
 			List<Fee> list = feeRepository.findByFeeId(info.getId());
-			System.out.println(info.getId());
 			List<FeeDto> listDto = new ArrayList<>();
 			list.stream().forEach(p->{
 				FeeDto dto = new FeeDto();
