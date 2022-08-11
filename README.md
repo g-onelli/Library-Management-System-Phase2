@@ -1,6 +1,6 @@
 # LibraryManagementSystemUI
 
-## Components/Screens
+## Screens
 
 ### Gabriela
 #### Patron
