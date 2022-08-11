@@ -38,6 +38,8 @@ import { LibrequestListComponent } from './component/librequest/librequest-list/
 import { AvailablebooksComponent } from './component/availablebooks/availablebooks.component';
 import { AvailablevideosComponent } from './component/availablevideos/availablevideos.component';
 import { LibrarianLoginComponent } from './auth/component/librarian-login/librarian-login.component';
+import { LibfeeComponent } from './component/libfee/libfee.component';
+import { LibroomComponent } from './component/libroom/libroom.component';
 
 
 @NgModule({
@@ -76,6 +78,8 @@ import { LibrarianLoginComponent } from './auth/component/librarian-login/librar
     AvailablebooksComponent,
     AvailablevideosComponent,
     LibrarianLoginComponent,
+    LibfeeComponent,
+    LibroomComponent,
   ],
   imports: [
     BrowserModule,

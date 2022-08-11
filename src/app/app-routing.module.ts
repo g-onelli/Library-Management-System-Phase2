@@ -13,7 +13,9 @@ import { EventComponent } from './component/event/event.component';
 import { FeeComponent } from './component/fee/fee.component';
 import { LibbookComponent } from './component/libbook/libbook.component';
 import { LibdashboardComponent } from './component/libdashboard/libdashboard.component';
+import { LibfeeComponent } from './component/libfee/libfee.component';
 import { LibrequestComponent } from './component/librequest/librequest.component';
+import { LibroomComponent } from './component/libroom/libroom.component';
 import { LibvideoComponent } from './component/libvideo/libvideo.component';
 import { PatdashboardComponent } from './component/patdashboard/patdashboard.component';
 import { PatronComponent } from './component/patron/patron.component';
@@ -69,6 +71,14 @@ const routes: Routes = [
     role: 'PATRON'
   }},
   {path:'event', component: EventComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'LIBRARIAN'
+  }},
+  {path:'libfee', component: LibfeeComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'LIBRARIAN'
+  }},
+  {path:'libroom', component: LibroomComponent, canActivate:[AuthguardService],
   data: {
     role: 'LIBRARIAN'
   }},
