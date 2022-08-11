@@ -6,7 +6,7 @@ import { PatronService } from 'src/app/service/patron.service';
 @Component({
   selector: 'app-patron',
   templateUrl: './patron.component.html',
-  styleUrls: ['./patron.component.css']
+  styleUrls: ['./patron.component.less']
 })
 export class PatronComponent implements OnInit {
   patrons: Patron[];
@@ -19,7 +19,7 @@ export class PatronComponent implements OnInit {
     this.subscriptions=[];
     this.size = 5;
     this.subscriptions.push(
-      this.patronService.page$.subscribe(value=>{
+      this.patronService.ppage$.subscribe(value=>{
           this.page = value;
           this.patronService.getAllPatrons(this.page,this.size).subscribe({
             next: (data)=>{

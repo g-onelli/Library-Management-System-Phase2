@@ -5,7 +5,7 @@ import { PatronService } from 'src/app/service/patron.service';
 @Component({
   selector: 'app-patron-list',
   templateUrl: './patron-list.component.html',
-  styleUrls: ['./patron-list.component.css']
+  styleUrls: ['./patron-list.component.less']
 })
 export class PatronListComponent implements OnInit {
 
@@ -15,8 +15,8 @@ export class PatronListComponent implements OnInit {
   constructor(private patronService: PatronService) { }
 
   ngOnInit(): void {
-    this.page = this.patronService.page$.getValue();
-    this.patronService.page$.next(this.page);
+    this.page = this.patronService.ppage$.getValue();
+    this.patronService.ppage$.next(this.page);
     this.patronService.patron$.subscribe(data=>{
       this.patrons = data;
       this.total = data[0].totalpages;
@@ -24,23 +24,25 @@ export class PatronListComponent implements OnInit {
   }
   prev(){
       //read the value of page from subject
-      let page = this.patronService.page$.getValue();
+      let page = this.patronService.ppage$.getValue();
       //update the value of page
       if(page>0){
         this.page = page-1;
       }
       //attach the updated value to the subject
-      this.patronService.page$.next(this.page);
+      this.patronService.ppage$.next(this.page);
   }
   next(){
     //read the value of page from subject
-    let page = this.patronService.page$.getValue();
+    let page = this.patronService.ppage$.getValue();
     if(page<this.total-1){
     //update the value of page
       this.page = page+1;
     }
     //attach the updated value to the subject
-    this.patronService.page$.next(this.page);
+    this.patronService.ppage$.next(this.page);
   }
-
+fill(){
+  
+}
 }

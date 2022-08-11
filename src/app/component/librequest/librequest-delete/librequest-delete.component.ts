@@ -6,7 +6,7 @@ import { RequestService } from 'src/app/service/request.service';
 @Component({
   selector: 'app-librequest-delete',
   templateUrl: './librequest-delete.component.html',
-  styleUrls: ['./librequest-delete.component.css']
+  styleUrls: ['./librequest-delete.component.less']
 })
 export class LibrequestDeleteComponent implements OnInit {
 

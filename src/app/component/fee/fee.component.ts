@@ -5,7 +5,7 @@ import { FeeService } from 'src/app/service/fee.service';
 @Component({
   selector: 'app-fee',
   templateUrl: './fee.component.html',
-  styleUrls: ['./fee.component.css']
+  styleUrls: ['./fee.component.less']
 })
 export class FeeComponent implements OnInit {
 

@@ -16,7 +16,7 @@ export class RequestService {
   patronPostApi: string;
   completedRequest: CompleteRequest;
   request$= new BehaviorSubject<Requests[]>([]);
-  page$= new BehaviorSubject<number>(0);
+  rpage$= new BehaviorSubject<number>(0);
   constructor(private http: HttpClient) { 
     this.postApi=environment.serverUrl +'/requests';
     this.getAllApi=environment.serverUrl +'/requests';

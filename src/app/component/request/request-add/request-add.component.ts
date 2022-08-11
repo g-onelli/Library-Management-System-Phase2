@@ -8,7 +8,7 @@ import { RequestService } from 'src/app/service/request.service';
 @Component({
   selector: 'app-request-add',
   templateUrl: './request-add.component.html',
-  styleUrls: ['./request-add.component.css']
+  styleUrls: ['./request-add.component.less']
 })
 export class RequestAddComponent implements OnInit {
   requestDto: Requests;
@@ -23,7 +23,7 @@ export class RequestAddComponent implements OnInit {
     this.requestForm = new FormGroup({
       title: new FormControl('', [Validators.required,Validators.pattern(/^[\w\-\s]+$/)]),
       author: new FormControl('', [Validators.required,Validators.pattern(/^[a-zA-Z ]+$/)]),
-      description: new FormControl('', [Validators.required,Validators.pattern(/^[\w\-\s]+$/)]),
+      description: new FormControl('', [Validators.required]),
     });
   }
 onFormSubmit(){

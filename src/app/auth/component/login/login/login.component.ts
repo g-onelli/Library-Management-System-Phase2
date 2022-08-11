@@ -36,8 +36,13 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('credentials', btoa(this.user.username + ':' + this.password));
         localStorage.setItem('role', this.user.role);
         this.authService.username$.next(this.user.username);
-        if(this.user.role == "LIBRARIAN")
-          this.router.navigateByUrl('/libdashboard');
+        if(this.user.role == "LIBRARIAN"){
+          localStorage.clear();
+          this.authService.username$.next('');
+          this.authService.isLoggedIn();
+          this.authService.message$.next('Please Login to the Librarian Portal');
+          this.router.navigateByUrl('/liblogin');
+        }
         if(this.user.role == "PATRON")
           this.router.navigateByUrl('/patdashboard');
       },

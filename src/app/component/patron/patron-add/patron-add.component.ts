@@ -8,7 +8,7 @@ import { PatronService } from 'src/app/service/patron.service';
 @Component({
   selector: 'app-patron-add',
   templateUrl: './patron-add.component.html',
-  styleUrls: ['./patron-add.component.css']
+  styleUrls: ['./patron-add.component.less']
 })
 export class PatronAddComponent implements OnInit {
   patronEditDto: PatronEditDto;
@@ -62,7 +62,9 @@ onFormSubmit(){
         }
       });
     },
-    error: (e)=>{  }
+    error: (e)=>{ 
+      this.msg='Invalid Id';
+     }
   });
 }
 

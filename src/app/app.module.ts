@@ -39,6 +39,9 @@ import { AvailablebooksComponent } from './component/availablebooks/availableboo
 import { AvailablevideosComponent } from './component/availablevideos/availablevideos.component';
 import { BookListComponent } from './component/book/book-list/book-list.component';
 import { VideoListComponent } from './component/video/video-list/video-list.component';
+import { LibrarianLoginComponent } from './auth/component/librarian-login/librarian-login.component';
+import { LibfeeComponent } from './component/libfee/libfee.component';
+import { LibroomComponent } from './component/libroom/libroom.component';
 
 
 @NgModule({
@@ -78,6 +81,9 @@ import { VideoListComponent } from './component/video/video-list/video-list.comp
     AvailablevideosComponent,
     BookListComponent,
     VideoListComponent,
+    LibrarianLoginComponent,
+    LibfeeComponent,
+    LibroomComponent,
   ],
   imports: [
     BrowserModule,
