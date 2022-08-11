@@ -1,6 +1,6 @@
 
 <body>
-    <div class="header"><h1>Login</h1></div>
+    <div class="header"><h1>Librarian Login</h1></div>
 <div class="error">{{message}}</div>
 <form class='login-form' (submit)="onFormSubmit()" [formGroup]="loginForm">
     <div class="flex-row">
@@ -23,7 +23,5 @@
     </div>
     <input class='lf--submit' type='submit' value='Login' [disabled]="!loginForm.valid">
   </form>
-  <a class='lf--signup' routerLink="/sign-up">Register</a>
-  <a class='lf--forgot' routerLink="/password-reset">Forgot password?</a>
-  <a class='lf--forgot' routerLink="/liblogin">Librarian Portal</a>
+  <a class='lf--forgot' routerLink="/login">Patron Portal</a>
 </body>

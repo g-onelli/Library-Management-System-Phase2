@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/auth/model/user.model';
-import { AuthService } from 'src/app/auth/service/auth.service';
+import { User } from '../../model/user.model';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-librarian-login',
+  templateUrl: './librarian-login.component.html',
+  styleUrls: ['./librarian-login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LibrarianLoginComponent implements OnInit {
   message:string;
   loginForm: FormGroup;
   username: string;
@@ -36,19 +36,20 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('credentials', btoa(this.user.username + ':' + this.password));
         localStorage.setItem('role', this.user.role);
         this.authService.username$.next(this.user.username);
-        if(this.user.role == "LIBRARIAN"){
+        if(this.user.role == "LIBRARIAN")
+          this.router.navigateByUrl('/libdashboard');
+        if(this.user.role == "PATRON"){
           localStorage.clear();
           this.authService.username$.next('');
           this.authService.isLoggedIn();
-          this.authService.message$.next('Please Login to the Librarian Portal');
-          this.router.navigateByUrl('/liblogin');
+          this.authService.message$.next('Please Login to the Patron Portal');
+          this.router.navigateByUrl('/login');
         }
-        if(this.user.role == "PATRON")
-          this.router.navigateByUrl('/patdashboard');
       },
       error : (e)=>{
         this.authService.message$.next('Invalid credentials');
       }
     });
   }
+
 }

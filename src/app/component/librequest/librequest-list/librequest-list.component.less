@@ -948,14 +948,32 @@ input[type=range]::-ms-thumb {
     display: none;
   }
 }
+.box-listagem__item2{
+  border-bottom: 1px solid @color13;
+  position: relative;
+  background-color: @color5;
 
+  .box-listagem__arrow{
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-top: -7px;
+    color: #999999;
+  }
+  .checkbox{
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    margin-top: -10px;
+    display: none;
+  }
+}
 .box-listagem__item--ativo{
   .box-listagem__field,
   .box-listagem__arrow{
     color: #4e8ce5;
   }
 }
-
 .box-listagem__item:nth-child(odd) {
   background-color: @color5;
 }
@@ -987,13 +1005,28 @@ input[type=range]::-ms-thumb {
     /*color: #ffffff;*/
   }
 }
+.box-listagem__item2:hover{
+  //background: darken(@color5,5%);
 
+  .box-listagem__field{
+    /*color: #ffffff;*/
+    /*border-bottom-color: @color3;*/
+  }
+
+  .box-listagem__arrow{
+    /*color: #ffffff;*/
+  }
+}
 .box-listagem__item.box-listagem__item--thumb{
   .box-listagem__inner{
     margin-left: 100px;
   }
 }
-
+.box-listagem__item2.box-listagem__item--thumb{
+  .box-listagem__inner{
+    margin-left: 100px;
+  }
+}
 .edit-remove-itens{
   .box-listagem__padding{
     padding-bottom: 80px;
