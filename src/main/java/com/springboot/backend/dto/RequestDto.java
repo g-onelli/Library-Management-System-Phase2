@@ -53,18 +53,19 @@ public class RequestDto {
 	public void setPname(String pname) {
 		this.pname = pname;
 	}
-	public Integer getTotalpages() {
+	public Integer getTpages() {
 		return tpages;
 	}
-	public void setTotalpages(Integer tpages) {
+	public void setTpages(Integer tpages) {
 		this.tpages = tpages;
 	}
 	@Override
 	public String toString() {
 		return "RequestDto [id=" + id + ", description=" + description + ", submissiondate=" + submissiondate
-				+ ", title=" + title + ", author=" + author + ", pid=" + pid + ", pname=" + pname + ", totalpages="
-				+ tpages + "]";
+				+ ", title=" + title + ", author=" + author + ", pid=" + pid + ", pname=" + pname + ", tpages=" + tpages
+				+ "]";
 	}
+	
 	
 	
 }
