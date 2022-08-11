@@ -2,13 +2,13 @@
 
 ## Components/Screens
 
-###Gabriela
+### Gabriela
 **Patron**
 - Room Reservations
 **Librarian**
 - View Rooms
 
-###Gavin
+### Gavin
 - Login/Signup/Reset Password
 **Patron**
 - Request a Book
@@ -17,14 +17,14 @@
 - View Requests
 
 
-###Ian
+### Ian
 **Patron**
 - Pay Fees
 **Librarian**
 - View Events
 - View Patron Fees
 
-###Jakob
+### Jakob
 **Patron**
 - Check Out Books and Videos
 - View Books
