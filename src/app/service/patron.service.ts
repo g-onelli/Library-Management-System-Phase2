@@ -17,7 +17,7 @@ export class PatronService {
   deleteApi: string;
   patronEditDto: PatronEditDto;
   patron$= new BehaviorSubject<Patron[]>([]);
-  page$= new BehaviorSubject<number>(0);
+  ppage$= new BehaviorSubject<number>(0);
   constructor(private http: HttpClient) { 
     this.putApi=environment.serverUrl +'/patrons';
     this.getAllApi=environment.serverUrl +'/patrons';

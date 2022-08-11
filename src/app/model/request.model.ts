@@ -6,7 +6,7 @@ export class Requests{
     author: string;
     pid?: number;
     pname?: string;
-    totalpages?: number;
+    tpages?: number;
 }
 export class CompleteRequest{
     id?: number;
