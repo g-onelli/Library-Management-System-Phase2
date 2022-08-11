@@ -50,7 +50,6 @@
 
 **Fees**
 - View Fees (GET)
-- View Specific Patron Fee (GET)
 - Create Fees for Patrons (POST)
 - Update Fees (PUT)
 
@@ -75,3 +74,7 @@
 - View room collections (GET)
 - View scheduled rooms (GET)
 - Reserve room based on number (POST)
+
+**Fees**
+- View Fees (GET)
+- Pay Fees (PUT)
