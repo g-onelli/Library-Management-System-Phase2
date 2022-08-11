@@ -3,38 +3,38 @@
 ## Components/Screens
 
 ### Gabriela
-####Patron
+#### Patron
 - Room Reservations
 
-####Librarian
+#### Librarian
 - View Rooms
 
 ### Gavin
 - Login/Signup/Reset Password
 
-####Patron
+#### Patron
 - Request a Book
 
-####Librarian
+#### Librarian
 - View Patrons
 - View Requests
 
 
 ### Ian
-####Patron
+#### Patron
 - Pay Fees
 
-####Librarian
+#### Librarian
 - View Events
 - View Patron Fees
 
 ### Jakob
-####Patron
+#### Patron
 - Check Out Books and Videos
 - View Books
 - View Videos
 
-####Librarian
+#### Librarian
 - View Books
 - View Videos
 
