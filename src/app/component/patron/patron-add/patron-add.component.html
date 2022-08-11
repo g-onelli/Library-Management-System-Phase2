@@ -1,35 +1,64 @@
-<span *ngIf="!(msg =='')">{{msg}}</span>
-<form (submit)="onFormSubmit()" [formGroup]="patronForm">
-    <label>Enter Patron Id: </label>
-    <input type="text" id="id" formControlName="id">
+<form class="box-listagem__item"  (submit)="onFormSubmit()" [formGroup]="patronForm">
+    <div class="box-listagem__inner">
+    <span *ngIf="!(msg =='')">{{msg}}</span><br />
+    <div class="field">
+    <span class="field--title">Enter Patron Id: </span>
+    <div class="simple-input">
+        <div class="bordered">
+          <div class="simple-input--inner">
+    <input class="simple-input" type="text" id="id" formControlName="id">
+</div>
+</div>
+</div>
+</div>
     <span *ngIf="patronForm.controls['id'].invalid && patronForm.controls['id'].touched">
         <span *ngIf="patronForm.controls['id'].errors['required']"> Id is Required</span>
         <span *ngIf="patronForm.controls['id'].errors['pattern']">Use the patron list to find an Id(Number)</span>
         </span>
     <br /><br />
-    <label>Enter Patron Name: </label>
-    <input type="text" name="name" formControlName="name">
+    <div class="field">
+    <span class="field--title">Enter Patron Name: </span>
+    <div class="simple-input">
+        <div class="bordered">
+          <div class="simple-input--inner">
+    <input class="simple-input" type="text" name="name" formControlName="name">
+</div>
+</div>
+</div>
+</div>
     <span *ngIf="patronForm.controls['name'].invalid && patronForm.controls['name'].touched">
         <span *ngIf="patronForm.controls['name'].errors['pattern']">Alphabetical characters only</span>
         </span>
     <br /><br />
-    <label>Enter Patron Card Expiration Date: </label>
-    <input type="text" name="cardexpirationdate" formControlName="cardexpirationdate">
+    <div class="field">
+        <span class="field--title">Enter Patron Card Expiration Date: </span>
+        <div class="simple-input">
+            <div class="bordered">
+              <div class="simple-input--inner">
+    <input class="simple-input" type="text" name="cardexpirationdate" formControlName="cardexpirationdate">
+</div>
+</div>
+</div>
+</div>
     <span *ngIf="patronForm.controls['cardexpirationdate'].invalid && patronForm.controls['cardexpirationdate'].touched">
         <span *ngIf="patronForm.controls['cardexpirationdate'].errors['pattern']">Required Format: YYYY-MM-DD</span>
         </span>
     <br /><br />
-    <label>Enter Patron Balance: </label>
-    <input type="text" name="balance" formControlName="balance">
+    <div class="field">
+        <span class="field--title">Enter Patron Balance: </span>
+        <div class="simple-input">
+            <div class="bordered">
+              <div class="simple-input--inner">
+    <input class="simple-input" type="text" name="balance" formControlName="balance">
+</div>
+</div>
+</div>
+</div>
     <span *ngIf="patronForm.controls['balance'].invalid && patronForm.controls['balance'].touched">
-        <span *ngIf="patronForm.controls['balance'].errors['pattern']">Numbers only (decimals allowed)+</span>
+        <span *ngIf="patronForm.controls['balance'].errors['pattern']">Numbers only (decimals allowed)</span>
         </span>
     <br /><br />
-    <!-- <label>Enter Patron Username: </label>
-    <input type="text" name="username" formControlName="username">
-    <span *ngIf="patronForm.controls['username'].invalid && patronForm.controls['username'].touched">
-        <span *ngIf="patronForm.controls['username'].errors['pattern']">Pattern allowed: [a-zA-Z ]+</span>
-        </span>
-    <br /><br /> -->
-    <input type="submit" value="Update Patron" [disabled]="!patronForm.valid">
+    <input class="myButton" type="submit" value="Update Patron" [disabled]="!patronForm.valid">
+    <br /><br />
+</div>
 </form>
