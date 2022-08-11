@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LibrarianLoginComponent } from './auth/component/librarian-login/librarian-login.component';
 import { LoginComponent } from './auth/component/login/login/login.component';
 import { LogoutComponent } from './auth/component/logout/logout/logout.component';
 import { PasswordResetComponent } from './auth/component/password-reset/password-reset.component';
@@ -23,6 +24,7 @@ import { VideoComponent } from './component/video/video.component';
 const routes: Routes = [
   {path:'', component: LoginComponent},
   {path:'login', component: LoginComponent},
+  {path:'liblogin', component: LibrarianLoginComponent},
   {path:'sign-up', component: SignUpComponent},
   {path:'password-reset', component: UsernameVerifyComponent},
   {path:'password-reset-form', component: PasswordResetComponent},
