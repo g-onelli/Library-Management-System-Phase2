@@ -19,7 +19,7 @@
 * { margin: 0; padding: 0; text-decoration: none; font-size: 1em; outline: none; }
 code, kbd, samp, pre, tt, var, textarea, input, select, isindex, listing, xmp, plaintext { font: inherit; font-size: 1em;}
 dfn, i, cite, var, address, em { font-style: normal; }
-th, b, strong, h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+th, b, strong, h1, h2, h3, h4, h5, h6 { font-weight: normal; }
 a, img, a img, iframe, form, fieldset, abbr, acronym, object, applet, table { border: none; }
 table { border-collapse: collapse; border-spacing: 0; }
 caption, th, td, center { text-align: left; vertical-align: top; }
@@ -94,7 +94,7 @@ Disabled the deprecated <marquee>, <blink> and <nobr> tag in some browsers
 
 @color_main: #003e35;
 
-@menuWidth: 30px;
+@menuWidth: 210px;
 
 @color1: #4e8ce5;
 @color2: #949292;
@@ -638,7 +638,6 @@ input[type=range]::-ms-thumb {
     margin-left: 25px;
     font-size: 12px;
     display: block;
-    
   }
 
   .menu-item__icon{
@@ -689,12 +688,12 @@ input[type=range]::-ms-thumb {
 #conteudo-secao{
   position: absolute;
   width: 100%;
-  left: 0;
-  top: 0;
+  left: 10px;
+  top: 20px;
   height: 100%;
 
   .conteudo-secao-inner{
-    margin: 0 30px 0 @menuWidth;
+    margin: 0 10px 0 @menuWidth;
     position: relative;
     height: 100%;
   }
@@ -784,7 +783,6 @@ input[type=range]::-ms-thumb {
   .topo-secao__inner{
     padding: 15px 10px;
     font-weight: 300;
-    font-weight: bold;
   }
 
   .button-sm-with-icon{
@@ -978,7 +976,7 @@ input[type=range]::-ms-thumb {
 }
 
 .box-listagem__item:hover{
-  background: darken(@color5,5%);
+  //background: darken(@color5,5%);
 
   .box-listagem__field{
     /*color: #ffffff;*/
@@ -1912,3 +1910,13 @@ input[type=range]::-ms-thumb {
   }
 
 }
+
+
+
+
+
+
+
+
+
+

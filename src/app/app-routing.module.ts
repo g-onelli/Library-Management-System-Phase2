@@ -4,6 +4,8 @@ import { LibrarianLoginComponent } from './auth/component/librarian-login/librar
 import { LoginComponent } from './auth/component/login/login/login.component';
 import { LogoutComponent } from './auth/component/logout/logout/logout.component';
 import { PasswordResetComponent } from './auth/component/password-reset/password-reset.component';
+import { ProfileBoxComponent } from './auth/component/profile-box/profile-box.component';
+import { ProfileComponent } from './auth/component/profile/profile.component';
 import { SignUpComponent } from './auth/component/sign-up/sign-up.component';
 import { UsernameVerifyComponent } from './auth/component/username-verify/username-verify.component';
 import { AuthguardService } from './auth/service/authguard.service';
@@ -30,6 +32,10 @@ const routes: Routes = [
   {path:'sign-up', component: SignUpComponent},
   {path:'password-reset', component: UsernameVerifyComponent},
   {path:'password-reset-form', component: PasswordResetComponent},
+  {path:'profile', component: ProfileBoxComponent, canActivate:[AuthguardService],
+  data: {
+    role: 'PATRON'
+  }},
   {path:'patdashboard', component: PatdashboardComponent, canActivate:[AuthguardService],
   data: {
     role: 'PATRON'
@@ -50,11 +56,11 @@ const routes: Routes = [
   data: {
     role: 'PATRON'
   }},
-  {path:'libbook', component: LibbookComponent, canActivate:[AuthguardService],
+  {path:'libbook', component: BookComponent, canActivate:[AuthguardService],
   data: {
     role: 'LIBRARIAN'
   }},
-  {path:'libvideo', component: LibvideoComponent, canActivate:[AuthguardService],
+  {path:'libvideo', component: VideoComponent, canActivate:[AuthguardService],
   data: {
     role: 'LIBRARIAN'
   }},
