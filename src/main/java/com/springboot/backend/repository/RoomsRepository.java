@@ -12,8 +12,8 @@ public interface RoomsRepository extends JpaRepository<Room, Integer> {
 	@Query("select r from Room r where r.roomNumber=?1")
 	Room showRoomByNum(Integer rNum);
 
-    @Query("select cr.room from CheckedOutRoom cr where cr.reservedDate!=?1")
-	List<Integer> getRoomNumbers(LocalDate parse);
+    @Query("select cr.room.roomNumber from CheckedOutRoom cr where cr.strDate!=?1 and (cr.time BETWEEN ?2 AND ?3 )")
+	List<Integer> getRoomNumbers(String parse, Double startTime, Double endTime);
     
     @Query("select r from Room r where r.roomNumber not in (:excludeList)")
     List<Room> showOpenRooms(List<Integer> excludeList);

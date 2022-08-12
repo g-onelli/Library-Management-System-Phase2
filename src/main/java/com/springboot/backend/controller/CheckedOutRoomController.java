@@ -36,13 +36,7 @@ public class CheckedOutRoomController {
 	@Autowired
 	private PatronRepository patronRepository;
 	
-/*	@PostMapping("/mReservations")
-	public void makeReservation(@RequestBody CheckedOutRoom reserve) {
-		LocalDate ldObj = LocalDate.parse(reserve.getStrDate());
-		reserve.setReservedDate(ldObj);
-		checkedOutRoomRepository.save(reserve);
-	}*/
-	@PostMapping("/mReservations")
+	@PostMapping("/reservation/create")
 	public void makeReservations(@RequestBody ReservationDto reserve) {
 		LocalDate ldObj = LocalDate.parse(reserve.getStrDate());
 		Optional<Patron> patron = patronRepository.findById(reserve.getPatronId());
@@ -51,6 +45,7 @@ public class CheckedOutRoomController {
 		System.out.println(room);
 		CheckedOutRoom newReserve = new CheckedOutRoom();
 		newReserve.setduration(reserve.getDuration());
+		newReserve.setStartTime(reserve.getTime());
 		newReserve.setPatron(patron.get());
 		newReserve.setReservedDate(ldObj);
 		newReserve.setStrDate(reserve.getStrDate());
@@ -70,6 +65,7 @@ public class CheckedOutRoomController {
 			CheckedOutRoomDto room = new CheckedOutRoomDto();
 			room.setCapacity(r.getRoom().getCapacity());
 			room.setDuration(r.getduration());
+			room.setReservedTime(r.getTime());
 			room.setPatronId(r.getPatron().getId());
 			room.setPatronName(r.getPatron().getName());
 			room.setPresentorTools(r.getRoom().getHasPresenterTools());
@@ -81,7 +77,7 @@ public class CheckedOutRoomController {
 	}
 	
 	//Show all rooms checked out by a single patron
-	@GetMapping("/reservations/patron/{pid}")
+	@GetMapping("/reservation/patron/{pid}")
 	public List<CheckedOutRoomDto> showPatronReservations(@PathVariable("pid") Integer pid){
 		List<CheckedOutRoom> reservation = checkedOutRoomRepository.showReservationsByPatron(pid);
 		List<CheckedOutRoomDto> resList = new ArrayList<>();
@@ -89,6 +85,7 @@ public class CheckedOutRoomController {
 			CheckedOutRoomDto room = new CheckedOutRoomDto();
 			room.setCapacity(r.getRoom().getCapacity());
 			room.setDuration(r.getduration());
+			room.setReservedTime(r.getTime());
 			room.setPatronId(r.getPatron().getId());
 			room.setPatronName(r.getPatron().getName());
 			room.setPresentorTools(r.getRoom().getHasPresenterTools());
@@ -99,12 +96,13 @@ public class CheckedOutRoomController {
 		return resList;
 	}
 	//Show a specific room by room number
-	@GetMapping("/reservations/room/{rNum}")
+	@GetMapping("/reservation/room/{rNum}")
 	public CheckedOutRoomDto showRoomReservation(@PathVariable("rNum") Integer rNum) {
 		CheckedOutRoom reservation = checkedOutRoomRepository.showReservationByRoomNum(rNum);
 		CheckedOutRoomDto room = new CheckedOutRoomDto();
 		room.setCapacity(reservation.getRoom().getCapacity());
 		room.setDuration(reservation.getduration());
+		room.setReservedTime(reservation.getTime());
 		room.setPatronId(reservation.getPatron().getId());
 		room.setPatronName(reservation.getPatron().getName());
 		room.setPresentorTools(reservation.getRoom().getHasPresenterTools());
@@ -118,7 +116,7 @@ public class CheckedOutRoomController {
 		checkedOutRoomRepository.deleteReservation(rNum);
 	}
 	//Edit reservation - room, date, patron
-	@PutMapping("/reservation/cPatron")
+	@PutMapping("/reservation/update/patron")
 	public void changePatron(@RequestParam(name="pid") Integer pid, @RequestParam(name="rNum") Integer rNum) {
 		Optional<CheckedOutRoom> reservation = Optional.ofNullable(checkedOutRoomRepository.showReservationByRoomNum(rNum));
 		if(!reservation.isPresent()) {
@@ -127,7 +125,7 @@ public class CheckedOutRoomController {
 		checkedOutRoomRepository.changeReservationPatron(pid, rNum);
 	}
 
-	@PutMapping("/reservation/cRoom")
+	@PutMapping("/reservation/update/room")
 	public void changeRoom(@RequestParam(name="old") Integer oNum, @RequestParam(name="new") Integer nNum) {
 		System.out.println(nNum);
 		Optional<CheckedOutRoom> oldRoom = Optional.ofNullable(checkedOutRoomRepository.showReservationByRoomNum(oNum));
@@ -143,7 +141,7 @@ public class CheckedOutRoomController {
 		checkedOutRoomRepository.changeReservationRoom(nNum,reservation.getPatron().getId());
 	}
 	
-	@PutMapping("/reservation/cDate")
+	@PutMapping("/reservation/update/date")
 	public void changeDate(@RequestParam(name="rNum") Integer rNum, @RequestParam(name="strDate") String strDate) {
 		Optional<CheckedOutRoom> reservation = Optional.ofNullable(checkedOutRoomRepository.showReservationByRoomNum(rNum));
 		if(!reservation.isPresent()) {
@@ -152,7 +150,7 @@ public class CheckedOutRoomController {
 		checkedOutRoomRepository.changeReservationDate(LocalDate.parse(strDate), strDate,reservation.get().getPatron().getId());
 	}
 	
-	@PutMapping("/reservation/cDuration")
+	@PutMapping("/reservation/update/duration")
 	public void changeDuration(@RequestParam(name="rNum") Integer rNum, @RequestParam(name="time") int time) {
 		Optional<CheckedOutRoom> reservation = Optional.ofNullable(checkedOutRoomRepository.showReservationByRoomNum(rNum));
 		if(!reservation.isPresent()) {

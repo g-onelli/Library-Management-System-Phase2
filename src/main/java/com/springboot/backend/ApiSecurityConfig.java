@@ -46,12 +46,25 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers(HttpMethod.POST, "/fee/{pid}").authenticated()
 			.antMatchers(HttpMethod.GET, "/fee").authenticated()
 			.antMatchers(HttpMethod.GET, "/fee/{id}").authenticated()
-			.antMatchers(HttpMethod.PUT, "/fee/{id}").authenticated()		
-			//.anyRequest().denyAll() //Anything not declared will be denied
+			.antMatchers(HttpMethod.PUT, "/fee/{id}").authenticated()
+			.antMatchers(HttpMethod.GET, "/rooms").authenticated()
+			.antMatchers(HttpMethod.GET, "/rooms/open").authenticated()
+			.antMatchers(HttpMethod.GET, "/rooms/single/{rid}").authenticated()
+			.antMatchers(HttpMethod.POST, "/rooms/add").authenticated()
+			.antMatchers(HttpMethod.PUT, "/rooms/update/{rid}").authenticated()
+			.antMatchers(HttpMethod.DELETE, "/rooms/delete/{rid}").authenticated()
+			.antMatchers(HttpMethod.GET, "/reservations").authenticated()
+			.antMatchers(HttpMethod.GET, "/reservation/patron/{pid}").authenticated()
+			.antMatchers(HttpMethod.GET, "/reservation/room/{rNum}").authenticated()
+			.antMatchers(HttpMethod.POST, "/reservation/create").authenticated()
+			.antMatchers(HttpMethod.PUT, "/reservation/update/patron").authenticated()
+			.antMatchers(HttpMethod.PUT, "/reservation/update/room").authenticated()
+			.antMatchers(HttpMethod.PUT, "/reservation/update/date").authenticated()
+			.antMatchers(HttpMethod.PUT, "/reservation/update/duration").authenticated()
 			.and().httpBasic()
 			.and().csrf().disable();
 }
-	//.anyRequest().permitAll() //Anything not declared will be denied  originally .denyAll() make sure to return after done
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
 	//build our custom authManager

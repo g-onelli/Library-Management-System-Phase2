@@ -31,20 +31,35 @@ public class CheckedOutRoom {
 	private LocalDate reservedDate;
 	
 	@Column
-	private int duration;
+	private double duration;
+	
+	@Column
+	private double time;
+	
+	@Column
+	private String startTime;
 	
 
 	public CheckedOutRoom() {
 		super();
 	}
 	
-	public CheckedOutRoom(String strDate, Room room, Patron patron, int duration) {
+
+
+
+	public CheckedOutRoom(String strDate, Room room, Patron patron, LocalDate reservedDate, double duration,
+			double time, String startTime) {
 		super();
 		this.strDate = strDate;
 		this.room = room;
 		this.patron = patron;
+		this.reservedDate = reservedDate;
 		this.duration = duration;
+		this.time = time;
+		this.startTime = startTime;
 	}
+
+
 
 
 	public String getStrDate() {
@@ -79,12 +94,36 @@ public class CheckedOutRoom {
 		this.patron = patron;
 	}
 
-	public int getduration() {
+	public double getduration() {
 		return duration;
 	}
 
-	public void setduration(int duration) {
+	public void setduration(double duration) {
 		this.duration = duration;
+	}
+	
+	public double getTime() {
+		return time;
+	}
+
+	public void setTime(double time) {
+		this.time = time;
+	}
+
+	public double getDuration() {
+		return duration;
+	}
+
+	public void setDuration(double duration) {
+		this.duration = duration;
+	}
+
+	public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
 	}
 
 	@Override

@@ -1,11 +1,14 @@
 package com.springboot.backend.dto;
 
 public class CheckedOutRoomDto {
+	private int id;
 	private int roomNumber;
 	private String patronName;
 	private Integer patronId;
 	private String reservedDate;
-	private int duration;
+	private double reservedTime;
+	private String startTime;
+	private double duration;
 	private int capacity;
 	private int presentorTools;
 	
@@ -34,10 +37,10 @@ public class CheckedOutRoomDto {
 	public void setReservedDate(String reservedDate) {
 		this.reservedDate = reservedDate;
 	}
-	public int getDuration() {
+	public double getDuration() {
 		return duration;
 	}
-	public void setDuration(int duration) {
+	public void setDuration(double duration) {
 		this.duration = duration;
 	}
 	public int getCapacity() {
@@ -52,6 +55,19 @@ public class CheckedOutRoomDto {
 	public void setPresentorTools(int presentorTools) {
 		this.presentorTools = presentorTools;
 	}
+	public double getReservedTime() {
+		return reservedTime;
+	}
+	public void setReservedTime(double reservedTime) {
+		this.reservedTime = reservedTime;
+	}
+	public String getStartTime() {
+		return startTime;
+	}
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+	
 	
 	
 }

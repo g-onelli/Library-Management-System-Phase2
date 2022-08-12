@@ -1,6 +1,7 @@
 package com.springboot.backend.dto;
 
 public class RoomDto {
+	private Integer id;
 	private Integer roomNumber;
 	private Integer capacity;
 	private Integer hasPresenterTools;

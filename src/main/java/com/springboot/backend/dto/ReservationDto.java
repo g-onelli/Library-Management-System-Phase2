@@ -3,7 +3,8 @@ package com.springboot.backend.dto;
 public class ReservationDto {
 	private int patronId;
 	private int roomNumber;
-	private int duration;
+	private double duration;
+	private String time;
 	private String strDate;
 	
 	
@@ -19,10 +20,10 @@ public class ReservationDto {
 	public void setRoomNumber(int roomNumber) {
 		this.roomNumber = roomNumber;
 	}
-	public int getDuration() {
+	public double getDuration() {
 		return duration;
 	}
-	public void setDuration(int duration) {
+	public void setDuration(double duration) {
 		this.duration = duration;
 	}
 	public String getStrDate() {
@@ -31,5 +32,12 @@ public class ReservationDto {
 	public void setStrDate(String strDate) {
 		this.strDate = strDate;
 	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	
 	
 }

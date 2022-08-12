@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.backend.dto.RoomDto;
@@ -23,15 +24,30 @@ public class RoomsController {
 	@Autowired
 	private RoomsRepository roomsRepository;
 	
-	@PostMapping("/aRooms")
+	@PostMapping("/rooms/add")
 	public void postRoom(@RequestBody Room rooms) {
 		roomsRepository.save(rooms);
 	}
 	
-	@GetMapping("/rooms/{strYr}/{strMon}/{strDay}")
-	public List<RoomDto> getAllOpenRooms(@PathVariable("strYr") String strYr,@PathVariable("strMon") String strMon,@PathVariable("strDay") String strDay){
-		String strDate = strYr+"-"+strMon+"-"+strDay;
-		List<Integer> rNums = roomsRepository.getRoomNumbers(LocalDate.parse(strDate));
+	@GetMapping("/rooms/open")
+	public List<RoomDto> getAllOpenRooms(@RequestParam(name="strDate") String strDate, @RequestParam(name="strTime") String strTime){
+		String[] splitTime = strTime.split(":");
+		int hr = Integer.parseInt(splitTime[0]);
+		int min = Integer.parseInt(splitTime[1])+30;
+		if((min+30)>=60) {
+			hr+=1;
+			min= min-60;
+		}
+		if(hr>=25) {
+			hr-=25;
+		}
+		String strEndTime = Integer.toString(hr)+"."+Integer.toString(min);
+		Double endTime = Double.parseDouble(strEndTime);
+		strTime = strTime.replace(":", ".");
+		Double startTime = Double.parseDouble(strTime);
+		System.out.println(startTime);
+		System.out.println(endTime);
+		List<Integer> rNums = roomsRepository.getRoomNumbers(strDate, startTime,endTime);
 		List<Room> rList = roomsRepository.showOpenRooms(rNums);
 		List<RoomDto> dtoList = new ArrayList<>();
 		rList.stream().forEach(r->{
@@ -73,12 +89,12 @@ public class RoomsController {
 		return dtoList;
 	}
 	
-	@DeleteMapping("/rooms/{rid}")
+	@DeleteMapping("/rooms/delete/{rid}")
 	public void deleteRoomById(@PathVariable("rid") Integer rid) {
 		roomsRepository.deleteById(rid);
 	}
 	
-	@PutMapping("/rooms/{rid}")
+	@PutMapping("/rooms/update/{rid}")
 	public Room updateRoomById(@PathVariable("rid") Integer rid, @RequestBody RoomDto uRoomValue){
 		Optional<Room> optRoom = Optional.of(roomsRepository.showRoomByNum(rid));
 		if(!optRoom.isPresent()) {
