@@ -56,11 +56,11 @@ const routes: Routes = [
   data: {
     role: 'PATRON'
   }},
-  {path:'libbook', component: LibbookComponent, canActivate:[AuthguardService],
+  {path:'libbook', component: BookComponent, canActivate:[AuthguardService],
   data: {
     role: 'LIBRARIAN'
   }},
-  {path:'libvideo', component: LibvideoComponent, canActivate:[AuthguardService],
+  {path:'libvideo', component: VideoComponent, canActivate:[AuthguardService],
   data: {
     role: 'LIBRARIAN'
   }},
