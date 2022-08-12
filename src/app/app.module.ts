@@ -42,6 +42,8 @@ import { VideoListComponent } from './component/video/video-list/video-list.comp
 import { LibrarianLoginComponent } from './auth/component/librarian-login/librarian-login.component';
 import { LibfeeComponent } from './component/libfee/libfee.component';
 import { LibroomComponent } from './component/libroom/libroom.component';
+import { ProfileComponent } from './auth/component/profile/profile.component';
+import { ProfileBoxComponent } from './auth/component/profile-box/profile-box.component';
 
 
 @NgModule({
@@ -84,6 +86,8 @@ import { LibroomComponent } from './component/libroom/libroom.component';
     LibrarianLoginComponent,
     LibfeeComponent,
     LibroomComponent,
+    ProfileComponent,
+    ProfileBoxComponent,
   ],
   imports: [
     BrowserModule,
