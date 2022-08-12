@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ProfilePatron } from 'src/app/model/patron.model';
 import { environment } from 'src/environments/environment';
-import { PatronEditDto, PatronSignupDto, User, UserResetDto } from '../model/user.model';
+import { PatronSignupDto, User, UserResetDto } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,16 +17,20 @@ export class AuthService {
   loginApi:string;
   roleApi: string;
   signUpApi: string;
+  profileApi: string;
   roleAs: string;
   getUserSecurityInfoApi: string;
   securityAnswerValidationApi:string;
   passwordResetAPi: string;
+  usernameApi: string;
 
   constructor(private http: HttpClient) {
     this.username='';
     this.loginApi=environment.serverUrl +'/login';
     this.signUpApi=environment.serverUrl +'/signup';
     this.roleApi= environment.serverUrl +'/role';
+    this.profileApi= environment.serverUrl +'/profile';
+    this.usernameApi= environment.serverUrl +'/patron/username';
     this.getUserSecurityInfoApi=environment.serverUrl + '/user/security/info/';
     this.securityAnswerValidationApi=environment.serverUrl + '/validate-security-answer/';
     this.passwordResetAPi=environment.serverUrl +'/user/reset-password/';
@@ -60,6 +65,24 @@ export class AuthService {
       })
     };
     return this.http.get<User>(this.roleApi, httpOptions);
+  }
+  getUserByUsername(credentials: string) : Observable<ProfilePatron>{
+    let httpOptions={
+      headers : new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization' : 'basic ' + credentials
+      })
+    };
+    return this.http.get<ProfilePatron>(this.usernameApi,httpOptions);
+  }
+  editProfile(patronProfileDto: ProfilePatron) :Observable<ProfilePatron>{
+    let httpOptions={
+      headers : new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization' : 'basic ' + localStorage.getItem('credentials')
+      })
+    };
+    return this.http.put<ProfilePatron>(this.profileApi,patronProfileDto,httpOptions);
   }
   getUserSecurityDetailsByUsername(username: string): Observable<UserResetDto> {
     return this.http.get<UserResetDto>(this.getUserSecurityInfoApi + username);
