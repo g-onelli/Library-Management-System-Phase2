@@ -10,7 +10,7 @@ public class RequestDto {
 	private String author;
 	private Integer pid;
 	private String pname;
-	private Integer totalpages;
+	private Integer tpages;
 	public Integer getId() {
 		return id;
 	}
@@ -53,18 +53,19 @@ public class RequestDto {
 	public void setPname(String pname) {
 		this.pname = pname;
 	}
-	public Integer getTotalpages() {
-		return totalpages;
+	public Integer getTpages() {
+		return tpages;
 	}
-	public void setTotalpages(Integer totalpages) {
-		this.totalpages = totalpages;
+	public void setTpages(Integer tpages) {
+		this.tpages = tpages;
 	}
 	@Override
 	public String toString() {
 		return "RequestDto [id=" + id + ", description=" + description + ", submissiondate=" + submissiondate
-				+ ", title=" + title + ", author=" + author + ", pid=" + pid + ", pname=" + pname + ", totalpages="
-				+ totalpages + "]";
+				+ ", title=" + title + ", author=" + author + ", pid=" + pid + ", pname=" + pname + ", tpages=" + tpages
+				+ "]";
 	}
+	
 	
 	
 }

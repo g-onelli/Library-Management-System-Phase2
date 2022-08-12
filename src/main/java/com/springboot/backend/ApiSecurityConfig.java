@@ -36,6 +36,8 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers(HttpMethod.GET, "/patrons").authenticated() //View patrons (GET)
 			.antMatchers(HttpMethod.DELETE, "/patrons/{id}/").authenticated() //Remove patrons(DELETE)
 			.antMatchers(HttpMethod.PUT, "/patrons/").authenticated()
+			.antMatchers(HttpMethod.GET, "/patron/username").authenticated()
+			.antMatchers(HttpMethod.PUT, "/profile").authenticated()
 			.antMatchers(HttpMethod.PUT, "/patrons/card/{id}").authenticated() //Renew library card (PUT)
 			.antMatchers(HttpMethod.PUT, "/patrons/balance/{id}").authenticated()//Update patron balance (PUT)
 			.antMatchers(HttpMethod.POST, "/event/{lid}").authenticated()
@@ -47,6 +49,14 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers(HttpMethod.GET, "/fee").authenticated()
 			.antMatchers(HttpMethod.GET, "/fee/{id}").authenticated()
 			.antMatchers(HttpMethod.PUT, "/fee/{id}").authenticated()		
+			.antMatchers(HttpMethod.GET, "/book").authenticated() //View books (GET)
+			.antMatchers(HttpMethod.GET, "/video").authenticated() //View videos  (GET)
+			.antMatchers(HttpMethod.GET, "/checkedoutbook").authenticated() //View checked out books (GET)
+			.antMatchers(HttpMethod.POST, "/checkedoutbook/{pid}/{bid}").authenticated() //Check out a book (POST)
+			.antMatchers(HttpMethod.DELETE, "/checkedoutbook/{bid}").authenticated() //Check in a book (DELETE)
+			.antMatchers(HttpMethod.GET, "/checkedoutvideo").authenticated() //View checked out videos (GET)
+			.antMatchers(HttpMethod.POST, "/checkedoutvideo/{pid}/{vid}").authenticated()//Check out a video (POST)
+			.antMatchers(HttpMethod.DELETE, "/checkedoutvideo/{vid}").authenticated()//Check in a video (DELETE)
 			//.anyRequest().denyAll() //Anything not declared will be denied
 			.and().httpBasic()
 			.and().csrf().disable();
@@ -57,14 +67,14 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 	//build our custom authManager
 		auth.authenticationProvider(getCustomProvider());
 		
-}			
+}
 
 
-	@Bean
-	public PasswordEncoder getPasswordEncoder(){
-		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		return passwordEncoder;
-	}
+    @Bean
+    PasswordEncoder getPasswordEncoder() {
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        return passwordEncoder;
+    }
 	private DaoAuthenticationProvider getCustomProvider() {
 		DaoAuthenticationProvider dao = new DaoAuthenticationProvider();
 		dao.setPasswordEncoder(getPasswordEncoder());
