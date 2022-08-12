@@ -36,6 +36,8 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers(HttpMethod.GET, "/patrons").authenticated() //View patrons (GET)
 			.antMatchers(HttpMethod.DELETE, "/patrons/{id}/").authenticated() //Remove patrons(DELETE)
 			.antMatchers(HttpMethod.PUT, "/patrons/").authenticated()
+			.antMatchers(HttpMethod.GET, "/patron/username").authenticated()
+			.antMatchers(HttpMethod.PUT, "/profile").authenticated()
 			.antMatchers(HttpMethod.PUT, "/patrons/card/{id}").authenticated() //Renew library card (PUT)
 			.antMatchers(HttpMethod.PUT, "/patrons/balance/{id}").authenticated()//Update patron balance (PUT)
 			.antMatchers(HttpMethod.POST, "/event/{lid}").authenticated()
