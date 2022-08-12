@@ -58,10 +58,25 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers(HttpMethod.POST, "/checkedoutvideo/{pid}/{vid}").authenticated()//Check out a video (POST)
 			.antMatchers(HttpMethod.DELETE, "/checkedoutvideo/{vid}").authenticated()//Check in a video (DELETE)
 			//.anyRequest().denyAll() //Anything not declared will be denied
+			.antMatchers(HttpMethod.PUT, "/fee/{id}").authenticated()
+			.antMatchers(HttpMethod.GET, "/rooms").authenticated()
+			.antMatchers(HttpMethod.GET, "/rooms/open").authenticated()
+			.antMatchers(HttpMethod.GET, "/rooms/single/{rid}").authenticated()
+			.antMatchers(HttpMethod.POST, "/rooms/add").authenticated()
+			.antMatchers(HttpMethod.PUT, "/rooms/update/{rid}").authenticated()
+			.antMatchers(HttpMethod.DELETE, "/rooms/delete/{rid}").authenticated()
+			.antMatchers(HttpMethod.GET, "/reservations").authenticated()
+			.antMatchers(HttpMethod.GET, "/reservation/patron/{pid}").authenticated()
+			.antMatchers(HttpMethod.GET, "/reservation/room/{rNum}").authenticated()
+			.antMatchers(HttpMethod.POST, "/reservation/create").authenticated()
+			.antMatchers(HttpMethod.PUT, "/reservation/update/patron").authenticated()
+			.antMatchers(HttpMethod.PUT, "/reservation/update/room").authenticated()
+			.antMatchers(HttpMethod.PUT, "/reservation/update/date").authenticated()
+			.antMatchers(HttpMethod.PUT, "/reservation/update/duration").authenticated()
 			.and().httpBasic()
 			.and().csrf().disable();
 }
-
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
 	//build our custom authManager
