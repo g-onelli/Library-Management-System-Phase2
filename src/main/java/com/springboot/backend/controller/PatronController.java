@@ -24,15 +24,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.springboot.backend.dto.PatronDto;
 import com.springboot.backend.dto.PatronEditDto;
 import com.springboot.backend.dto.PatronIdDto;
+import com.springboot.backend.dto.PatronProfileDto;
 import com.springboot.backend.dto.UserInfoDto;
 import com.springboot.backend.model.Patron;
 import com.springboot.backend.model.UserInfo;
 import com.springboot.backend.repository.PatronRepository;
+import com.springboot.backend.repository.UserRepository;
 
 @RestController
 public class PatronController {
 	@Autowired //<- Spring will wire it to PatronsRepository Interface. 
 	private PatronRepository patronRepository; 
+	@Autowired
+	private UserRepository userRepository; 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	//Add a new patron
@@ -115,6 +119,17 @@ public class PatronController {
 		}
 		else
 			throw new RuntimeException("ID is invalid");
+	}
+	@GetMapping("/patron/username")
+	public PatronProfileDto getUserByUsername(Principal principal) {
+		Patron info = patronRepository.getByUsername(principal.getName());
+		PatronProfileDto dto = new PatronProfileDto(info.getId(), info.getName(),info.getCardexpirationdate(), info.getUserinfo().getId(), info.getUserinfo().getUsername(), info.getUserinfo().getSecurityQuestion(), info.getUserinfo().getSecurityAnswer());
+		return dto; 
+	}
+	@PutMapping("/profile")
+	public void updatePatronProfile(@RequestBody PatronProfileDto dto) {
+		patronRepository.updateProfile(dto.getId(), dto.getName());	
+		userRepository.updateProfile(dto.getUsername(), dto.getSecurityQuestion(), dto.getSecurityAnswer());
 	}
 	//update patron balance (PUT)
 	@PutMapping("/patrons/balance/{id}")

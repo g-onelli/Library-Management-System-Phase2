@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.springboot.backend.model.Video;
 import com.springboot.backend.repository.VideoRepository;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class VideoController {
 	
 	@Autowired
@@ -79,6 +81,24 @@ public class VideoController {
 		existingVideo.setGenre(existingVideo.getGenre());
 		return videoRepository.save(existingVideo);
 		
+	}
+	
+	@GetMapping("/video/available")
+	public List<VideoDto> getAvailableVideos(){
+		List<Video> list = videoRepository.getAvailableVideos();
+		List<VideoDto> listDto = new ArrayList<>();
+		
+		list.stream().forEach(v ->{
+			VideoDto dto = new VideoDto(v.getId(),
+					v.getTitle(),
+					v.getDirector(),
+					v.getReleaseDate(),
+					v.getCallNumber(),
+					v.getGenre());
+			listDto.add(dto);
+		});
+		
+		return listDto;
 	}
 
 }

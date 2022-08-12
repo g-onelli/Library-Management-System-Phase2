@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.springboot.backend.model.Book;
 import com.springboot.backend.repository.BookRepository;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class BookController {
 	
 	@Autowired
@@ -79,6 +81,24 @@ public class BookController {
 		existingBook.setGenre(newBook.getGenre());
 		return bookRepository.save(existingBook);
 		
+	}
+	
+	@GetMapping("/book/available")
+	public List<BookDto> getAvailableBooks(){
+		List<Book> list = bookRepository.getAvailableBooks();
+		List<BookDto> listDto = new ArrayList<>();
+		
+		list.stream().forEach(b ->{
+			BookDto dto = new BookDto(b.getId(),
+					b.getTitle(),
+					b.getAuthor(),
+					b.getPublisher(),
+					b.getCallNumber(),
+					b.getGenre());
+			listDto.add(dto);
+			
+		});
+		return listDto;
 	}
 	
 	
