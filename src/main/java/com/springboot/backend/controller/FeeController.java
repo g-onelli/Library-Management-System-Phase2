@@ -83,9 +83,13 @@ public class FeeController {
 				dto.setDatePaid(p.getDatePaid());
 				dto.setFeeType(p.getFeeType());
 				dto.setTotal(p.getTotal());
-				dto.setPatronBalance(p.getPatron().getBalance());
 				listDto.add(dto);
 			});
+			if(list.size() == 0) {
+				FeeDto dto = new FeeDto();
+				dto.setPatronBalance(info.getBalance());
+				listDto.add(dto);
+			}
 			return listDto;
 		}
 		return null;
