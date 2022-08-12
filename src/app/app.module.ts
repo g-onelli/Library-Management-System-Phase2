@@ -37,6 +37,8 @@ import { LibrequestAddComponent } from './component/librequest/librequest-add/li
 import { LibrequestListComponent } from './component/librequest/librequest-list/librequest-list.component';
 import { AvailablebooksComponent } from './component/availablebooks/availablebooks.component';
 import { AvailablevideosComponent } from './component/availablevideos/availablevideos.component';
+import { BookListComponent } from './component/book/book-list/book-list.component';
+import { VideoListComponent } from './component/video/video-list/video-list.component';
 import { LibrarianLoginComponent } from './auth/component/librarian-login/librarian-login.component';
 import { LibfeeComponent } from './component/libfee/libfee.component';
 import { LibroomComponent } from './component/libroom/libroom.component';
@@ -79,6 +81,8 @@ import { ProfileBoxComponent } from './auth/component/profile-box/profile-box.co
     LibrequestListComponent,
     AvailablebooksComponent,
     AvailablevideosComponent,
+    BookListComponent,
+    VideoListComponent,
     LibrarianLoginComponent,
     LibfeeComponent,
     LibroomComponent,
