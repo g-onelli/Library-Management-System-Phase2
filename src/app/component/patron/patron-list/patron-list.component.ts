@@ -5,7 +5,7 @@ import { PatronService } from 'src/app/service/patron.service';
 @Component({
   selector: 'app-patron-list',
   templateUrl: './patron-list.component.html',
-  styleUrls: ['./patron-list.component.css']
+  styleUrls: ['./patron-list.component.less']
 })
 export class PatronListComponent implements OnInit {
 
@@ -42,5 +42,7 @@ export class PatronListComponent implements OnInit {
     //attach the updated value to the subject
     this.patronService.ppage$.next(this.page);
   }
-
+fill(){
+  
+}
 }

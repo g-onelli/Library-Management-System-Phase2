@@ -37,7 +37,20 @@ import { LibrequestAddComponent } from './component/librequest/librequest-add/li
 import { LibrequestListComponent } from './component/librequest/librequest-list/librequest-list.component';
 import { AvailablebooksComponent } from './component/availablebooks/availablebooks.component';
 import { AvailablevideosComponent } from './component/availablevideos/availablevideos.component';
+import { BookListComponent } from './component/book/book-list/book-list.component';
+import { VideoListComponent } from './component/video/video-list/video-list.component';
 import { LibrarianLoginComponent } from './auth/component/librarian-login/librarian-login.component';
+import { LibfeeComponent } from './component/libfee/libfee.component';
+import { LibroomComponent } from './component/libroom/libroom.component';
+import { ProfileComponent } from './auth/component/profile/profile.component';
+import { ProfileBoxComponent } from './auth/component/profile-box/profile-box.component';
+import { ChartComponent } from './component/libdashboard/chart/chart.component';
+import {ChartModule} from 'primeng/chart';
+import {CardModule} from 'primeng/card';
+import { AppConfigService } from './service/app-config.service';
+import { CardComponent } from './component/libdashboard/card/card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {SplitterModule} from 'primeng/splitter';
 
 
 @NgModule({
@@ -75,16 +88,28 @@ import { LibrarianLoginComponent } from './auth/component/librarian-login/librar
     LibrequestListComponent,
     AvailablebooksComponent,
     AvailablevideosComponent,
+    BookListComponent,
+    VideoListComponent,
     LibrarianLoginComponent,
+    LibfeeComponent,
+    LibroomComponent,
+    ProfileComponent,
+    ProfileBoxComponent,
+    ChartComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule, 
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ChartModule,
+    CardModule,
+    SplitterModule
   ],
-  providers: [],
+  providers: [AppConfigService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

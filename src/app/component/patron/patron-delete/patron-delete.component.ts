@@ -6,7 +6,7 @@ import { PatronService } from 'src/app/service/patron.service';
 @Component({
   selector: 'app-patron-delete',
   templateUrl: './patron-delete.component.html',
-  styleUrls: ['./patron-delete.component.css']
+  styleUrls: ['./patron-delete.component.less']
 })
 export class PatronDeleteComponent implements OnInit {
 
@@ -20,6 +20,7 @@ export class PatronDeleteComponent implements OnInit {
     this.patronForm = new FormGroup({
       id: new FormControl('', [Validators.required,Validators.pattern(/^[0-9 ]+$/)])
     });
+    this.msg='';
   }
 onFormSubmit(){
   this.id = this.patronForm.value.id;

@@ -8,3 +8,12 @@ export class Patron{
     role: string;
     totalpages?: number;
 }
+export class ProfilePatron{
+    id?: number;
+    name: string;
+    cardexpirationdate?: string;
+    uid?: number;
+    username?: string;
+    securityQuestion: string;
+    securityAnswer: string;
+}

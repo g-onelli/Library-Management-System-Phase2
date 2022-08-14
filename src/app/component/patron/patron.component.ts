@@ -6,7 +6,7 @@ import { PatronService } from 'src/app/service/patron.service';
 @Component({
   selector: 'app-patron',
   templateUrl: './patron.component.html',
-  styleUrls: ['./patron.component.css']
+  styleUrls: ['./patron.component.less']
 })
 export class PatronComponent implements OnInit {
   patrons: Patron[];

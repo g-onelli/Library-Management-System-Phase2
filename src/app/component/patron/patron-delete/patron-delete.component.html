@@ -1,11 +1,24 @@
-<span *ngIf="!(msg =='')">{{msg}}</span>
+<div class="box-listagem__item">
+    <div class="box-listagem__inner">
+        <div class="box_listagem__field">
 <form (submit)="onFormSubmit()" [formGroup]="patronForm">
-    <label>Enter Patron Id: </label>
-    <input type="text" id="id" formControlName="id">
+    <span *ngIf="!(msg =='')">{{msg}}</span><br />
+    <div class="field">
+    <span class="field--title">Enter Patron Id: </span>
+    <div class="simple-input">
+        <div class="bordered">
+          <div class="simple-input--inner">
+    <input class="simple-input" type="text" id="id" formControlName="id">
+</div>
+</div>
     <span *ngIf="patronForm.controls['id'].invalid && patronForm.controls['id'].touched">
         <span *ngIf="patronForm.controls['id'].errors['required']"> Id is Required</span>
         <span *ngIf="patronForm.controls['id'].errors['pattern']">Use the patron list to find an Id(Number)</span>
         </span>
     <br /><br />
-    <input type="submit" value="Delete Patron" [disabled]="!patronForm.valid">
+    </div>
+    <input class="myButton" type="submit" value="Delete Patron" [disabled]="!patronForm.valid">
+</div>
 </form>
+</div></div>
+</div>

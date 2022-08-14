@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
-  styleUrls: ['./request.component.css']
+  styleUrls: ['./request.component.less']
 })
 export class RequestComponent implements OnInit {
 
