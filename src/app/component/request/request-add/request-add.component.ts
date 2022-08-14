@@ -8,7 +8,7 @@ import { RequestService } from 'src/app/service/request.service';
 @Component({
   selector: 'app-request-add',
   templateUrl: './request-add.component.html',
-  styleUrls: ['./request-add.component.css']
+  styleUrls: ['./request-add.component.less']
 })
 export class RequestAddComponent implements OnInit {
   requestDto: Requests;
