@@ -51,6 +51,8 @@ import { AppConfigService } from './service/app-config.service';
 import { CardComponent } from './component/libdashboard/card/card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {SplitterModule} from 'primeng/splitter';
+import { SaveRoomComponent } from './component/room/save-room/save-room.component';
+import { ShowOpenComponent } from './component/room/show-open/show-open.component';
 
 
 @NgModule({
@@ -97,6 +99,8 @@ import {SplitterModule} from 'primeng/splitter';
     ProfileBoxComponent,
     ChartComponent,
     CardComponent,
+    SaveRoomComponent,
+    ShowOpenComponent,
   ],
   imports: [
     BrowserModule,
