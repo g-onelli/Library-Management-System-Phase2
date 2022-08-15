@@ -23,7 +23,10 @@ export class ShowOpenComponent implements OnInit {
   ngOnInit(): void {
     this.checkDateForm = new FormGroup({
       date: new FormControl("",[Validators.required]),
-      time: new FormControl("",[Validators.required,Validators.pattern(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/)])
+      time: new FormControl("",
+      [Validators.required,
+        Validators
+        .pattern(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/)])
     })
   }
 

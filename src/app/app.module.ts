@@ -53,6 +53,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {SplitterModule} from 'primeng/splitter';
 import { SaveRoomComponent } from './component/room/save-room/save-room.component';
 import { ShowOpenComponent } from './component/room/show-open/show-open.component';
+import { ShowReserveComponent } from './component/room/show-reserve/show-reserve.component';
 
 
 @NgModule({
@@ -101,6 +102,7 @@ import { ShowOpenComponent } from './component/room/show-open/show-open.componen
     CardComponent,
     SaveRoomComponent,
     ShowOpenComponent,
+    ShowReserveComponent,
   ],
   imports: [
     BrowserModule,

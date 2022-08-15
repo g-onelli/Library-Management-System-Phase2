@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { checkedoutroom } from '../model/checkedoutroom.model';
 import { reservation } from '../model/reservation.model';
 import { room } from '../model/room.model';
 
@@ -11,11 +12,12 @@ export class RoomService {
     //API Calls
     getRoomsAPI: string;
     makeReserveAPI:string;
-    //"http://localhost:8080/";
+    getReserveAPI:string;
 
   constructor(private http:HttpClient) {
     this.getRoomsAPI = "http://localhost:8080/rooms/open?"; 
     this.makeReserveAPI ="http://localhost:8080/reservation/create";
+    this.getReserveAPI = "http://localhost:8080/reservation/patron/";
   }
 
   public getOpenRooms(strDate:string,strTime:string):Observable<room[]>{
@@ -41,6 +43,19 @@ export class RoomService {
         'Authorization': 'basic ' + encodedCredentials
       })
     };
+    console.log(this.makeReserveAPI);
+    console.log(this.makeReservation);
     return this.http.post(this.makeReserveAPI,this.makeReservation,httpOptions);
+  }
+
+  public showReservations(pid:string):Observable<checkedoutroom[]>{
+    let encodedCredentials = localStorage.getItem('credentials');
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization': 'basic ' + encodedCredentials
+      })
+    };
+    return this.http.get<checkedoutroom[]>(this.getReserveAPI+pid,httpOptions);  
   }
 }
