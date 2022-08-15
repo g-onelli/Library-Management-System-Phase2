@@ -54,6 +54,10 @@ import {SplitterModule} from 'primeng/splitter';
 import { SaveRoomComponent } from './component/room/save-room/save-room.component';
 import { ShowOpenComponent } from './component/room/show-open/show-open.component';
 import { ShowReserveComponent } from './component/room/show-reserve/show-reserve.component';
+import { ShowRoomComponent } from './component/libroom/show-room/show-room.component';
+import { ShowReserveLibComponent } from './component/libroom/show-reserve-lib/show-reserve-lib.component';
+import { CreateRoomComponent } from './component/libroom/create-room/create-room.component';
+import { DeleteRoomComponent } from './component/libroom/delete-room/delete-room.component';
 
 
 @NgModule({
@@ -103,6 +107,10 @@ import { ShowReserveComponent } from './component/room/show-reserve/show-reserve
     SaveRoomComponent,
     ShowOpenComponent,
     ShowReserveComponent,
+    ShowRoomComponent,
+    ShowReserveLibComponent,
+    CreateRoomComponent,
+    DeleteRoomComponent,
   ],
   imports: [
     BrowserModule,

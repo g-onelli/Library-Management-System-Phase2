@@ -1,9 +1,5 @@
-<form (submit)="showReserve()" [formGroup]="formOne">
-    <label>Patron Id</label>
-    <input type="text" name="pid" formControlName="pid">
-    <input type="submit" value="show reservations">
+<button (click)="showReserves()"></button>
 
-</form>
 <div *ngIf="reservations!=[]">
     <div *ngFor="let r of reservations">
         Room Number: {{r.roomNumber}}

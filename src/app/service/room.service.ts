@@ -11,13 +11,17 @@ import { room } from '../model/room.model';
 export class RoomService {
     //API Calls
     getRoomsAPI: string;
+    getAllRoomsAPI:string;
     makeReserveAPI:string;
     getReserveAPI:string;
+    getAllReserveAPI:string;
 
   constructor(private http:HttpClient) {
     this.getRoomsAPI = "http://localhost:8080/rooms/open?"; 
     this.makeReserveAPI ="http://localhost:8080/reservation/create";
     this.getReserveAPI = "http://localhost:8080/reservation/patron/";
+    this.getAllReserveAPI="http://localhost:8080/reservations";
+    this.getAllRoomsAPI= "http://localhost:8080/rooms";
   }
 
   public getOpenRooms(strDate:string,strTime:string):Observable<room[]>{
@@ -57,5 +61,27 @@ export class RoomService {
       })
     };
     return this.http.get<checkedoutroom[]>(this.getReserveAPI+pid,httpOptions);  
+  }
+
+  public showAllReservations():Observable<checkedoutroom[]>{
+    let encodedCredentials = localStorage.getItem('credentials');
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization': 'basic ' + encodedCredentials
+      })
+    };
+    return this.http.get<checkedoutroom[]>(this.getAllReserveAPI,httpOptions);
+  }
+
+  public showAllRooms():Observable<room[]>{
+    let encodedCredentials = localStorage.getItem('credentials');
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization': 'basic ' + encodedCredentials
+      })
+    };
+    return this.http.get<room[]>(this.getAllRoomsAPI,httpOptions);
   }
 }
