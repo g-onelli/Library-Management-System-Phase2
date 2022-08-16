@@ -85,6 +85,11 @@ public class FeeController {
 				dto.setTotal(p.getTotal());
 				listDto.add(dto);
 			});
+			if(list.size() == 0) {
+				FeeDto dto = new FeeDto();
+				dto.setPatronBalance(info.getBalance());
+				listDto.add(dto);
+			}
 			return listDto;
 		}
 		return null;

@@ -77,4 +77,5 @@
 
 **Fees**
 - View Fees (GET)
+- Create Fees for Patrons (POST)
 - Pay Fees (PUT)
