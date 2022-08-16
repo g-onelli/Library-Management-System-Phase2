@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { checkedoutroom } from '../model/checkedoutroom.model';
 import { reservation } from '../model/reservation.model';
 import { room } from '../model/room.model';
+import { updateModel } from '../model/update.model';
 
 @Injectable({
   providedIn: 'root'
@@ -64,12 +65,12 @@ Librarian:
     this.getReserveAPI = "http://localhost:8080/reservation/patron/"; //finding a reservation based on patron
     this.getAllReserveAPI="http://localhost:8080/reservations"; //finding all reservations
     this.getAllRoomsAPI= "http://localhost:8080/rooms"; //finding all rooms
-    this.getARoomAPI="http://localhost:8080/room/"; //getting a specific room by room number
+    this.getARoomAPI="http://localhost:8080/rooms/single/"; //getting a specific room by room number
     this.addRoomAPI="http://localhost:8080/rooms/add";
 
     //Put Calls
     this.updatePatronAPI="http://localhost:8080/reservation/update/patron";
-    this.updateDateAPI="http://localhost:8080/reservation/update/date?";
+    this.updateDateAPI="http://localhost:8080/reservation/update/date";
     this.updateRoomAPI="http://localhost:8080/reservation/update/room";
     this.updateDurationAPI="http://localhost:8080/reservation/update/duration";
     this.editRoomAPI="http://localhost:8080/rooms/update/";
@@ -135,7 +136,9 @@ Librarian:
         'Authorization': 'basic ' + encodedCredentials
       })
     };
-    return this.http.get<room>(this.getARoomAPI,httpOptions);
+    console.log(this.getARoomAPI+rNum);
+    console.log(this.http.get<room>(this.getARoomAPI+rNum,httpOptions));
+    return this.http.get<room>(this.getARoomAPI+rNum,httpOptions);
   }
 
   public makeReservation(reserveRoom: reservation):Observable<reservation>{
@@ -149,7 +152,7 @@ Librarian:
       })
     };
     console.log(this.makeReserveAPI);
-    console.log(this.makeReservation);
+    console.log(reserveRoom);
     return this.http.post<reservation>(this.makeReserveAPI,reserveRoom,httpOptions);
   }
 
@@ -177,7 +180,7 @@ Librarian:
     return this.http.put<reservation>(this.updatePatronAPI+"?pid="+pid+"&rNum="+rNum,httpOptions);
   }
 
-  public updateResDate(rNum:string,strDate:string):Observable<reservation>{
+  public updateResDate(obj:updateModel):Observable<reservation>{
     console.log("We got in service.updateResDate");
     let encodedCredentials = localStorage.getItem('credentials');
     let httpOptions = {
@@ -186,10 +189,10 @@ Librarian:
         'Authorization': 'basic ' + encodedCredentials
       })
     };
-    return this.http.put<reservation>(this.updateDateAPI+"rNum="+rNum+"&strDate="+strDate,httpOptions);
+    return this.http.put<reservation>(this.updateDateAPI,obj,httpOptions);
   }
 
-  public updateResRoom(old:string,newR:string):Observable<reservation>{
+  public updateResRoom(obj:updateModel):Observable<reservation>{
     console.log("We got in service.updateresroom");
     let encodedCredentials = localStorage.getItem('credentials');
     let httpOptions = {
@@ -198,10 +201,10 @@ Librarian:
         'Authorization': 'basic ' + encodedCredentials
       })
     };
-    return this.http.put<reservation>(this.updateRoomAPI+"?old="+old+"&new="+newR,httpOptions);
+    return this.http.put<reservation>(this.updateRoomAPI,obj,httpOptions);
   }
 
-  public updateResDuration(rNum:string,time:string):Observable<reservation>{
+  public updateResDuration(obj:updateModel):Observable<reservation>{
     console.log("We got in service.updateresduration");
     let encodedCredentials = localStorage.getItem('credentials');
     let httpOptions = {
@@ -210,7 +213,7 @@ Librarian:
         'Authorization': 'basic ' + encodedCredentials
       })
     };
-    return this.http.put<reservation>(this.updateDurationAPI+"?rNum="+rNum+"&time="+time,httpOptions);
+    return this.http.put<reservation>(this.updateDurationAPI,obj,httpOptions);
   }
 
   public editOldRoom(rNum:string,roomObj:room):Observable<room>{

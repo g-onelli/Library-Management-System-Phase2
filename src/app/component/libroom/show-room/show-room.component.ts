@@ -11,21 +11,25 @@ import { RoomService } from 'src/app/service/room.service';
 export class ShowRoomComponent implements OnInit {
   roomList:room[];
   room:room;
-  formOne:FormGroup;
+  showOneRoomForm:FormGroup;
   constructor(private roomServices:RoomService) { }
 
   ngOnInit(): void {
-    rNum: new FormControl("",Validators.required);
-
+    this.showOneRoomForm=new FormGroup({
+      rNum: new FormControl("",Validators.required)}
+    );
+    
     this.roomServices.showAllRooms().subscribe(data=>{
         this.roomList=data;
       });
     }
 
   showSingleRoom(){
-    console.log(this.formOne.value.rNum);
-    this.roomServices.showOneRoom(this.formOne.value.rNum).subscribe(data=>{
+    console.log(this.showOneRoomForm.value.rNum);
+    this.roomServices.showOneRoom(this.showOneRoomForm.value.rNum).subscribe(data=>{
+      console.log(data);
       this.room = data;
+      
     })
     console.log(this.room);
   }

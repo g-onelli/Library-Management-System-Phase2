@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { reservation } from 'src/app/model/reservation.model';
 import { room } from 'src/app/model/room.model';
+import { updateModel } from 'src/app/model/update.model';
 import { RoomService } from 'src/app/service/room.service';
 
 @Component({
@@ -12,6 +13,7 @@ import { RoomService } from 'src/app/service/room.service';
 export class ChangeReserveComponent implements OnInit {
   changeResForm:FormGroup;
   check:reservation;
+  updateObj:updateModel;
   constructor(private roomService:RoomService) { }
 
   ngOnInit(): void {
@@ -30,19 +32,34 @@ export class ChangeReserveComponent implements OnInit {
   changeReserve(){
     switch(this.changeResForm.value.changeValue){
       case "date":{
-        this.roomService.updateResDate(this.changeResForm.value.rNum,this.changeResForm.value.sDate).subscribe(data=>{
+        this.updateObj={
+          roomNum:this.changeResForm.value.rNum,
+          strDate:this.changeResForm.value.sDate,
+          intValue:0
+        }
+        this.roomService.updateResDate(this.updateObj).subscribe(data=>{
           this.check=data;
         });
         break;
       }
       case "room":{
-        this.roomService.updateResRoom(this.changeResForm.value.rNum,this.changeResForm.value.nNum).subscribe(data=>{
+        this.updateObj={
+          roomNum:this.changeResForm.value.rNum,
+          strDate:"",
+          intValue:this.changeResForm.value.nNum
+        }
+        this.roomService.updateResRoom(this.updateObj).subscribe(data=>{
           this.check=data;
         });
         break;
       }
       case "length":{
-        this.roomService.updateResDuration(this.changeResForm.value.rNum,this.changeResForm.value.durT).subscribe(data=>{
+        this.updateObj={
+          roomNum:this.changeResForm.value.rNum,
+          strDate:"",
+          intValue:this.changeResForm.value.durT
+        }
+        this.roomService.updateResDuration(this.updateObj).subscribe(data=>{
           this.check=data;
         });
         break;
