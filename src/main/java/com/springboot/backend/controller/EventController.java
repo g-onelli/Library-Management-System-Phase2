@@ -26,7 +26,6 @@ import com.springboot.backend.repository.EventRepository;
 import com.springboot.backend.repository.LibrarianRepository;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200"})
 public class EventController {
 	
 	@Autowired

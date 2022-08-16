@@ -8,5 +8,6 @@ import com.springboot.backend.model.Librarian;
 
 
 public interface LibrarianRepository extends JpaRepository<Librarian, Integer>{
-	
+	@Query("select l from Librarian l where l.userinfo.username=?1")
+	Librarian getByUsername(String username);
 }
