@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,8 @@ import com.springboot.backend.model.Room;
 import com.springboot.backend.repository.RoomsRepository;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:8080")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class RoomsController {
 	@Autowired
 	private RoomsRepository roomsRepository;
@@ -47,8 +50,11 @@ public class RoomsController {
 		Double startTime = Double.parseDouble(strTime);
 		System.out.println(startTime);
 		System.out.println(endTime);
+		System.out.println(strDate);
 		List<Integer> rNums = roomsRepository.getRoomNumbers(strDate, startTime,endTime);
+		System.out.println(rNums);
 		List<Room> rList = roomsRepository.showOpenRooms(rNums);
+		System.out.println(rList);
 		List<RoomDto> dtoList = new ArrayList<>();
 		rList.stream().forEach(r->{
 			RoomDto dto = new RoomDto();
@@ -56,6 +62,9 @@ public class RoomsController {
 			dto.setCapacity(r.getCapacity());
 			dto.setHasPresenterTools(r.getHasPresenterTools());
 			dtoList.add(dto);
+		});
+		dtoList.stream().forEach(r->{
+			System.out.println(r);
 		});
 		return dtoList;
 	}
