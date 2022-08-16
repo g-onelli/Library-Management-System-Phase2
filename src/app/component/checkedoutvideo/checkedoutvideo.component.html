@@ -1,0 +1,16 @@
+<hr>
+<h3 *ngIf="!(errorMessage == '')">{{errorMessage}}</h3>
+
+<div *ngFor="let cv of checkedOutVideos">
+    Video ID: <strong> {{cv.id}}</strong> <br />
+    Name: {{cv.pName}} <br />
+    Card-Expiration Date: {{cv.pCardExpirationDate}}<br />
+    Balance: {{cv.pBalance}} <br />
+    Title: <u> <i>{{cv.vTitle}} </i> </u> <br />
+    Director: {{cv.vDirector}} <br />
+    Release Date: {{cv.vReleaseDate}} <br />
+    Call Number: <strong> {{cv.vCallNumber}} </strong> <br />
+    Genre: {{cv.vGenre}} <br />
+    Due Date: {{cv.dueDate}} <br />
+    <hr>
+</div>

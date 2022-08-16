@@ -22,8 +22,8 @@ public interface CheckedOutRoomRepository extends JpaRepository<CheckedOutRoom, 
 	//delete reservation
 	@Transactional
 	@Modifying
-	@Query("delete from CheckedOutRoom cr where cr.room.roomNumber = ?1")
-	void deleteReservation(Integer rNum);
+	@Query("delete from CheckedOutRoom cr where cr.room.roomNumber = ?1 and cr.strDate=?2")
+	void deleteReservation(Integer rNum, String strDate);
 	
 	
 

@@ -1,0 +1,16 @@
+<hr>
+<h3 *ngIf="!(errorMessage == '')">{{errorMessage}}</h3>
+
+<div *ngFor="let cb of checkedOutBooks">
+    Book ID: <strong> {{cb.id}}</strong> <br />
+    Name: {{cb.pName}} <br />
+    Card-Expiration Date: {{cb.pCardExpirationDate}}<br />
+    Balance: {{cb.pBalance}}<br />
+    Title: <u> <i>{{cb.bTitle}} </i> </u> <br />
+    Author: {{cb.bAuthor}}<br />
+    Publisher: {{cb.bPublisher}}<br />
+    Call Number: <strong> {{cb.bCallNumber}} </strong><br />
+    Genre: {{cb.bGenre}}<br />
+    Due Date: {{cb.dueDate}}<br />
+<hr>
+</div>

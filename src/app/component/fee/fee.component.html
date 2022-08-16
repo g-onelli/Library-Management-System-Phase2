@@ -1,0 +1,41 @@
+<h2>Fee List</h2>
+<div id="conteudo-secao">
+    <div class="conteudo-secao-inner">
+        <table class="conteudo-secao-boxes">
+            <tbody>
+                <tr class="conteudo-secao-boxes__line">
+                    <td class="conteudo-secao-boxes__col">
+                        <div class="conteudo-secao-box">
+                            <div class="topo-secao">
+                                <div class="topo-secao__inner">
+                                    <a class="checkbox checkbox-select-itens push-left" href="#"><i
+                                            class="fa fa-check"></i></a>
+                                    <span class="topo-secao__txt">Your Fees - Current Balance: ${{balance}}</span>
+                                </div>
+                            </div>
+                            <div class="body-secao">
+                                <div class="box-listagem__padding">
+                                    <div class="fee-list">
+                                        <div class="box-listagem__item" *ngFor="let f of fees, let i = index">
+                                            <div class="box-listagem__inner">
+                                                <div class="box_listagem__field" *ngIf="!emptyFee">
+                                                    Patron: <strong>{{f.patronName}}</strong>&nbsp;
+                                                    Type: {{f.feeType}}&nbsp;
+                                                    Amount: ${{f.total}}&nbsp;
+                                                    Date Paid: {{f.datePaid}}
+                                                    <span *ngIf="f.datePaid == null">UNPAID&nbsp;&nbsp;</span>
+                                                    <button [disabled]="!(f.datePaid == null)"
+                                                        (click)="markPaid(i)">Pay</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
