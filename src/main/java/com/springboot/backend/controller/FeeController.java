@@ -130,6 +130,7 @@ public class FeeController {
 		existingFee.setDatePaid(LocalDate.now());
 		return feeRepository.save(existingFee);
 	}
+
 	@GetMapping("/fee/all")
 	public List<FeeDto> getFees() {
 		List<Fee> list = feeRepository.findUnpaid();
