@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.backend.dto.CheckedOutRoomDto;
 import com.springboot.backend.dto.ReservationDto;
-import com.springboot.backend.dto.UpdateDto;
 import com.springboot.backend.model.CheckedOutRoom;
 import com.springboot.backend.model.Patron;
 import com.springboot.backend.model.Reservation;
@@ -113,9 +111,9 @@ public class CheckedOutRoomController {
 		return room;
 	}
 	//Delete reservation
-	@DeleteMapping("/reservation/delete")
-	public void deleteReservation(@RequestParam(name="rNum") Integer rNum, @RequestParam(name="strDate") String strDate) {
-		checkedOutRoomRepository.deleteReservation(rNum, strDate);
+	@DeleteMapping("/reservation/delete/{rNum}")
+	public void deleteReservation(@PathVariable("rNum") Integer rNum) {
+		checkedOutRoomRepository.deleteReservation(rNum);
 	}
 	//Edit reservation - room, date, patron
 	@PutMapping("/reservation/update/patron")
@@ -128,10 +126,9 @@ public class CheckedOutRoomController {
 	}
 
 	@PutMapping("/reservation/update/room")
-	public void changeRoom(@RequestBody UpdateDto updateObj) {
-		Integer nNum = new Integer(updateObj.getIntValue());
+	public void changeRoom(@RequestParam(name="old") Integer oNum, @RequestParam(name="new") Integer nNum) {
 		System.out.println(nNum);
-		Optional<CheckedOutRoom> oldRoom = Optional.ofNullable(checkedOutRoomRepository.showReservationByRoomNum(updateObj.getRoomNum()));
+		Optional<CheckedOutRoom> oldRoom = Optional.ofNullable(checkedOutRoomRepository.showReservationByRoomNum(oNum));
 		Optional<CheckedOutRoom> newRoom = Optional.ofNullable(checkedOutRoomRepository.showReservationByRoomNum(nNum));
 		System.out.println(newRoom.isPresent());
 		if(!oldRoom.isPresent()) {
@@ -140,27 +137,26 @@ public class CheckedOutRoomController {
 		if(newRoom.isPresent()) {
 			throw new RuntimeException("The new room you want to book is already reserved. Please try again later.");
 		}
-		CheckedOutRoom reservation = checkedOutRoomRepository.showReservationByRoomNum(updateObj.getRoomNum());
+		CheckedOutRoom reservation = checkedOutRoomRepository.showReservationByRoomNum(oNum);
 		checkedOutRoomRepository.changeReservationRoom(nNum,reservation.getPatron().getId());
 	}
 	
 	@PutMapping("/reservation/update/date")
-	public void changeDate(@RequestBody UpdateDto updateObj) {
-		System.out.println(updateObj.getRoomNum());
-		Optional<CheckedOutRoom> reservation = Optional.ofNullable(checkedOutRoomRepository.showReservationByRoomNum(updateObj.getRoomNum()));
+	public void changeDate(@RequestParam(name="rNum") Integer rNum, @RequestParam(name="strDate") String strDate) {
+		Optional<CheckedOutRoom> reservation = Optional.ofNullable(checkedOutRoomRepository.showReservationByRoomNum(rNum));
 		if(!reservation.isPresent()) {
 			throw new RuntimeException("There is no room currently checked out with this room number.");
 		}
-		checkedOutRoomRepository.changeReservationDate(LocalDate.parse(updateObj.getStrDate()), updateObj.getStrDate(),reservation.get().getPatron().getId());
+		checkedOutRoomRepository.changeReservationDate(LocalDate.parse(strDate), strDate,reservation.get().getPatron().getId());
 	}
 	
 	@PutMapping("/reservation/update/duration")
-	public void changeDuration(@RequestBody UpdateDto updateObj) {//Integer roomNumber,int time
-		Optional<CheckedOutRoom> reservation = Optional.ofNullable(checkedOutRoomRepository.showReservationByRoomNum(updateObj.getRoomNum()));
+	public void changeDuration(@RequestParam(name="rNum") Integer rNum, @RequestParam(name="time") int time) {
+		Optional<CheckedOutRoom> reservation = Optional.ofNullable(checkedOutRoomRepository.showReservationByRoomNum(rNum));
 		if(!reservation.isPresent()) {
 			throw new RuntimeException("There is no room currently checked out with this room number.");
 		}
-		checkedOutRoomRepository.changeReservationDuration(updateObj.getIntValue(), reservation.get().getPatron().getId());
+		checkedOutRoomRepository.changeReservationDuration(time, reservation.get().getPatron().getId());
 	}
 	
 
