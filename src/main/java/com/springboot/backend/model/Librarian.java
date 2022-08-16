@@ -33,6 +33,9 @@ public class Librarian {
     private String phonenumber;
 	@OneToOne(cascade = {CascadeType.ALL})
 	private UserInfo userinfo;
+	@OneToOne(cascade = {CascadeType.ALL})
+	private Event event;
+	
 	public Integer getId() {
 		return id;
 	}
