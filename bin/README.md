@@ -35,7 +35,7 @@
 
 **Patrons**
 - View patrons (GET)
-- Register patrons(Sign-Up)(POST)
+- Register patrons (POST)
 - Remove patrons(DELETE)
 - Update patron balance (PUT)
 - Renew library card (PUT)
@@ -47,11 +47,6 @@
 **Requests**
 - View book requests (GET)
 - Complete book requests (POST and DELETE)
-
-**Fees**
-- View Fees (GET)
-- Create Fees for Patrons (POST)
-- Update Fees (PUT)
 
 ### Patron (Role)
 
@@ -74,8 +69,3 @@
 - View room collections (GET)
 - View scheduled rooms (GET)
 - Reserve room based on number (POST)
-
-**Fees**
-- View Fees (GET)
-- Create Fees for Patrons (POST)
-- Pay Fees (PUT)
