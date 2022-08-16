@@ -21,11 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.springboot.backend.dto.EventDto;
 import com.springboot.backend.model.Event;
 import com.springboot.backend.model.Librarian;
+import com.springboot.backend.model.Patron;
 import com.springboot.backend.repository.EventRepository;
 import com.springboot.backend.repository.LibrarianRepository;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200"})
 public class EventController {
 	
 	@Autowired
@@ -97,5 +97,10 @@ public class EventController {
 		else {
 			throw new RuntimeException("Event ID is invalid");
 		}
+	}
+	@GetMapping("/event/all")
+	public List<Event> getEvents() {
+		List<Event> list = eventRepository.findAll();
+		return list; 
 	}
 }

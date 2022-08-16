@@ -27,6 +27,7 @@ import com.springboot.backend.dto.PatronIdDto;
 import com.springboot.backend.dto.PatronProfileDto;
 import com.springboot.backend.dto.UserInfoDto;
 import com.springboot.backend.model.Patron;
+import com.springboot.backend.model.Request;
 import com.springboot.backend.model.UserInfo;
 import com.springboot.backend.repository.PatronRepository;
 import com.springboot.backend.repository.UserRepository;
@@ -109,6 +110,11 @@ public class PatronController {
 			return optional.get();
 		throw new RuntimeException("ID is invalid");
 		  
+	}
+	@GetMapping("/patrons/all")
+	public List<Patron> getPatrons() {
+		List<Patron> list = patronRepository.findAll();
+		return list; 
 	}
 	//Update a specific patron based on Id
 	@PutMapping("/patrons")

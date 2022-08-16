@@ -1,0 +1,17 @@
+<div class="box-listagem__item" *ngFor="let e of events">
+    <div class="box-listagem__inner">
+        <div class="box_listagem__field">
+            Title: <strong>{{e.title}}</strong> &nbsp;
+            Date: {{e.date}} &nbsp;
+            ID: {{e.id}}
+            <br />
+            {{e.description}}
+            <hr>
+        </div>
+    </div>
+</div>
+<div class="box-listagem__item">
+    <a href="Javascript:void(0)" (click)="prev()" *ngIf="page>0">Prev</a> &nbsp;&nbsp;&nbsp;&nbsp;
+    {{page+1}}/{{totalPages}} &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="Javascript:void(0)" (click)="next()" *ngIf="events.length == 3">Next</a>
+</div>

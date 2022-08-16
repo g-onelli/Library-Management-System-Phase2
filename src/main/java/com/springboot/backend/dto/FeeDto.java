@@ -10,6 +10,14 @@ public class FeeDto {
 	private LocalDate datePaid;
 	private String feeType;
 	private String patronName;
+	private double patronBalance;
+	
+	public double getPatronBalance() {
+		return patronBalance;
+	}
+	public void setPatronBalance(double patronBalance) {
+		this.patronBalance = patronBalance;
+	}
 	public Integer getId() {
 		return id;
 	}
