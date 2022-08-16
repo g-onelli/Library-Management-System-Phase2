@@ -70,10 +70,10 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers(HttpMethod.GET, "/reservation/patron/{pid}").authenticated()
 			.antMatchers(HttpMethod.GET, "/reservation/room/{rNum}").authenticated()
 			.antMatchers(HttpMethod.POST, "/reservation/create").authenticated()
-			.antMatchers(HttpMethod.PUT, "/reservation/update/patron").hasAnyAuthority("PATRON")
-			.antMatchers(HttpMethod.PUT, "/reservation/update/room").hasAnyAuthority("PATRON")
-			.antMatchers(HttpMethod.PUT, "/reservation/update/date").hasAnyAuthority("PATRON")
-			.antMatchers(HttpMethod.PUT, "/reservation/update/duration").hasAnyAuthority("PATRON")
+			.antMatchers(HttpMethod.PUT, "/reservation/update/patron").authenticated()
+			.antMatchers(HttpMethod.PUT, "/reservation/update/room").authenticated()
+			.antMatchers(HttpMethod.PUT, "/reservation/update/date").authenticated()
+			.antMatchers(HttpMethod.PUT, "/reservation/update/duration").authenticated()
 			.and().httpBasic()
 			.and().csrf().disable();
 }
