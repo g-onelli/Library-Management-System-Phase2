@@ -130,5 +130,4 @@ public class FeeController {
 		existingFee.setDatePaid(LocalDate.now());
 		return feeRepository.save(existingFee);
 	}
-	
 }
