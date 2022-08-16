@@ -1,5 +1,6 @@
 package com.springboot.backend.controller;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springboot.backend.dto.LibrarianIdDto;
 import com.springboot.backend.model.Librarian;
 import com.springboot.backend.repository.LibrarianRepository;
 
@@ -43,5 +45,14 @@ public class LibrarianController {
 			password = passwordEncoder.encode(password);
 			librarian.getUserinfo().setPassword(password);
 			librarianRepository.save(librarian);
+		}
+		@GetMapping("/librarianId")
+		public Librarian login(Principal principal) {
+			String username = principal.getName();
+			Librarian info = librarianRepository.getByUsername(username);
+			
+			LibrarianIdDto dto = new LibrarianIdDto();
+			//dto.setId(info.getId());
+			return info;			
 		}
 }

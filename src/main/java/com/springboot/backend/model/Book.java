@@ -15,15 +15,15 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@Column(length = 45)
+	@Column(length = 100)
     private String title;
 	@Column(length = 45)
     private String author;
-	@Column(length = 45)
+	@Column(length = 100)
     private String publisher;
 	@Column
     private Double callNumber;
-    @Column(length = 45)
+    @Column(length = 100)
     private String genre;
 
     public Book(){
