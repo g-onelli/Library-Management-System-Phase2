@@ -130,21 +130,4 @@ public class FeeController {
 		existingFee.setDatePaid(LocalDate.now());
 		return feeRepository.save(existingFee);
 	}
-
-	@GetMapping("/fee/all")
-	public List<FeeDto> getFees() {
-		List<Fee> list = feeRepository.findUnpaid();
-		List<FeeDto> listDto = new ArrayList<>();
-		list.stream().forEach(p->{
-			FeeDto dto = new FeeDto();
-			dto.setId(p.getId());
-			dto.setFeeType(p.getFeeType());
-			dto.setTotal(p.getTotal());
-			dto.setDatePaid(p.getDatePaid());
-			dto.setPatronName(p.getPatron().getName());
-			listDto.add(dto);
-		});
-		return listDto;
-	}
-	
 }
