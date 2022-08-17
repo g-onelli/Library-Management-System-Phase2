@@ -148,7 +148,10 @@ public class CheckedOutRoomController {
 	//Delete reservation
 	@DeleteMapping("/reservation/delete")
 	public void deleteReservation(@RequestParam(name="rNum") Integer rNum, @RequestParam(name="strDate") String strDate) {
-		checkedOutRoomRepository.deleteReservation(rNum, strDate);
+		Room rumNum = roomRepository.showRoomByNum(rNum);
+		System.out.println(rumNum);
+		System.out.println(rumNum.getNum());
+		checkedOutRoomRepository.deleteReservation(rumNum.getNum(), strDate);
 	}
 	//Edit reservation - room, date, patron
 	@PutMapping("/reservation/update/patron")

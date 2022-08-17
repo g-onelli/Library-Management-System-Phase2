@@ -56,6 +56,9 @@ public class RoomsController {
 			dto.setHasPresenterTools(r.getHasPresenterTools());
 			dtoList.add(dto);
 		});
+		dtoList.stream().forEach(r->{
+			System.out.println(r);
+		});
 		return dtoList;
 	}
 	
