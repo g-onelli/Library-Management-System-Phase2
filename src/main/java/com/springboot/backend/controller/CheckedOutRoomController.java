@@ -93,6 +93,7 @@ public class CheckedOutRoomController {
 	@GetMapping("/reservations")
 	public List<CheckedOutRoomDto> showAllReservations(){
 		List<CheckedOutRoom> reservList = checkedOutRoomRepository.findAll();
+		System.out.println(reservList);
 		List<CheckedOutRoomDto> resList = new ArrayList<>();
 		reservList.stream().forEach(r->{
 			CheckedOutRoomDto room = new CheckedOutRoomDto();
