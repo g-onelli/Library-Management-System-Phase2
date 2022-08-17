@@ -1,4 +1,4 @@
-# Library-Management-System-Phase2
+# Library-Management-System-Phase2 SpringBoot Backend
 
 **Gabriela**
 - Room
@@ -77,4 +77,5 @@
 
 **Fees**
 - View Fees (GET)
+- Create Fees for Patrons (POST)
 - Pay Fees (PUT)

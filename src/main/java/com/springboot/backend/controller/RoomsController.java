@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,8 +20,6 @@ import com.springboot.backend.model.Room;
 import com.springboot.backend.repository.RoomsRepository;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
-//@CrossOrigin(origins = "http://localhost:4200")
 public class RoomsController {
 	@Autowired
 	private RoomsRepository roomsRepository;
@@ -46,6 +43,7 @@ public class RoomsController {
 			hr-=25;
 		}
 		String strEndTime = Integer.toString(hr)+"."+Integer.toString(min);
+
 		List<Integer> rNums = roomsRepository.getRoomNumbers(strDate, strTime,strEndTime);
 		List<Room> rList = roomsRepository.showOpenRooms(rNums);
 		List<RoomDto> dtoList = new ArrayList<>();
@@ -55,9 +53,6 @@ public class RoomsController {
 			dto.setCapacity(r.getCapacity());
 			dto.setHasPresenterTools(r.getHasPresenterTools());
 			dtoList.add(dto);
-		});
-		dtoList.stream().forEach(r->{
-			System.out.println(r);
 		});
 		return dtoList;
 	}

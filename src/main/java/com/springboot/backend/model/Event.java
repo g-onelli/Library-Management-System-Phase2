@@ -22,13 +22,13 @@ public class Event {
 	@Column(nullable = false)
 	private LocalDate date;
 	
-	@Column(length = 45, nullable = true)
+	@Column(length = 600, nullable = true)
 	private String description;
 	
-	@Column(length = 45, nullable = true)
+	@Column(length = 100, nullable = true)
 	private String title;
 	
-	@OneToOne(cascade = {CascadeType.ALL})
+	@OneToOne(cascade = {CascadeType.DETACH})
 	private Librarian librarian;
 
 	public Event(Integer id, LocalDate date, String description, String title, Librarian librarian) {

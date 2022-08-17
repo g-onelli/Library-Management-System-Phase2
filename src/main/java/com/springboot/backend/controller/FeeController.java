@@ -85,11 +85,39 @@ public class FeeController {
 				dto.setTotal(p.getTotal());
 				listDto.add(dto);
 			});
+			if(list.size() == 0) {
+				FeeDto dto = new FeeDto();
+				dto.setPatronBalance(info.getBalance());
+				listDto.add(dto);
+			}
 			return listDto;
 		}
 		return null;
 	}
 
+	@GetMapping("/fee/patron/{username}")
+	public List<FeeDto> getFeeByPatronId(@PathVariable String username) {
+		System.out.println(username);
+		Patron info = patronRepository.getByUsername(username);
+		List<Fee> list = feeRepository.findByFeeId(info.getId());
+		List<FeeDto> listDto = new ArrayList<>();
+		list.stream().forEach(p->{
+			FeeDto dto = new FeeDto();
+			dto.setId(p.getId());
+			dto.setPatronName(p.getPatron().getName());
+			dto.setDatePaid(p.getDatePaid());
+			dto.setFeeType(p.getFeeType());
+			dto.setTotal(p.getTotal());
+			listDto.add(dto);
+		});
+		if(list.size() == 0) {
+			FeeDto dto = new FeeDto();
+			dto.setPatronBalance(info.getBalance());
+			listDto.add(dto);
+		}
+		return listDto;
+	}
+	
 	@PutMapping("/fee/{id}")
 	public Fee updateFee(@PathVariable("id") Integer id, @RequestBody Fee newFee) {
 		Optional<Fee> optional = feeRepository.findById(id);
@@ -102,5 +130,4 @@ public class FeeController {
 		existingFee.setDatePaid(LocalDate.now());
 		return feeRepository.save(existingFee);
 	}
-	
 }

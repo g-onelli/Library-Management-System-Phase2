@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.backend.dto.RequestDto;
 import com.springboot.backend.model.Book;
+import com.springboot.backend.model.Librarian;
 import com.springboot.backend.model.Patron;
 import com.springboot.backend.model.Request;
 import com.springboot.backend.repository.BookRepository;
@@ -51,8 +52,8 @@ public class RequestController {
 	
 	//Return all requests View book requests (GET)
 	@GetMapping("/requests")
-	public List<RequestDto> getAllRequests(@RequestParam(name ="page") Integer page,
-			@RequestParam(name="size") Integer size) {
+	public List<RequestDto> getAllRequests(@RequestParam(name ="page",required=false) Integer page,
+			@RequestParam(name="size",required=false) Integer size) {
 		if(page <0) {
 			page = 0;
 		}
@@ -74,7 +75,11 @@ public class RequestController {
 		});
 		return listDto; 
 	}
-	
+	@GetMapping("/requests/all")
+	public List<Request> getRequests() {
+		List<Request> list = requestRepository.findAll();
+		return list; 
+	}
 	//Return a request based on ID (probably not needed)
 	@GetMapping("/requests/{id}") 
 	public Request getSingleRequestById(@PathVariable("id") Integer id) {
