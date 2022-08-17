@@ -21,4 +21,8 @@ public interface PatronRepository extends JpaRepository<Patron, Integer>{
 	@Query("select p from Patron p where p.userinfo.username=?1")
 	Patron getByUsername(String username);
 	
+	@Transactional
+	@Modifying
+	@Query("update Patron p SET p.name=?2 where p.id=?1")
+	void updateProfile(Integer id, String name);
 }
