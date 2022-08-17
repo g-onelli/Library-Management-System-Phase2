@@ -3,7 +3,9 @@ package com.springboot.backend.repository;
 
 
 import java.time.LocalDate;
+
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -19,11 +21,16 @@ public interface CheckedOutRoomRepository extends JpaRepository<CheckedOutRoom, 
 	@Query("select cr from CheckedOutRoom cr where cr.room.roomNumber=?1")
 	CheckedOutRoom showReservationByRoomNum(Integer rNum);
 	
+	@Query("select cr from CheckedOutRoom cr where cr.room.roomNumber=?1 and cr.strDate=?2 and (cr.startTime between ?3 and ?4)")
+	Optional<CheckedOutRoom> checkAlreadyPresent(Integer rNum, String strdate, String startT, String endT);
+	
 	//delete reservation
 	@Transactional
 	@Modifying
-	@Query("delete from CheckedOutRoom cr where cr.room.roomNumber = ?1")
-	void deleteReservation(Integer rNum);
+
+	@Query("delete from CheckedOutRoom cr where cr.room.num = ?1 and cr.strDate=?2")
+	void deleteReservation(Integer rNum, String strDate);
+
 	
 	
 
