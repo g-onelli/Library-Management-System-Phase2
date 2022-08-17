@@ -13,6 +13,9 @@ public class Room {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(nullable=false)
+	private Integer num;
+	
+	@Column
 	private Integer roomNumber;
 	
 	@Column(nullable=false)
@@ -54,6 +57,14 @@ public class Room {
 
 	public void setHasPresenterTools(Integer hasPresenterTools) {
 		this.hasPresenterTools = hasPresenterTools;
+	}
+
+	public Integer getNum() {
+		return num;
+	}
+
+	public void setNum(Integer num) {
+		this.num = num;
 	}
 
 	@Override
