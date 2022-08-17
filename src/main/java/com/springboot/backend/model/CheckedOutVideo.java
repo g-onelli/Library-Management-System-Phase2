@@ -19,10 +19,10 @@ public class CheckedOutVideo{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@OneToOne(cascade= {CascadeType.ALL}) 
+	@OneToOne
 	private Patron patron;
 	
-	@OneToOne(cascade= {CascadeType.ALL}) 
+	@OneToOne 
     private Video video;
 	
     @Column
