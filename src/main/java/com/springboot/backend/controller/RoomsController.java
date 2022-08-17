@@ -31,6 +31,7 @@ public class RoomsController {
 	
 	@GetMapping("/rooms/open")
 	public List<RoomDto> getAllOpenRooms(@RequestParam(name="strDate") String strDate, @RequestParam(name="strTime") String strTime){
+		List<Room> rList;
 		String[] splitTime = strTime.split(":");
 		
 		int hr = Integer.parseInt(splitTime[0])+1;
@@ -45,7 +46,12 @@ public class RoomsController {
 		String strEndTime = Integer.toString(hr)+"."+Integer.toString(min);
 
 		List<Integer> rNums = roomsRepository.getRoomNumbers(strDate, strTime,strEndTime);
-		List<Room> rList = roomsRepository.showOpenRooms(rNums);
+		System.out.println(rNums);
+		if(rNums.isEmpty()) {
+			rList = roomsRepository.findAll();
+		}else {
+			rList = roomsRepository.showOpenRooms(rNums);
+		}
 		List<RoomDto> dtoList = new ArrayList<>();
 		rList.stream().forEach(r->{
 			RoomDto dto = new RoomDto();
