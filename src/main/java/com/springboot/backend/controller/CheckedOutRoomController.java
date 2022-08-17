@@ -38,6 +38,30 @@ public class CheckedOutRoomController {
 	@Autowired
 	private PatronRepository patronRepository;
 	
+	private String returnEndTime(String startTime, Double duration) {
+		String[] splitTime = startTime.split(":");
+		int hr =0;
+		int min = 0;
+		if(duration.toString().contains(".")) {
+			String[] splitDur = duration.toString().split("[.]");
+			hr = Integer.parseInt(splitTime[0])+Integer.parseInt(splitDur[0]);
+			min = Integer.parseInt(splitTime[1])+Integer.parseInt(splitDur[1]);
+		}
+		else {
+			String time = duration.toString();
+			hr = Integer.parseInt(splitTime[0])+Integer.parseInt(time);
+		}
+		if(min>=60) {
+			hr+=1;
+			min= min-60;
+		}
+		if(hr>=25) {
+			hr-=25;
+		}
+		String strEndTime = Integer.toString(hr)+"."+Integer.toString(min);
+		return strEndTime;
+	}
+	
 	@PostMapping("/reservation/create")
 	public void makeReservations(@RequestBody ReservationDto reserve) {
 		LocalDate ldObj = LocalDate.parse(reserve.getStrDate());
@@ -52,9 +76,18 @@ public class CheckedOutRoomController {
 		newReserve.setReservedDate(ldObj);
 		newReserve.setStrDate(reserve.getStrDate());
 		newReserve.setRoom(room);
-		System.out.println(newReserve);
+		String endTime = returnEndTime(newReserve.getStartTime(), newReserve.getduration());
+		Optional<CheckedOutRoom> checkRoom = checkedOutRoomRepository
+				.checkAlreadyPresent(newReserve.getRoom().getRoomNumber(),
+						newReserve.getStrDate(),
+						newReserve.getStartTime(),endTime);
+		if(checkRoom.isPresent()) {
+			throw new RuntimeException("This room is already reserved on that day during that time slot. Please pick again.");
+		}
+		else {
+			checkedOutRoomRepository.save(newReserve);
+		}
 		
-		checkedOutRoomRepository.save(newReserve);
 	}
 	 
 	

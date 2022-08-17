@@ -35,9 +35,10 @@ public class RoomsController {
 	@GetMapping("/rooms/open")
 	public List<RoomDto> getAllOpenRooms(@RequestParam(name="strDate") String strDate, @RequestParam(name="strTime") String strTime){
 		String[] splitTime = strTime.split(":");
-		int hr = Integer.parseInt(splitTime[0]);
-		int min = Integer.parseInt(splitTime[1])+30;
-		if((min+30)>=60) {
+		
+		int hr = Integer.parseInt(splitTime[0])+1;
+		int min = Integer.parseInt(splitTime[1]);
+		if(min>=60) {
 			hr+=1;
 			min= min-60;
 		}
@@ -45,16 +46,8 @@ public class RoomsController {
 			hr-=25;
 		}
 		String strEndTime = Integer.toString(hr)+"."+Integer.toString(min);
-		Double endTime = Double.parseDouble(strEndTime);
-		strTime = strTime.replace(":", ".");
-		Double startTime = Double.parseDouble(strTime);
-		System.out.println(startTime);
-		System.out.println(endTime);
-		System.out.println(strDate);
-		List<Integer> rNums = roomsRepository.getRoomNumbers(strDate, startTime,endTime);
-		System.out.println(rNums);
+		List<Integer> rNums = roomsRepository.getRoomNumbers(strDate, strTime,strEndTime);
 		List<Room> rList = roomsRepository.showOpenRooms(rNums);
-		System.out.println(rList);
 		List<RoomDto> dtoList = new ArrayList<>();
 		rList.stream().forEach(r->{
 			RoomDto dto = new RoomDto();
@@ -62,9 +55,6 @@ public class RoomsController {
 			dto.setCapacity(r.getCapacity());
 			dto.setHasPresenterTools(r.getHasPresenterTools());
 			dtoList.add(dto);
-		});
-		dtoList.stream().forEach(r->{
-			System.out.println(r);
 		});
 		return dtoList;
 	}
