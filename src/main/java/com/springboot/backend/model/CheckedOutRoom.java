@@ -21,7 +21,7 @@ public class CheckedOutRoom {
 	@Column
 	private String strDate;
 	
-	@OneToOne
+	@OneToOne(cascade= {CascadeType.ALL})
 	private Room room;
 	
 	@OneToOne
