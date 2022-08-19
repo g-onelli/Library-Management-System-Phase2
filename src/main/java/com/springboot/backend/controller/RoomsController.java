@@ -94,7 +94,8 @@ public class RoomsController {
 	
 	@DeleteMapping("/rooms/delete/{rid}")
 	public void deleteRoomById(@PathVariable("rid") Integer rid) {
-		roomsRepository.deleteById(rid);
+		Room room = roomsRepository.showRoomByNum(rid);
+		roomsRepository.deleteById(room.getNum());
 	}
 	
 	@PutMapping("/rooms/update/{rid}")
