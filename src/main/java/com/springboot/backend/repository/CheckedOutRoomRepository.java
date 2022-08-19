@@ -42,7 +42,7 @@ public interface CheckedOutRoomRepository extends JpaRepository<CheckedOutRoom, 
 	
 	@Transactional
 	@Modifying
-	@Query("update CheckedOutRoom cr set cr.room.roomNumber = ?1 where cr.patron.id=?2")
+	@Query("update CheckedOutRoom cr set cr.room.num = ?1 where cr.patron.id=?2")
 	void changeReservationRoom(Integer rNum, Integer pid);
 	
 	@Transactional
