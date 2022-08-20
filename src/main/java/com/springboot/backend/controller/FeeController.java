@@ -83,6 +83,7 @@ public class FeeController {
 				dto.setDatePaid(p.getDatePaid());
 				dto.setFeeType(p.getFeeType());
 				dto.setTotal(p.getTotal());
+				dto.setPatronBalance(info.getBalance());
 				listDto.add(dto);
 			});
 			if(list.size() == 0) {
@@ -108,6 +109,7 @@ public class FeeController {
 			dto.setDatePaid(p.getDatePaid());
 			dto.setFeeType(p.getFeeType());
 			dto.setTotal(p.getTotal());
+			dto.setPatronBalance(info.getBalance());
 			listDto.add(dto);
 		});
 		if(list.size() == 0) {
